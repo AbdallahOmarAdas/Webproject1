@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="para">
-      <change afterPath="$PROJECT_DIR$/find_us.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Untitled-removebg-preview.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/map_finfus.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mainPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="date4_12.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/css1.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/css1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainPage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +84,7 @@
       <workItem from="1649743576148" duration="344000" />
       <workItem from="1649772989020" duration="136000" />
       <workItem from="1649795047153" duration="1698000" />
+      <workItem from="1649797717344" duration="4835000" />
     </task>
     <task id="LOCAL-00001" summary="para">
       <created>1649688430023</created>

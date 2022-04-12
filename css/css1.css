@@ -37,7 +37,7 @@ div#reg_div{
     padding-right: 4px;
     padding-top: 4px;
 }
-svg{
+svg.svg_item{
 -webkit-text-size-adjust: 100%;
 -webkit-tap-highlight-color: rgba(0,0,0,0);
 pointer-events: auto;
@@ -83,9 +83,9 @@ input.submit_input{
     width: 200px;
 }
 td{
-    text-align: center;
+     text-align: center;
 
-}
+ }
 a.void_a{
     text-decoration: none;
     color: #0095f6;
@@ -103,4 +103,8 @@ padding-top:90px;
 .font_images{
   color: #0000FF;
     --fa-primary-color: gold;
+}
+a.nav_font{
+    font-size: 20px;
+    color:red;
 }
