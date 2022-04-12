@@ -98,8 +98,9 @@ table.info{
     margin-right: auto;
 }
 body{
-
-    /*background-attachment: ;*/
-    background-size: 100%;
-
+padding-top:90px;
+}
+.font_images{
+  color: #0000FF;
+    --fa-primary-color: gold;
 }

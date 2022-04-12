@@ -2,6 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="para">
+      <change afterPath="$PROJECT_DIR$/find_us.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Untitled-removebg-preview.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/map_finfus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mainPage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/css1.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/css1.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,12 +43,15 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="27UamDd4lX6omN4Hh3NOtLb0v2h" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -54,6 +64,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Webproject1\images" />
       <recent name="C:\xampp\htdocs\ProjectA\images" />
     </key>
   </component>
@@ -76,6 +87,7 @@
       <workItem from="1649687587446" duration="944000" />
       <workItem from="1649743576148" duration="344000" />
       <workItem from="1649772989020" duration="136000" />
+      <workItem from="1649795047153" duration="1698000" />
     </task>
     <task id="LOCAL-00001" summary="para">
       <created>1649688430023</created>
@@ -112,6 +124,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="para" />
     <option name="LAST_COMMIT_MESSAGE" value="para" />
   </component>
