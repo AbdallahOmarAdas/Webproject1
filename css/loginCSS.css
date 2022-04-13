@@ -1,0 +1,12 @@
+div.rightDiv{
+    /*width: 100%;*/
+width: 900px;
+    background-color: #0000FF;
+}
+div.leftDiv{
+    width: 90px;
+    /*width: 100%;*/
+    /*width: 500px;*/
+    /*height: 500px;*/
+    background-color: red;
+}
