@@ -31,11 +31,12 @@ div#reg_div{
     height: 420px;
     background-color: #E6EEEA;
     position: absolute;
-    top:150px;
-    left: 400px;
+    top:20%;
+    left: 55%;
     border-radius: 15px;
     padding-right: 4px;
     padding-top: 4px;
+    z-index: 2;
 }
 svg.svg_item{
 -webkit-text-size-adjust: 100%;

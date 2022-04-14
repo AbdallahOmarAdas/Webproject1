@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="date4_3.14">
-      <change afterPath="$PROJECT_DIR$/script/sliderScript.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ttt.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/loginDiv.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/css1.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/css1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/slider/s1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/slider/s1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/slider/s2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/slider/s2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/slider/s3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/slider/s3.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/images/slider/s4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/slider/s4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/slider/s5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/slider/s5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/slider/s6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/slider/s6.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/loginBS.html" beforeDir="false" afterPath="$PROJECT_DIR$/loginBS.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,9 +24,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -54,13 +58,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../testBS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/script" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Webproject1\script" />
+      <recent name="C:\xampp\htdocs\Webproject1\css" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\Webproject1\script" />
       <recent name="C:\xampp\htdocs\Webproject1\images" />
@@ -88,7 +96,9 @@
       <workItem from="1649772989020" duration="136000" />
       <workItem from="1649795047153" duration="1698000" />
       <workItem from="1649797717344" duration="5728000" />
-      <workItem from="1649845128149" duration="12967000" />
+      <workItem from="1649845128149" duration="13388000" />
+      <workItem from="1649864717235" duration="1492000" />
+      <workItem from="1649939728748" duration="9025000" />
     </task>
     <task id="LOCAL-00001" summary="para">
       <created>1649688430023</created>
@@ -111,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649852107157</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="date4_3.14">
+      <created>1649863485269</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1649863485269</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
