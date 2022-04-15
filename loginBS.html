@@ -40,9 +40,9 @@
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link nav_font" href="https://www.facebook.com" style="color: #FC8804;">go to facebook</a></li>
-                <li class="nav-item"><a class="nav-link nav_font" href="https://www.najah.edu" style="color: #FC8804;"> go to najah</a></li>
+                <li class="nav-item"><a class="nav-link nav_font" href="#connect_us" style="color: #FC8804;"> Connect us</a></li>
                 <li class="nav-item"><a class="nav-link nav_font" href="find_us.html" style="color: #FC8804;">Find Us</a></li>
-                <li class="nav-item"><a class="nav-link nav_font" href="login.html" style="color:#FC8804;">Login</a></li>
+                <li class="nav-item"><a class="nav-link nav_font" href="loginBS.html" style="color:#FC8804;">Login</a></li>
             </ul>
         </div>
 
@@ -105,24 +105,24 @@
     <div class="col d-flex justify-content-center " style="background-color: #f9cb9c;padding-top: 30px;padding-bottom: 20px">
             <div id="div_login">
                 <form action="">
-                    <span class="login_span p-b-49">
+                    <span class="login_span p-b-49" style="font-style: italic;font-family: Bold">
 						Login
 					</span>
 
                     <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
                         <span class="label-input100"><i class="fa-solid fa-user abd"></i> Username</span>
-                        <input class="input100" type="text" name="username" placeholder="Type your username">
+                        <input class="input100" type="text" name="login_username" placeholder="Type your username">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
                         <span class="label-input100"><i class="fa-solid fa-lock abd"></i> Password</span>
-                        <input class="input100" type="password" name="pass" placeholder="Type your password">
+                        <input class="input100" type="password" name="login_pass" placeholder="Type your password">
                         <span class="focus-input100" ></span>
                     </div>
 
                     <div class="text-right p-t-8 p-b-31">
-                        <a href="#" class="login_a">
+                        <a href="#" class="login_a" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
                             Forgot password?
                         </a>
                     </div>
@@ -135,63 +135,92 @@
 
                         <div>
                             <p>Dont have an account?<br>
-                                <a class="void_a" href="javascript:void(0);" onclick="dispReg()"> Create Account Now!</a>
+                                <a class="void_a" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Create Account Now!</a>
                             </p>
                         </div>
 
                     </div>
                 </form>
             </div>
-        <div id="reg_div_outer">
-            <div id="reg_div">
-                <svg class="svg_item" id="X_a" onclick="remove_Reg()" onmouseover="x_enter()" onmouseout="x_out()" viewBox="0 0 24 24" aria-hidden="true" class="r-18jsvk2 r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03"><g><path d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path></g></svg>
-                <form action="" method="post">
-                    <table align="center">
-                        <tr>
-                            <td style="text-align: center">
-                                <h2 >Create Account</h2>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td >
-                                <input type="email" size="40px" placeholder=" Email">
-                            </td>
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+            <div class="modal-dialog modal-dialog-scrollable" id="div_reg2">
+                <div class="modal-content" style="border-radius: 30px;padding-bottom: 15px">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Create Account</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                                        <form action="" method="post">
 
-                        </tr>
-                        <tr>
-                            <td >
-                                <input type="text" size="40px" placeholder=" Full Name">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td >
-                                <input type="tel" size="40px" placeholder=" Phone Number">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td >
-                                <input type="text" size="40px" placeholder=" Username">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td >
-                                <input type="password" size="40px" placeholder=" Password">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="submit_input" type="submit" value="Sign up">
-                            </td>
-                        </tr>
-                    </table>
-                </form>
+                                                        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                                                            <span class="label-input100"><i class="fa-solid fa-envelope"></i> Email</span>
+                                                            <input class="input100" type="email" name="reg_Email" placeholder="Type your Email">
+                                                            <span class="focus-input100"></span>
+                                                        </div>
+
+                                                        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                                                            <span class="label-input100"><i class="fa-solid fa-keyboard"></i> Full name</span>
+                                                            <input class="input100" type="text" name="reg_FullName" placeholder="Type your Full name">
+                                                            <span class="focus-input100"></span>
+                                                        </div>
+
+                                                        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                                                            <span class="label-input100"><i class="fa-solid fa-phone"></i> Phone number</span>
+                                                            <input class="input100" type="tel" name="reg_phone" placeholder="Type your Phone number">
+                                                            <span class="focus-input100"></span>
+                                                        </div>
+
+                                                        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                                                            <span class="label-input100"><i class="fa-solid fa-user abd"></i> User Name</span>
+                                                            <input class="input100" type="text" name="reg_username" placeholder="chose username">
+                                                            <span class="focus-input100"></span>
+                                                        </div>
+
+                                                        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                                                            <span class="label-input100"><i class="fa-solid fa-lock abd"></i> Password</span>
+                                                            <input class="input100" type="password" name="reg_password" placeholder="Type Password">
+                                                            <span class="focus-input100"></span>
+                                                        </div>
+                                                        <div class="wrap-login100-form-btn">
+                                                            <div class="login100-form-bgbtn"></div>
+                                                            <input class="login100-form-btn c12" type="submit" value="sign up">
+                                                        </div>
+
+                                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel1">Reset your password</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <p style="font-size: 18px;padding-left: 20px">Please enter your email to get the code to reset your password.</p>
+                    <div class="modal-body">
+                        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                            <span class="label-input100"><i class="fa-solid fa-envelope"></i> Email</span>
+                            <input class="input100" type="email" name="Res_Email" placeholder="Enter your Email">
+                            <span class="focus-input100"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
+                        <input type="submit" value="Send code" class="btn btn-primary" style="height:38px">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 </div>
 
-<div class="navbar bg-dark text-white navbar-light">
+<div class="navbar bg-dark text-white navbar-light" id="connect_us">
 
     <div class="container">
 <pre>

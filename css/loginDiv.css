@@ -3,6 +3,27 @@ div#div_login{
     padding: 10px 60px 0px 60px;
     border-radius: 30px;
 }
+div#staticBackdrop{
+
+position: absolute;
+
+    left: 25%;
+
+}
+div#staticBackdrop1{
+
+    position: absolute;
+
+    left: 25%;
+
+}
+div#div_reg2{
+
+
+    /*position: relative;*/
+    /*top:0%;*/
+    /*left: 0%;*/
+}
 img.ipp{
     width: 550px;
     height: 550px;
@@ -15,10 +36,10 @@ img.ipp{
     text-align: center;
     padding-bottom: 49px;
 }
-.abd{
-    color: #0000FF;
-    font-size: 15px;
-}
+/*.abd{*/
+/*    color: #0000FF;*/
+/*    font-size: 15px;*/
+/*}*/
 .wrap-input100 {
     width: 100%;
     position: relative;
@@ -134,7 +155,7 @@ a.login_a:hover {
     width: 300%;
     height: 100%;
     background: #a64bf4;
-    background: -webkit-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: -webkit-linear-gradient(right, #f6b26b, #b45f06, #f6b26b,#b45f06);
     background: linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
     top: 0;
     left: -100%;
