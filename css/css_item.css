@@ -2,7 +2,8 @@ div.item_div{
     float: left;
     width: 200px;
     height: 220px;
-    background-image: radial-gradient(closest-side at 50% 80%,#a9a9a9, white);
+    background-image: radial-gradient(closest-side at 50% 65%,#a9a9a9, white);
+    /*background-image: radial-gradient(closest-side at 50% 80%,#a9a9a9, white);*/
     /*border: 1px solid red;*/
     background-color: yellow;
     margin: 2px;
@@ -17,7 +18,8 @@ div.item_div0{
 div.item_div:hover{
     float: left;
     width: 200px;
-    background-image: radial-gradient(closest-side at 50% 80%,#838383, white);
+    background-image: radial-gradient(closest-side at 50% 65%,#838383, white);
+    /*background-image: radial-gradient(closest-side at 50% 80%,#838383, white);*/
     /*padding: 5px;*/
     /*margin: 20px;*/
     overflow: hidden;
@@ -25,7 +27,7 @@ div.item_div:hover{
 }
 
 img.item_img{
-
+    /*padding-top: 25px;*/
     transform: scale(1);
     transition: 0.3s ease-in-out;
 }

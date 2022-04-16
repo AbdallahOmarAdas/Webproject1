@@ -1,0 +1,10 @@
+span.nameBrand{
+    font-size: 30px;
+    color: #c76600;
+}
+div.item_divG20{
+    background-image: radial-gradient(closest-side at 50% 65%,#edca5c, white);
+}
+div.item_divG20:hover{
+    background-image: radial-gradient(closest-side at 50% 65%,#ffcb2d, white);
+}
