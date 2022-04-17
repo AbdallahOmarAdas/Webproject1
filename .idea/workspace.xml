@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="date15_5.08">
-      <change afterPath="$PROJECT_DIR$/css/mainPage.css" afterDir="false" />
+    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="date16_6.08">
+      <change afterPath="$PROJECT_DIR$/bor.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fonts/Khayal.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/best/34__4_-removebg-preview.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/best/B12-removebg-preview.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/best/BestFill-removebg-preview.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/slider/descriotionGM.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/css1.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/css1.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/css_item.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/css_item.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loginBS.html" beforeDir="false" afterPath="$PROJECT_DIR$/loginBS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/mainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/mainPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mainPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainPage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +26,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -53,7 +59,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/script" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../testBS" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
@@ -97,7 +103,8 @@
       <workItem from="1649971358529" duration="903000" />
       <workItem from="1649975279680" duration="5305000" />
       <workItem from="1650019039437" duration="1134000" />
-      <workItem from="1650113511899" duration="6339000" />
+      <workItem from="1650113511899" duration="6400000" />
+      <workItem from="1650172101710" duration="17157000" />
     </task>
     <task id="LOCAL-00001" summary="para">
       <created>1649688430023</created>
@@ -141,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649988536490</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="date16_6.08">
+      <created>1650122488642</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1650122488642</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,6 +239,7 @@
     <MESSAGE value="date4_3.14" />
     <MESSAGE value="date14_6.45" />
     <MESSAGE value="date15_5.08" />
-    <option name="LAST_COMMIT_MESSAGE" value="date15_5.08" />
+    <MESSAGE value="date16_6.08" />
+    <option name="LAST_COMMIT_MESSAGE" value="date16_6.08" />
   </component>
 </project>

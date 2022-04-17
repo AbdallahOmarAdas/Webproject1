@@ -36,10 +36,12 @@ div.item_div:hover img.item_img{
 }
 
 p{
+    float: bottom;
     text-align: center;
     font-size: 18px;
     background-color:#c8d9d1;
-    margin: 5px;
+    /*margin: 5px;*/
+    margin: 5px 5px 5px 5px;
 
 }
 div.buy1{

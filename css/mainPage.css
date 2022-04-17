@@ -8,3 +8,60 @@ div.item_divG20{
 div.item_divG20:hover{
     background-image: radial-gradient(closest-side at 50% 65%,#ffcb2d, white);
 }
+div.item_div2{
+    background-image: radial-gradient(closest-side at 50% 65%,#f77070, white);
+}
+div.item_div2:hover{
+    background-image: radial-gradient(closest-side at 50% 65%,#d22727, white);
+}
+div.div_back_main{
+    background-color: #dfdfdf;
+}
+p.descriptionPara{
+    background-color: unset;
+    width: 80%;
+    font-size: 40px;
+    font-family:"Edwardian Script ITC";
+    padding-top: 30px;
+    color: #884000;
+
+}
+
+a.kind{
+    text-decoration: none;
+    color: #222;
+    padding: 5px 0px 5px 0px;
+    background-color:#ddb29d;
+    text-align: center;
+    width: 200px;
+    position: relative;
+    font-family: "Oswald";
+    flex-grow: 1;
+    cursor: pointer;
+}
+a.kind:before{
+    content: "";
+    position: absolute;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    top: calc(2px/-1);
+    left: calc(2px/-1);
+    background: linear-gradient(to right, #c76600 0%, #c76600 100%), linear-gradient(to top, #c76600 50%, transparent 50%), linear-gradient(to top, #c76600 50%, transparent 50%), linear-gradient(to right, #c76600 0%, #c76600 100%), linear-gradient(to left, #c76600 0%, #c76600 100%);
+    background-size: 100% 2px, 2px 200%, 2px 200%, 0% 2px, 0% 2px;
+    background-position: 50% 100%, 0% 0%, 100% 0%, 100% 0%, 0% 0%;
+    background-repeat: no-repeat, no-repeat;
+    transition: transform 0.3s ease-in-out, background-position 0.3s ease-in-out, background-size 0.3s ease-in-out;
+    transform: scaleX(0) rotate(0deg);
+    transition-delay: 0.4s, 0.25s, 0s;
+}
+/*a.kind{*/
+/*    background-color: transparent;*/
+/*    -webkit-text-decoration-skip: objects;*/
+/*}*/
+
+a.kind:hover:before {
+    background-size: 200% 2px, 2px 400%, 2px 400%, 55% 2px, 55% 2px;
+    background-position: 50% 100%, 0% 100%, 100% 100%, 100% 0%, 0% 0%;
+    transform: scaleX(1) rotate(0deg);
+    transition-delay: 0s, 0.25s, 0.4s;
+}
