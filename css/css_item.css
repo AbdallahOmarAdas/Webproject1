@@ -66,6 +66,15 @@ input.but-buy:hover{
     background-color: #e6eeea;
     cursor: pointer;
 }
+td.TR_typeLabel{
+    text-align: left;
+}
+p.please_type{
+    background-color: white;
+    text-align: left;
+    font-size: 18px;
+    padding: 0px;
+}
 
 
 

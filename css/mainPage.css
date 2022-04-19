@@ -14,14 +14,21 @@ div.item_div2{
 div.item_div2:hover{
     background-image: radial-gradient(closest-side at 50% 65%,#d22727, white);
 }
-div.div_back_main{
+div.item_div3{
+    background-image: radial-gradient(closest-side at 50% 65%,#52b36a, white);
+}
+div.item_div3:hover{
+    background-image: radial-gradient(closest-side at 50% 65%,#1c7d30, white);
+}
+div#div_back_main{
     background-color: #dfdfdf;
+
 }
 p.descriptionPara{
     background-color: unset;
     width: 80%;
-    font-size: 40px;
-    font-family:"Edwardian Script ITC";
+    font-size: 25px;
+    font-family:"MV Boli";
     padding-top: 30px;
     color: #884000;
 
@@ -65,3 +72,7 @@ a.kind:hover:before {
     transform: scaleX(1) rotate(0deg);
     transition-delay: 0s, 0.25s, 0.4s;
 }
+p#please_type{
+    background-color:white;
+}
+

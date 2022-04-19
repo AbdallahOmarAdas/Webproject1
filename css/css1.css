@@ -62,12 +62,12 @@ user-select: none;
 height: 30px;
 width: 30px;
 color: rgb(15, 20, 25);}
-input{
-    height: 30px;
-border-radius: 15px;
-    border-color:dodgerblue;
-    background-color: floralwhite;
-}
+/*input{*/
+/*    height: 30px;*/
+/*border-radius: 15px;*/
+/*    border-color:dodgerblue;*/
+/*    background-color: floralwhite;*/
+/*}*/
 div.reg_div_outer{
     height: 655px;
     width: 1366px;
