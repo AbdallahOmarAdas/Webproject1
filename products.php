@@ -159,10 +159,14 @@
                 <div class="angles"></div>
                 <div class="item_div0">
                     <div class="item_div">
-                        <div class="buy1"> <input class="but-buy"  type="button" value="Buy"></div>
+
                         <img id="hg6" class="item_img" src="images/too.png" alt="الصورة الاولى">
                     </div>
-                    <p>image 1</p>
+                    <form action="products.php" method="post">
+
+                        <input class="productBuy" type="submit" value="choco" id="bocc" name="bocc" onmouseout="document.getElementById('bocc').setAttribute('value','choco')" onmouseenter="document.getElementById('bocc').setAttribute('value','Add to cart')">
+
+                    </form>
                 </div>
             </div>
 

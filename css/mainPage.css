@@ -1,25 +1,26 @@
 span.nameBrand{
-    font-size: 30px;
-    color: #c76600;
+    font-size: 40px;
+    color: #fc8804;
+    font-family: "MV Boli";
 }
-div.item_divG20{
-    background-image: radial-gradient(closest-side at 50% 65%,#edca5c, white);
-}
-div.item_divG20:hover{
-    background-image: radial-gradient(closest-side at 50% 65%,#ffcb2d, white);
-}
-div.item_div2{
-    background-image: radial-gradient(closest-side at 50% 65%,#f77070, white);
-}
-div.item_div2:hover{
-    background-image: radial-gradient(closest-side at 50% 65%,#d22727, white);
-}
-div.item_div3{
-    background-image: radial-gradient(closest-side at 50% 65%,#52b36a, white);
-}
-div.item_div3:hover{
-    background-image: radial-gradient(closest-side at 50% 65%,#1c7d30, white);
-}
+/*div.item_divG20{*/
+/*    background-image: radial-gradient(closest-side at 50% 65%,#edca5c, white);*/
+/*}*/
+/*div.item_divG20:hover{*/
+/*    background-image: radial-gradient(closest-side at 50% 65%,#ffcb2d, white);*/
+/*}*/
+/*div.item_div2{*/
+/*    background-image: radial-gradient(closest-side at 50% 65%,#f77070, white);*/
+/*}*/
+/*div.item_div2:hover{*/
+/*    background-image: radial-gradient(closest-side at 50% 65%,#d22727, white);*/
+/*}*/
+/*div.item_div3{*/
+/*    background-image: radial-gradient(closest-side at 50% 65%,#52b36a, white);*/
+/*}*/
+/*div.item_div3:hover{*/
+/*    background-image: radial-gradient(closest-side at 50% 65%,#1c7d30, white);*/
+/*}*/
 div#div_back_main{
     background-color: #dfdfdf;
 
@@ -34,26 +35,35 @@ p.descriptionPara{
 
 }
 
-a.kind{
+.kind{
     text-decoration: none;
-    color: #222;
-    padding: 5px 0px 5px 0px;
-    background-color:#ddb29d;
+    color: #ffffff;
+    padding: 10px 0px 10px 0px;
+    background-color:#fc8804;
+    /*background-color:#ddb29d;*/
     text-align: center;
-    width: 200px;
+    width: 203px;
     position: relative;
     font-family: "Oswald";
     flex-grow: 1;
+    font-size: 20px;
     cursor: pointer;
+
+    /*border-width: 0px;*/
 }
-a.kind:before{
+.kind:active{
+    background-color: #f8a84f;
+}
+.kind:before{
+
     content: "";
     position: absolute;
-    width: calc(100% + 4px);
+    width: calc(100% - 1px);
     height: calc(100% + 4px);
     top: calc(2px/-1);
     left: calc(2px/-1);
-    background: linear-gradient(to right, #c76600 0%, #c76600 100%), linear-gradient(to top, #c76600 50%, transparent 50%), linear-gradient(to top, #c76600 50%, transparent 50%), linear-gradient(to right, #c76600 0%, #c76600 100%), linear-gradient(to left, #c76600 0%, #c76600 100%);
+    background: linear-gradient(to right, #2f323a 0%, #2f323a 100%), linear-gradient(to top, #2f323a 50%, transparent 50%), linear-gradient(to top, #2f323a 50%, transparent 50%), linear-gradient(to right, #2f323a 0%, #2f323a 100%), linear-gradient(to left, #2f323a 0%, #2f323a 100%);
+    /*background: linear-gradient(to right, #c76600 0%, #c76600 100%), linear-gradient(to top, #c76600 50%, transparent 50%), linear-gradient(to top, #c76600 50%, transparent 50%), linear-gradient(to right, #c76600 0%, #c76600 100%), linear-gradient(to left, #c76600 0%, #c76600 100%);*/
     background-size: 100% 2px, 2px 200%, 2px 200%, 0% 2px, 0% 2px;
     background-position: 50% 100%, 0% 0%, 100% 0%, 100% 0%, 0% 0%;
     background-repeat: no-repeat, no-repeat;
@@ -66,7 +76,7 @@ a.kind:before{
 /*    -webkit-text-decoration-skip: objects;*/
 /*}*/
 
-a.kind:hover:before {
+.kind:hover:before {
     background-size: 200% 2px, 2px 400%, 2px 400%, 55% 2px, 55% 2px;
     background-position: 50% 100%, 0% 100%, 100% 100%, 100% 0%, 0% 0%;
     transform: scaleX(1) rotate(0deg);
@@ -75,4 +85,28 @@ a.kind:hover:before {
 p#please_type{
     background-color:white;
 }
+.kind2{
+    color: #ffffff;
+    border-width: 0px;
+padding: 0px;
+    background-color: transparent;
+    /*z-index:155;*/
+    position: relative;
+    width: 203px;
+    font-size: 25px;
+}
+input.kind4{
+    color: #aeb2b7;
+    border-width: 0px;
+    padding: 0px;
 
+    background-color: transparent;
+    /*z-index:155;*/
+    position: relative;
+    /*width: 203px;*/
+    font-size: 17px;
+}
+span.main_menu{
+    color: #aeb2b7;
+    font-size: 17px;
+}

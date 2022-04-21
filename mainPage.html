@@ -12,20 +12,21 @@
     <script src="node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"></script>
     <title>Hello, world!</title>
 </head>
-<body>
-<div class="navbar navbar-expand-md fixed-top navbar-light " style="background-color: #553506;height: 65px">
+<!--style="background-color:#d6d5d5 "-->
+<body style="background: url('images/light-wood-texture-wood-background-natural-materials-wood-texture.jpg')no-repeat  fixed" >
+<div class="navbar navbar-expand-md fixed-top navbar-light " style="background-color: #22242a;height: 65px">
     <div class="container">
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#divColl" aria-controls="divColl" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <img src="images/logo.png" style="width: 60px; height: 60px" alt="">
-        <a class="navbar-brand" href="#" style="color: #c8c5c4;font-size: 25px">Alhijaz chocolate LTD</a>
-        <div class="collapse navbar-collapse" id="divColl">
+        <a class="navbar-brand" href="#" style="color: #fc8804;font-size: 25px">Alhijaz chocolate LTD</a>
+        <div class="collapse navbar-collapse" id="divColl" style="background-color:#22242a">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav_font nav-link" id="navdd" href="https://www.google.com" style="color:#FC8804;"> go to google</a></li>
+                <li class="nav-item"><a class="nav_font nav-link" id="navdd" href="https://www.google.com" style="color:#c8c5c4;"> go to google</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle nav_font" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:#FC8804;">Our Brands</a>
+                    <a class="nav-link dropdown-toggle nav_font" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:#c8c5c4;">Our Brands</a>
                     <ul class="dropdown-menu" aria-labelledby="navdd">
                         <li><a class="dropdown-item nav_font" href="#">Gourmet</a></li>
                         <li><a class="dropdown-item nav_font" href="#">Best</a></li>
@@ -33,20 +34,22 @@
                         <li><a class="dropdown-item nav_font" href="#">Revera</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link nav_font" href="https://www.facebook.com" style="color: #FC8804;">go to facebook</a></li>
-                <li class="nav-item"><a class="nav-link nav_font" href="#connect_us" style="color: #FC8804;"> Connect us</a></li>
-                <li class="nav-item"><a class="nav-link nav_font" href="find_us.html" style="color: #FC8804;">Find Us</a></li>
-                <li class="nav-item"><a class="nav-link nav_font" href="loginBS.html" style="color:#FC8804;">Login</a></li>
+                <li class="nav-item"><a class="nav-link nav_font" href="https://www.facebook.com" style="color: #c8c5c4;">go to facebook</a></li>
+                <li class="nav-item"><a class="nav-link nav_font" href="#connect_us" style="color: #c8c5c4;"> Connect us</a></li>
+                <li class="nav-item"><a class="nav-link nav_font" href="find_us.html" style="color: #c8c5c4;">Find Us</a></li>
+                <li class="nav-item"><a class="nav-link nav_font" href="loginBS.html" style="color:#c8c5c4;">Login</a></li>
             </ul>
         </div>
 
 
     </div>
 </div>
-<div class="container-xxl" style="background: url('images/light-wood-texture-wood-background-natural-materials-wood-texture.jpg')no-repeat  fixed">
+<div class="container-xxl" >
     <div class="row" >
         <div class="col">
-            <span style="color:#804919;font-size: 40px;">Gourmet®</span>
+            <br>
+            <span><img src="images/gor-removebg-preview.png" alt=""></span>
+<!--            <span style="color: #804919;font-size: 50px;font-family:'MV Boli'">Gourmet®</span>-->
             <p class="descriptionPara">
 
                 Gourmet chocolates are rich chocolates of the highest quality, made using best beans and using best methods to deliver rich aroma, smooth texture and an even, velvety taste. Gourmet chocolates have a higher percentage of cocoa, a shiny appearance and are more expensive than regular chocolates.
@@ -58,6 +61,7 @@
     </div>
 
 </div>
+<br>
 <div class="container-xxl">
     <div class="container-xxl" style="padding-left: 0px">
         <span class="nameBrand">Gourmet®</span>
@@ -70,7 +74,13 @@
                     <img id="G20" class="item_img" src="images/gourmet/G20-removebg-preview.png">
                 </div>
             </div>
-            <a class="kind" href="#">Gourmet</a>
+<!--            <a class="kind" href="#">Gourmet</a>-->
+                <form action="products.php" method="post">
+                <a class="kind" href="javascript:void(0);">
+                    <input class="kind2" type="submit" value="Gourmet" id="gm" name="gm">
+                </a>
+                </form>
+
             </div>
         </div>
         <div class="col d-flex justify-content-center">
@@ -82,7 +92,11 @@
                     <img id="GA13" class="item_img" src="images/gourmet/gmDrag-removebg-preview.png">
                 </div>
             </div>
-            <a class="kind" href="#">Dragée Gourmet</a>
+                <form action="products.php" method="post">
+                    <a class="kind" href="javascript:void(0);">
+                        <input class="kind2" type="submit" value="Dragée Gourmet" id="gd" name="gd">
+                    </a>
+                </form>
             </div>
         </div>
 
@@ -94,7 +108,12 @@
                     <img id="CK4" class="item_img" src="images/gourmet/CM1.png">
                 </div>
             </div>
-            <a class="kind" href="#">ChocoMedjool</a>
+<!--            <a class="kind" href="#">ChocoMedjool</a>-->
+                <form action="products.php" method="post">
+                    <a class="kind" href="javascript:void(0);">
+                        <input class="kind2" type="submit" value="ChocoMedjool" id="gme" name="gme">
+                    </a>
+                </form>
             </div>
         </div>
         <div class="col d-flex justify-content-center">
@@ -105,7 +124,12 @@
                     <img id="Occasions" class="item_img" src="images/gourmet/oc-removebg-preview.png">
                 </div>
             </div>
-            <a class="kind" href="#">Occasions</a>
+<!--            <a class="kind" href="#">Occasions</a>-->
+                <form action="products.php" method="post">
+                    <a class="kind" href="javascript:void(0);">
+                        <input class="kind2" type="submit" value="Occasions" id="gocc" name="gocc">
+                    </a>
+                </form>
             </div>
         </div>
     </div>
@@ -114,7 +138,7 @@
 </div>
 </div>
 
-
+<br>
 <div class="container-xxl">
     <span class="nameBrand">Best®</span>
 <div class="row">
@@ -125,7 +149,12 @@
                 <img id="B12" class="item_img" src="images/best/B12-removebg-preview.png">
             </div>
         </div>
-        <a class="kind" href="#">Best nuts</a>
+<!--        <a class="kind" href="#">Best nuts</a>-->
+            <form action="products.php" method="post">
+                <a class="kind" href="javascript:void(0);">
+                    <input class="kind2" type="submit" value="Best nuts" id="bn" name="bn">
+                </a>
+            </form>
         </div>
     </div>
     <div class="col d-flex justify-content-center">
@@ -136,7 +165,12 @@
                 <img id="hg6" class="item_img" src="images/best/BestFill-removebg-preview.png">
             </div>
         </div>
-        <a class="kind" href="#">Best fills</a>
+<!--        <a class="kind" href="#">Best fills</a>-->
+            <form action="products.php" method="post">
+                <a class="kind" href="javascript:void(0);">
+                    <input class="kind2" type="submit" value="Best fills" id="bf" name="bf">
+                </a>
+            </form>
         </div>
     </div>
     <div class="col d-flex justify-content-center">
@@ -147,11 +181,16 @@
                 <img id="ocBEST" class="item_img" src="images/best/34__4_-removebg-preview.png">
             </div>
         </div>
-            <a class="kind" href="#">Occasions</a>
+            <form action="products.php" method="post">
+                <a class="kind" href="javascript:void(0);">
+                    <input class="kind2" type="submit" value="Occasions" id="bocc" name="bocc">
+                </a>
+            </form>
         </div>
     </div>
 
 </div>
+    <br>
     <div class="row">
         <div class="col d-flex justify-content-center">
             <div>  <span class="nameBrand">Lorka®</span>
@@ -159,10 +198,14 @@
                 <div class="item_div0">
                     <div class="item_div item_div">
 
-                        <img id="ocBEST" class="item_img" src="images/lorka/lorkaNoga-removebg-preview.png">
+                        <img id="lorka" class="item_img" src="images/lorka/lorkaNoga-removebg-preview.png">
                     </div>
                 </div>
-                <a class="kind" href="#">Occasions</a>
+                <form action="products.php" method="post">
+                    <a class="kind" href="javascript:void(0);">
+                        <input class="kind2" type="submit" value="Lorka" id="lo" name="lo">
+                    </a>
+                </form>
             </div>
             </div>
         </div>
@@ -177,7 +220,11 @@
                         <img id="rev" class="item_img" src="images/revera/reveraKaramelLoze-removebg-preview%20(1).png">
                     </div>
                 </div>
-                <a class="kind" href="#">Occasions</a>
+                <form action="products.php" method="post">
+                    <a class="kind" href="javascript:void(0);">
+                        <input class="kind2" type="submit" value="Revera" id="re" name="re">
+                    </a>
+                </form>
             </div>
             </div>
         </div>
@@ -187,7 +234,7 @@
 </div>
 <br>
 
-<div id="connect_us" class="navbar  text-white navbar-light" style="background-color: #553506;">
+<div id="connect_us" class="navbar  text-white navbar-light" style="background-color: #22242a;">
 
     <div class="container" >
 <pre>

@@ -45,3 +45,14 @@ td{
     text-align: center;
 
 }
+input.kind4{
+    color: #ffffff;
+    border-width: 0px;
+    padding: 0px;
+
+    background-color: transparent;
+    /*z-index:155;*/
+    position: relative;
+    /*width: 203px;*/
+    font-size: 17px;
+}
