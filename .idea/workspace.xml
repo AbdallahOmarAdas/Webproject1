@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="date19_5.0">
-      <change afterPath="$PROJECT_DIR$/css/cartCss.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/productBorder.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/employeeOrder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Untitled.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/eye-solid-svg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/gor-removebg-preview.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manePageCustomer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mangerAddEmployee.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myOrder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/products2.php" afterDir="false" />
+    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="date21_5.0">
+      <change afterPath="$PROJECT_DIR$/css/addEmp.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/envelope-solid-svg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/keyboard-solid-svg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/lock-solid-svg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/phone-solid-svg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/user-solid-svg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loginCust.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mangerView.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/css_item.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/css_item.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/css1.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/css1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/loginDiv.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/loginDiv.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/mainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/mainPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/mangerCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/mangerCSS.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manger3.html" beforeDir="false" afterPath="$PROJECT_DIR$/manger3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products.php" beforeDir="false" afterPath="$PROJECT_DIR$/products.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jquery.scrollTo.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/jquery.scrollTo.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manePageCustomer.php" beforeDir="false" afterPath="$PROJECT_DIR$/manePageCustomer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mangerAddEmployee.php" beforeDir="false" afterPath="$PROJECT_DIR$/mangerAddEmployee.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +64,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../testBS" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
@@ -120,7 +117,9 @@
       <workItem from="1650431405399" duration="124000" />
       <workItem from="1650437136099" duration="19224000" />
       <workItem from="1650484095585" duration="8437000" />
-      <workItem from="1650533651352" duration="11368000" />
+      <workItem from="1650533651352" duration="11445000" />
+      <workItem from="1650609200089" duration="9774000" />
+      <workItem from="1650622523126" duration="6825000" />
     </task>
     <task id="LOCAL-00001" summary="para">
       <created>1649688430023</created>
@@ -192,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650376807714</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="date21_5.0">
+      <created>1650547642560</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1650547642560</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,6 +286,7 @@
     <MESSAGE value="date17_6.30" />
     <MESSAGE value="date19_5.30" />
     <MESSAGE value="date19_5.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="date19_5.0" />
+    <MESSAGE value="date21_5.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="date21_5.0" />
   </component>
 </project>

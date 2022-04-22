@@ -156,6 +156,16 @@
                         </form>
                     </a>
                 </li>
+                <li class="sub-menu">
+                    <a href="#contactUs" style="font-size: 17px;color: #aeb2b7">
+                            Connect Us
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="find_us.html" style="font-size: 17px;color: #aeb2b7">
+                        Find Us
+                    </a>
+                </li>
             </ul>
             <!-- sidebar menu end-->
         </div>
@@ -382,8 +392,9 @@
                                                 <h5 class="text-grey">$20.00</h5>
                                             </div>
                                             <div class="d-flex align-items-center">
-                                                <label for="del1"><i class="fa fa-trash mb-1 text-danger"> Delete </i> </label>
-                                                <input type="checkbox" id="del1">
+
+                                                <label for="del1"><i class="fa fa-trash mb-1 text-danger"><input type="checkbox" id="del1"> Delete </i> </label>
+
                                             </div>
                                         </div>
                                         <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
@@ -450,10 +461,10 @@
     </section>
     <!--main content end-->
     <!--footer start-->
-    <footer class="site-footer">
+    <footer class="site-footer" id="contactUs">
         <div class="text-center">
             <p class="copy">
-                &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+                &copy; Copyrights <strong>Alhijaz chocolate LTD</strong>. All Rights Reserved
             </p>
             <div class="container" >
 <p style="background-color: #22242A; text-align: left;padding-left: 400px">
@@ -463,12 +474,13 @@ Tel: 972 (0) 9 2673077 <br>
 Fax: 972 (0) 9 2680303 <br>
 E-mail: info@alhijaz.ps <br>
 Palestine <br>
-        </p>
-                <div class="container align-content-start">
-                    <a  href="https://www.facebook.com/alhijazchocolate"><i class="fa-brands fa-facebook-square fa-2x font_images"></i></a>
-                    <a href="https://www.youtube.com/channel/UC01d6ix0kxbZcMv2jT4mzrQ"><i class="fa-brands fa-youtube fa-2x font_images" style="color:red"></i></a>
-                    <a href="mailto://info@alhijaz.ps"><i class="fa-solid fa-envelope fa-2x" style=""></i></a>
-                </div>
+
+
+                    <a  href="https://www.facebook.com/alhijazchocolate"><img src="images/facebook-brands-svg.png" alt=""></a>
+                    <a  href="https://www.instagram.com/alhijaz_chocolate/"><img src="images/instagram-brands-svg.png" alt=""></a>
+                    <a href="https://www.youtube.com/channel/UC01d6ix0kxbZcMv2jT4mzrQ"><img src="images/youtube-brands-svg.png" alt=""></a>
+                    <a href="mailto:info@alhijaz.ps"><img src="images/envelope-solid%20(1)-svg.png" alt=""></a>
+                </p>
 
             </div>
         </div>

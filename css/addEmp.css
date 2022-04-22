@@ -1,45 +1,4 @@
-div#div_login{
-    background-color: #22242a;
-    padding: 10px 60px 0px 60px;
-    border-radius: 30px;
-}
-/*div#staticBackdrop{*/
 
-/*position: absolute;*/
-
-/*    left: 25%;*/
-
-/*}*/
-/*div#staticBackdrop1{*/
-
-/*    position: absolute;*/
-
-/*    left: 25%;*/
-
-/*}*/
-div#div_reg2{
-
-
-    /*position: relative;*/
-    /*top:0%;*/
-    /*left: 0%;*/
-}
-img.ipp{
-    width: 550px;
-    height: 550px;
-}
-.login_span{
-    display: block;
-    font-size: 39px;
-    color: #fc8804;
-    /*line-height: 1.2;*/
-    text-align: center;
-    padding-bottom: 49px;
-}
-/*.abd{*/
-/*    color: #0000FF;*/
-/*    font-size: 15px;*/
-/*}*/
 .wrap-input100 {
     width: 100%;
     position: relative;
@@ -52,14 +11,14 @@ img.ipp{
 .label-input100 {
 
     font-size: 14px;
-    color: #aeb2b7;
+    color: #333333;
     line-height: 1.5;
     padding-left: 7px;
 }
 .input100 {
 
     font-size: 16px;
-    color: #aeb2b7;
+    color: #333333;
     /*line-height: 1.2;*/
 
     display: block;
@@ -73,22 +32,6 @@ img.ipp{
 input {
     outline: none;
     border: none;
-}
-a.login_a{
-    font-family: Poppins-Regular;
-    font-size: 14px;
-    line-height: 1.7;
-    color: #aeb2b7;
-    margin: 0px;
-    transition: all 0.4s;
-    text-decoration: none;
-}
-a.login_a:focus {
-    outline: none !important;
-}
-a.login_a:hover {
-    text-decoration: none;
-    color: #fc8804;
 }
 
 .focus-input100::after {
@@ -114,7 +57,7 @@ a.login_a:hover {
     left: 0;
     width: 0;
     height: 2px;
-    background: #fc8804;
+    background: #7f7f7f;
     transition: all 0.4s;
 }
 .input100:focus + .focus-input100::before {
@@ -149,10 +92,10 @@ a.login_a:hover {
     -ms-box-shadow: 0 5px 30px 0px rgba(3, 216, 222, 0.2);
 }
 
+
 .login100-form-btn {
 
-    font-size: 30px;
-    font-style: italic;font-family: Bold;
+    font-size: 16px;
     color: #fff;
     line-height: 1.2;
     display: flex;
@@ -169,8 +112,9 @@ a.login_a:hover {
 .wrap-login100-form-btn:hover .login100-form-bgbtn {
     left: 0;
 }
-/*.c12{*/
-/*    outline: none !important;*/
-/*    border: none;*/
-/*    background: transparent;*/
-/*}*/
+.icon{
+    width: 15px;
+    height: 15px;
+    margin-bottom: 4px;
+
+}
