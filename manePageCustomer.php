@@ -136,6 +136,7 @@ else{
 
 
                 <form action="products2.php" method="post">
+                    <input type="hidden" name="action2" value="submit2" id="submit2" />
                 <li class="sub-menu">
                     <a href="javascript:;" class="aSi">
 
@@ -144,25 +145,24 @@ else{
                     <ul class="sub">
                         <li>
                             <a href="javascript:;">
-                                    <input class="kind4" type="submit" value="Gourmet" name="gm" id="gm">
+                                <button class="kind4" name="submit2" type="submit" value="gour" id="gour">Gourmet</button>
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;">
-                                    <input class="kind4" type="submit" value="Dragee" name="gd" id="gd">
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:;">
-                                    <input class="kind4" type="submit" value="chocoMedjool"name="gchme" id="gchme">
+                                <button class="kind4" name="submit2" type="submit" value="dr" id="dr">Dragee</button>
                             </a>
                         </li>
 
                         <li>
                             <a href="javascript:;">
+                                <button class="kind4" name="submit2" type="submit" value="gmd" id="gmd">chocoMedjool</button>
+                            </a>
+                        </li>
 
-                                    <input class="kind4" type="submit" value="Occasions" name="gocc" id="gocc">
+                        <li>
+                            <a href="javascript:;">
+                                <button class="kind4" name="submit2" type="submit" value="gocc" id="gocc">Occasions</button>
                             </a>
                         </li>
                     </ul>
@@ -175,17 +175,17 @@ else{
                     <ul class="sub">
                         <li>
                             <a href="javascript:;">
-                                    <input class="kind4" type="submit" value="Best Nuts" name="bn" id="bn">
+                                <button class="kind4" name="submit2" type="submit" value="bn" id="bn">Best Nuts</button>
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;">
-                                    <input class="kind4" type="submit" value="Best Fill" name="bf" id="bf">
+                                <button class="kind4" name="submit2" type="submit" value="bf" id="bf">Best Fill</button>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:;" >
-                                    <input class="kind4" type="submit" value="Occasions" name="bocc" id="bocc">
+                            <a href="javascript:;">
+                                <button class="kind4" name="submit2" type="submit" value="bocc" id="bocc">Occasions</button>
                             </a>
                         </li>
                     </ul>
@@ -193,15 +193,16 @@ else{
                 <li class="sub-menu">
 
                     <a href="javascript:;" class="aSi">
-                            <input class="kind4 inpSi1" type="submit" value="Lorka" name="lorka" id="lorka">
+                        <button class="kind4" name="submit2" type="submit" value="Lorka" id="Lorka">Lorka</button>
                     </a>
 
                 </li>
                 <li class="sub-menu" >
                     <a href="javascript:;" class="aSi " >
-                            <input class="kind4" type="submit" value="Revera" name="revera" id="revera">
+                        <button class="kind4" name="submit2" type="submit" value="Revera" id="Revera">Revera</button>
                     </a>
                 </li>
+
                 </form>
                 <?php
                 if($_SESSION['type']=='C'){

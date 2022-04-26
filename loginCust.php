@@ -1,4 +1,4 @@
-<?php
+<?php error_reporting(E_ERROR | E_PARSE);
 $is_men=1;
 session_start();
 $_SESSION['type']='u';
@@ -26,13 +26,11 @@ if(isset($_POST['login_username']) && isset($_POST['login_pass'])) {
             elseif($userName==$row[0] and sha1($password)==$row[1] && 'M'==$row[2]){
                 $is_men=1;
                 $_SESSION['type']='M';
-                //change it when you finish the main page of the manger
                 header('location:manePageCustomer.php');
             }
             elseif($userName==$row[0] and sha1($password)==$row[1] && 'E'==$row[2]){
                 $is_men=1;
                 $_SESSION['type']='E';
-                //change it when you finish the main page of the employee
                 header('location:manePageCustomer.php');
             }
         }
@@ -62,8 +60,8 @@ elseif(isset($_POST['reg'])) {
         $qsCustomer="INSERT INTO `customer` (`id`, `FullName`, `email`, `phoneNumber`, `username`) VALUES ('".$id."','".$fullName."','".$emil."','".$phone."','".$userName."');";
         $con->query($qsLogin);
         $res=$con->query($qsCustomer);
-        if($res){
-
+        if($res==1){
+            header('location:loginCust.php');
         }
         else{
             echo 'error fgnofdkgnonfoj';

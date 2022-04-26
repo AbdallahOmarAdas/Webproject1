@@ -1,9 +1,9 @@
 <?php
 session_start();
+$chocoType='';
 if(isset($_SESSION['type'])){
     if($_SESSION['type']!='C' && $_SESSION['type']!='E' && $_SESSION['type']!='M'){
         header('location:loginCust.php');
-
     }
 
 }
@@ -28,6 +28,11 @@ if(isset($_POST['search'])){
 <?php
    }
 
+}
+
+if(isset($_POST['action2'])){
+    $chocoType=$_POST['submit2'];
+    echo $chocoType;
 }
 if(isset($_POST['action'])){
     $val=$_POST['submit'];
@@ -89,10 +94,43 @@ if(isset($_POST['addProd'])) {
     $image = $_FILES['imageadd']['name'];
     $imgContent = addslashes(file_get_contents($urlimg));
     if (isset($_POST['addProductName']) && isset($_POST['addProductSereal'])) {
+        $qrstr2='';
         try {
             $conn = new mysqli('localhost', 'root', '', 'web project');
             $qrstr = "INSERT INTO `chocolate` (`SerealNumber`, `nameP`, `typeT`, `img`) VALUES ('" . $_POST['addProductSereal'] . "', '" . $_POST['addProductName'] . "', '" . $_POST['typeT'] . "', '" .$imgContent . "');";
+
+            if($chocoType=='Revera'){
+                $qrstr2="INSERT INTO `revera` (`rowN`, `price`, `SerealNumber`) VALUES (NULL, '40', '" . $_POST['addProductSereal']. "');";
+
+            }
+            elseif ($chocoType=='Lorka'){
+                $qrstr2="INSERT INTO `lorka` (`rowN`, `price`, `SerealNumber`) VALUES (NULL, '55', '" . $_POST['addProductSereal']. "');";
+
+            }
+            elseif ($chocoType=='bnuts'){
+                $qrstr2="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'65','n','" . $_POST['addProductSereal']. "')";
+            }
+            elseif ($chocoType=='bfill'){
+                $qrstr2="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'65','f','" . $_POST['addProductSereal']. "')";
+            }
+            elseif ($chocoType=='bocc'){
+                $qrstr2="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'65','occ','" . $_POST['addProductSereal']. "')";
+            }
+            elseif ($chocoType=='gour'){
+                $qrstr2="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','gour','" . $_POST['addProductSereal']. "')";
+            }
+            elseif ($chocoType=='dr'){
+                $qrstr2="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','dr','" . $_POST['addProductSereal']. "')";
+            }
+            elseif ($chocoType=='gmd'){
+                $qrstr2="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','gmd','" . $_POST['addProductSereal']. "')";
+            }
+            else{
+                $qrstr2="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','gocc','" . $_POST['addProductSereal']. "')";
+            }
+
             $res = $conn->query($qrstr);
+            $res2=$conn->query($qrstr2);
             if ($res == 1) {
                 header('location:products2.php');
             } else {
@@ -150,7 +188,7 @@ if(isset($_POST['addProd'])) {
 
                 }
                 ?>
-                <li><a class="logout" href="login.html">Logout</a></li>
+                <li><a class="logout" href="loginCust.php">Logout</a></li>
             </ul>
         </div>
 
@@ -188,91 +226,160 @@ if(isset($_POST['addProd'])) {
                     </ul>
                 </li>
                 <form action="products2.php" method="post">
-                <li class="sub-menu">
-                    <a href="javascript:;">
+                    <input type="hidden" name="action2" value="submit2" id="submit2" />
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="aSi">
 
-                        <span class="main_menu">Gourmet</span>
-                    </a>
-                    <ul class="sub">
-                        <li>
-                            <a href="javascript:;">
+                            <span class="main_menu">Gourmet</span>
+                        </a>
+                        <ul class="sub">
+                            <li>
+                                <a href="javascript:;">
+                                    <button class="kind4" name="submit2" type="submit" value="gour" id="gour">Gourmet</button>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <button class="kind4" name="submit2" type="submit" value="dr" id="dr">Dragee</button>
+                                </a>
+                            </li>
 
-                                    <input class="kind4" type="submit" value="Gourmet" name="gmedit" id="gmedit">
+                            <li>
+                                <a href="javascript:;">
+                                    <button class="kind4" name="submit2" type="submit" value="gmd" id="gmd">chocoMedjool</button>
+                                </a>
+                            </li>
 
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
+                            <li>
+                                <a href="javascript:;">
+                                    <button class="kind4" name="submit2" type="submit" value="gocc" id="gocc">Occasions</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="aSi">
 
-                                    <input class="kind4" type="submit" value="Dragee" name="gde" id="gde">
+                            <span class="main_menu inpSi1">Best</span>
+                        </a>
+                        <ul class="sub">
+                            <li>
+                                <a href="javascript:;">
+                                    <button class="kind4" name="submit2" type="submit" value="bn" id="bn">Best Nuts</button>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <button class="kind4" name="submit2" type="submit" value="bf" id="bf">Best Fill</button>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <button class="kind4" name="submit2" type="submit" value="bocc" id="bocc">Occasions</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
 
-                            </a>
-                        </li>
+                        <a href="javascript:;" class="aSi">
+                            <button class="kind4" name="submit2" type="submit" value="Lorka" id="Lorka">Lorka</button>
+                        </a>
 
-                        <li>
-                            <a href="javascript:;">
+                    </li>
+                    <li class="sub-menu" >
+                        <a href="javascript:;" class="aSi " >
+                            <button class="kind4" name="submit2" type="submit" value="Revera" id="Revera">Revera</button>
+                        </a>
+                    </li>
 
-                                    <input class="kind4" type="submit" value="chocoMedjool"name="gchme" id="gchme">
-
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:;">
-
-                                    <input class="kind4" type="submit" value="Occasions" name="gocce" id="gocce">
-
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-
-                        <span class="main_menu">Best</span>
-                    </a>
-                    <ul class="sub">
-                        <li>
-                            <a href="javascript:;">
-
-                                    <input class="kind4" type="submit" value="Best Nuts" name="bne" id="bne">
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-
-                                    <input class="kind4" type="submit" value="Best Fill" name="bfe" id="bfe">
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-
-                                    <input class="kind4" type="submit" value="Occasions" name="bocce" id="bocce">
-
-                            </a>
-
-                        </li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-
-                    <a href="javascript:;">
-
-                            <input class="kind4" type="submit" value="Lorka" name="lorkae" id="lorkae">
-
-                    </a>
-
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-
-                            <input class="kind4" type="submit" value="Revera" name="reverae" id="reverae">
-
-                    </a>
-                </li>
                 </form>
+<!--                <form action="products2.php" method="post">-->
+<!--                <li class="sub-menu">-->
+<!--                    <a href="javascript:;">-->
+<!---->
+<!--                        <span class="main_menu">Gourmet</span>-->
+<!--                    </a>-->
+<!--                    <ul class="sub">-->
+<!--                        <li>-->
+<!--                            <a href="javascript:;">-->
+<!---->
+<!--                                    <input class="kind4" type="submit" value="Gourmet" name="gmedit" id="gmedit">-->
+<!---->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a href="javascript:;">-->
+<!---->
+<!--                                    <input class="kind4" type="submit" value="Dragee" name="gde" id="gde">-->
+<!---->
+<!--                            </a>-->
+<!--                        </li>-->
+<!---->
+<!--                        <li>-->
+<!--                            <a href="javascript:;">-->
+<!---->
+<!--                                    <input class="kind4" type="submit" value="chocoMedjool"name="gchme" id="gchme">-->
+<!---->
+<!--                            </a>-->
+<!--                        </li>-->
+<!---->
+<!--                        <li>-->
+<!--                            <a href="javascript:;">-->
+<!---->
+<!--                                    <input class="kind4" type="submit" value="Occasions" name="gocce" id="gocce">-->
+<!---->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--                <li class="sub-menu">-->
+<!--                    <a href="javascript:;">-->
+<!---->
+<!--                        <span class="main_menu">Best</span>-->
+<!--                    </a>-->
+<!--                    <ul class="sub">-->
+<!--                        <li>-->
+<!--                            <a href="javascript:;">-->
+<!---->
+<!--                                    <input class="kind4" type="submit" value="Best Nuts" name="bne" id="bne">-->
+<!---->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a href="javascript:;">-->
+<!---->
+<!--                                    <input class="kind4" type="submit" value="Best Fill" name="bfe" id="bfe">-->
+<!---->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a href="javascript:;">-->
+<!---->
+<!--                                    <input class="kind4" type="submit" value="Occasions" name="bocce" id="bocce">-->
+<!---->
+<!--                            </a>-->
+<!---->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--                <li class="sub-menu">-->
+<!---->
+<!--                    <a href="javascript:;">-->
+<!---->
+<!--                            <input class="kind4" type="submit" value="Lorka" name="lorkae" id="lorkae">-->
+<!---->
+<!--                    </a>-->
+<!---->
+<!--                </li>-->
+<!--                <li class="sub-menu">-->
+<!--                    <a href="javascript:;">-->
+<!---->
+<!--                            <input class="kind4" type="submit" value="Revera" name="reverae" id="reverae">-->
+<!---->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                </form>-->
             </ul>
             <!-- sidebar menu end-->
         </div>
@@ -285,7 +392,7 @@ if(isset($_POST['addProd'])) {
                     <div class="row">
                         <div class="col-3" >
 
-                            <div style="position: fixed">
+                            <div style="">
 
                                     <table>
                                         <tr>
@@ -364,7 +471,35 @@ if(isset($_POST['addProd'])) {
                             $con='';
 
                             @$con = new mysqli('localhost', 'root', '', 'web project');
-                            $qsLogin="SELECT * FROM `chocolate`";
+                            if($chocoType=='Revera'){
+                                $qsLogin="SELECT * FROM `chocolate`,`revera` WHERE chocolate.SerealNumber=revera.SerealNumber;";
+//
+                            }
+                            elseif ($chocoType=='Lorka'){
+                                $qsLogin="SELECT * FROM `chocolate`,`lorka` WHERE chocolate.SerealNumber=lorka.SerealNumber;";
+//
+                            }
+                            elseif ($chocoType=='bnuts'){
+                                $qsLogin="SELECT * FROM `chocolate`,`best` WHERE (chocolate.SerealNumber=best.SerealNumber)&& type='n';";
+                            }
+                            elseif ($chocoType=='bfill'){
+                                $qsLogin="SELECT * FROM `chocolate`,`best` WHERE (chocolate.SerealNumber=best.SerealNumber)&& type='f';";
+                            }
+                            elseif ($chocoType=='bocc'){
+                                $qsLogin="SELECT * FROM `chocolate`,`best` WHERE (chocolate.SerealNumber=best.SerealNumber)&& type='occ';";
+                            }
+                            elseif ($chocoType=='gour'){
+                                $qsLogin="SELECT * FROM `chocolate`,`gourmet` WHERE (chocolate.SerealNumber=gourmet.SerealNumber)&& type='gour';";
+                            }
+                            elseif ($chocoType=='dr'){
+                                $qsLogin="SELECT * FROM `chocolate`,`gourmet` WHERE (chocolate.SerealNumber=gourmet.SerealNumber)&& type='dr';";
+                            }
+                            elseif ($chocoType=='gmd'){
+                                $qsLogin="SELECT * FROM `chocolate`,`gourmet` WHERE (chocolate.SerealNumber=gourmet.SerealNumber)&& type='gmd';";
+                            }
+                            else{
+                                $qsLogin="SELECT * FROM `chocolate`,`gourmet` WHERE (chocolate.SerealNumber=gourmet.SerealNumber)&& type='gocc';";
+                            }
                             $res=$con->query($qsLogin);
                             for($i=0;$i<$res->num_rows;$i++) {
                                 $row = $res->fetch_row();?>
