@@ -1,5 +1,7 @@
 <?php
 session_start();
+$valDel='';
+$fDel=0;
 if(isset($_SESSION['type'])){
     if($_SESSION['type']!='M'){
         header('location:loginCust.php');
@@ -9,6 +11,92 @@ else{
     header('location:loginCust.php');
 }
 ?>
+
+
+<?php
+if (isset($_POST['save'])) {
+    @$con = new mysqli('localhost', 'root', '', 'web project');
+if(isset($_POST['reg_Email']) && isset($_POST['reg_FullName']) && isset($_POST['reg_phone'])&&isset($_POST['reg_userName']) &&isset($_POST['reg_password'])&&isset($_POST['reg_ID'])){
+    $emil=$_POST['reg_Email'];
+    $id=$_POST['reg_ID'];
+    $fullName=$_POST['reg_fullName'];
+    $phone=$_POST['reg_phone'];
+    $userName=$_POST['reg_userName'];
+    $password=$_POST['reg_password'];
+    @$con= new mysqli('localhost','root','','web project');
+    $qsLogin="INSERT INTO `login` (`username`, `password`, `type`) VALUES ('".$userName."', SHA1('".$password."'), 'E');";
+    $qsCustomer="INSERT INTO `employee` (`id`, `FullName`, `email`, `gender`, `phoneNumber`, `username`) VALUES ('".$id."','".$fullName."','".$emil."','".$phone."','".$userName."');";
+    $con->query($qsLogin);
+    $res=$con->query($qsCustomer);
+
+    if($res){
+
+    }
+    else{
+        echo 'error fgnofdkgnonfoj';
+    }
+    $con->close();
+}
+
+}
+
+//elseif(isset($_POST['Delete Employee'])){
+//echo "hello";
+//    if(!empty($_POST['submitedit[]'])) {
+//
+//        foreach($_POST['submitedit[]'] as $value){
+//            echo "Chosen colour : ".$value.'<br/>';
+//
+//            $f=0;
+//            $qsLogin='';
+//            $con='';
+//
+//            @$con = new mysqli('localhost', 'root', '', 'web project');
+//            $qsLogin="DELETE FROM `employee` WHERE `id`='".$value."'";
+//            $res=$con->query($qsLogin);
+//            $con->commit();
+//            $con->close();
+//        }
+//
+//
+//
+//
+//
+//
+//
+//}}
+
+
+?>
+
+<?php
+if(isset($_POST['del'])){
+    echo "hello";
+    if(!empty($_POST['submitedit[]'])) {
+
+        foreach($_POST['submitedit[]'] as $value){
+            echo "Chosen colour : ".$value.'<br/>';
+
+            $f=0;
+            $qsLogin='';
+            $con='';
+
+            @$con = new mysqli('localhost', 'root', '', 'web project');
+            $qsLogin="DELETE FROM `employee` WHERE `id`='".$value."'";
+            $res=$con->query($qsLogin);
+            $con->commit();
+            $con->close();
+        }
+
+
+
+
+
+
+
+    }}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,6 +175,7 @@ else{
                         <li>
                             <a href="javascript:;">
                                 <form action="mangerAddEmployee.php" method="post">
+
                                     <input class="kind4" type="submit" value="Management" name="manEdit" id="empO">
                                 </form>
                             </a>
@@ -188,7 +277,12 @@ else{
                 <div class="container-xxl">
                     <input type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="Add Employee">
                     <input type="submit" class="btn btn-info" value="Edit information">
-                    <input type="submit"  class="btn btn-danger" value="Delete Employee">
+                    <form action="mangerAddEmployee.php" method="post">
+                        <input type="submit" name="del" value="Delete Employee">
+
+    </form>
+
+<!--                        <input type="hidden" name="actionedit" value="submitedit" id="submitedit" />-->
 
                     <table class="table table-striped table-dark" style="color: #fc8804;font-size: 15px">
                         <thead>
@@ -203,40 +297,39 @@ else{
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">11924996</th>
-                            <td>abdallah adas</td>
-                            <td><input type="email" value="abdallah@hotmail.com"></td>
-                            <td>Male</td>
-                            <td><input type="tel"></td>
-                            <td><input type="checkbox" id="e1" name="e1"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">11924996</th>
-                            <td>abdallah adas</td>
-                            <td><input type="email" value="abdallah@hotmail.com"></td>
-                            <td>Male</td>
-                            <td><input type="tel"></td>
-                            <td><input type="checkbox" id="e2" name="e2"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">11924996</th>
-                            <td>abdallah adas</td>
-                            <td><input type="email" value="abdallah@hotmail.com"></td>
-                            <td>Male</td>
-                            <td><input type="tel"></td>
-                            <td><input type="checkbox" id="e3" name="e3"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">11924996</th>
-                            <td>abdallah adas</td>
-                            <td><input type="email" value="abdallah@hotmail.com"></td>
-                            <td>Male</td>
-                            <td><input type="tel"></td>
-                            <td><input type="checkbox" id="e4" name="e4"></td>
-                        </tr>
+
+                        <?php
+                        @$con = new mysqli('localhost', 'root', '', 'web project');
+                        $qsLogin="SELECT * FROM `employee`";
+                        $res=$con->query($qsLogin);
+                        if($res-> num_rows > 0){
+                            while($row=$res -> fetch_assoc()){
+                                echo "<tr><td>".$row["id"]."</td><td>".$row["FullName"]."</td><td>"."<input type='email' value='".$row["email"]."'</td><td>".$row["gender"]."</td><td>"."<input type='tel' value='".$row["phoneNumber"]."'</td><td>"."<input type='checkbox' name='submitedit' value='".$row["id"]."'</td></tr>";
+
+                            }
+                            echo "</tbody>";
+                        }
+                        else{
+                            echo "0 result";
+                        }
+
+                        $con->close();
+
+                        ?>
+<!--                        <tr>-->
+<!--                            <th scope="row">11924996</th>-->
+<!--                            <td>abdallah adas</td>-->
+<!--                            <td><input type="email" value="abdallah@hotmail.com"></td>-->
+<!--                            <td>Male</td>-->
+<!--                            <td><input type="tel"></td>-->
+<!--                            <td><input type="checkbox" id="e1" name="e1"></td>-->
+<!--                        </tr>-->
+
+
+
                         </tbody>
                     </table>
+
                 </div>
                 <!-- Modal -->
 
@@ -249,7 +342,13 @@ else{
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="" method="post">
+
+
+                                    <div class="wrap-input100 validate-input m-b-23">
+                                        <span class="label-input100"><img class="icon" src="images/id-card-solid-svg.png" alt="">  ID</span>
+                                        <input class="input100" type="text" name="reg_ID" placeholder="Type your ID" required>
+                                        <span class="focus-input100"></span>
+                                    </div>
 
                                     <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
                                         <span class="label-input100"><img class="icon" src="images/envelope-solid-svg.png" alt="">  Email</span>
@@ -284,7 +383,7 @@ else{
                                         <input class="login100-form-btn " type="submit" value="Save">
                                     </div>
 
-                                </form>
+
                             </div>
                         </div>
                     </div>

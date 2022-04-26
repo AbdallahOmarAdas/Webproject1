@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -214,35 +217,27 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">11924996</th>
-                            <td>abdallah adas</td>
-                            <td>abdallah@hotmail.com</td>
-                            <td>Male</td>
-                            <td>0597046514</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">11924996</th>
-                            <td>abdallah adas</td>
-                            <td>abdallah@hotmail.com</td>
-                            <td>Male</td>
-                            <td>0597046514</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">11924996</th>
-                            <td>abdallah adas</td>
-                            <td>abdallah@hotmail.com</td>
-                            <td>Male</td>
-                            <td>0597046514</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">11924996</th>
-                            <td>abdallah adas</td>
-                            <td>abdallah@hotmail.com</td>
-                            <td>Male</td>
-                            <td>0597046514</td>
-                        </tr>
-                        </tbody>
+                        <?php
+                        @$con = new mysqli('localhost', 'root', '', 'web project');
+                        $qsLogin="SELECT * FROM `employee`";
+                        $res=$con->query($qsLogin);
+                        if($res-> num_rows > 0){
+                            while($row=$res -> fetch_assoc()){
+                                echo "<tr><td>".$row["id"]."</td><td>".$row["FullName"]."</td><td>".$row["email"]."</td><td>".$row["gender"]."</td><td>".$row["phoneNumber"]."</td></tr>";
+
+                            }
+                            echo "</tbody>";
+                        }
+                        else{
+                            echo "0 result";
+                        }
+
+                        $con->close();
+
+                        ?>
+
+
+
                     </table>
                 </div>
                 <!-- Modal -->

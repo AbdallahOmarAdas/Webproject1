@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="date22_4.0">
-      <change afterPath="$PROJECT_DIR$/s.php" afterDir="false" />
+    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="date16_6.08">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/css_item.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/css_item.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/loginDiv.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/loginDiv.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/mainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/mainPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/productBorder.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/productBorder.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/employeeOrder.php" beforeDir="false" afterPath="$PROJECT_DIR$/employeeOrder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/best/sidebar-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/best/sidebar-5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loginCust.php" beforeDir="false" afterPath="$PROJECT_DIR$/loginCust.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manePageCustomer.php" beforeDir="false" afterPath="$PROJECT_DIR$/manePageCustomer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mangerAddEmployee.php" beforeDir="false" afterPath="$PROJECT_DIR$/mangerAddEmployee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myOrder.php" beforeDir="false" afterPath="$PROJECT_DIR$/myOrder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products2.php" beforeDir="false" afterPath="$PROJECT_DIR$/products2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mangerView.php" beforeDir="false" afterPath="$PROJECT_DIR$/mangerView.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
