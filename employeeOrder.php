@@ -1,3 +1,14 @@
+<?php
+session_start();
+if(isset($_SESSION['type'])){
+    if($_SESSION['type']!='E'){
+        header('location:loginCust.php');
+    }
+}
+else{
+    header('location:loginCust.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,12 +20,6 @@
 
     <!--external css-->
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <!--    <script src="node_modules/@fortawesome/fontawesome-free/js/brands.js"></script>-->
-    <!--    <script src="node_modules/@fortawesome/fontawesome-free/js/solid.js"></script>-->
-    <!--    <script src="node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"></script>-->
-    <!--    <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">-->
-    <!--    <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />-->
-    <!-- Custom styles for this template -->
     <link rel="stylesheet" href="css/cartCss.css">
     <link rel="stylesheet" href="css/css1.css">
     <link rel="stylesheet" href="css/css_item.css">
@@ -43,7 +48,7 @@
         <div class="top-menu " style="padding-top:19px ">
             <ul class="nav top-menu justify-content-end">
 <!--                <li><img src="images/Untitled.png"style="margin-right: 30px;margin-top: -8px;" alt=""></li>-->
-                <li><a class="logout" href="login.html">Logout</a></li>
+                <li><a class="logout" href="loginCust.php">Logout</a></li>
             </ul>
         </div>
 

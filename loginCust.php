@@ -1,43 +1,107 @@
+<?php
+$is_men=1;
+session_start();
+$_SESSION['type']='u';
+if (isset($_POST['login'])) {
+    $userName=$_POST['login_username'];
+    $password=$_POST['login_pass'];
+    $f=0;
+    $qsLogin='';
+    $con='';
+if(isset($_POST['login_username']) && isset($_POST['login_pass'])) {
+    @$con = new mysqli('localhost', 'root', '', 'web project');
+    $qsLogin="SELECT * FROM `login`";
+    $f=1;
+}
+    if($f==1){
+        $is_men=0;
+        $res=$con->query($qsLogin);
+        for($i=0;$i<$res->num_rows;$i++){
+            $row=$res->fetch_row();
+            if($userName==$row[0] and sha1($password)==$row[1] && 'C'==$row[2]){
+                $is_men=1;
+                $_SESSION['type']='C';
+                header('location:manePageCustomer.php');
+            }
+            elseif($userName==$row[0] and sha1($password)==$row[1] && 'M'==$row[2]){
+                $is_men=1;
+                $_SESSION['type']='M';
+                //change it when you finish the main page of the manger
+                header('location:manePageCustomer.php');
+            }
+            elseif($userName==$row[0] and sha1($password)==$row[1] && 'E'==$row[2]){
+                $is_men=1;
+                $_SESSION['type']='E';
+                //change it when you finish the main page of the employee
+                header('location:manePageCustomer.php');
+            }
+        }
+
+
+    }
+
+}
+elseif(isset($_POST['reg'])) {
+    $id='';
+    $emil='';
+    $fullName='';
+    $phone=0;
+    $userName='';
+    $password='';
+    $con='';
+
+    if(isset($_POST['reg_Email']) && isset($_POST['reg_fullName']) && isset($_POST['reg_phone'])&&isset($_POST['reg_userName']) &&isset($_POST['reg_password'])&&isset($_POST['reg_ID'])){
+        $emil=$_POST['reg_Email'];
+        $id=$_POST['reg_ID'];
+        $fullName=$_POST['reg_fullName'];
+        $phone=$_POST['reg_phone'];
+        $userName=$_POST['reg_userName'];
+        $password=$_POST['reg_password'];
+        @$con= new mysqli('localhost','root','','web project');
+        $qsLogin="INSERT INTO `login` (`username`, `password`, `type`) VALUES ('".$userName."', SHA1('".$password."'), 'C');";
+        $qsCustomer="INSERT INTO `customer` (`id`, `FullName`, `email`, `phoneNumber`, `username`) VALUES ('".$id."','".$fullName."','".$emil."','".$phone."','".$userName."');";
+        $con->query($qsLogin);
+        $res=$con->query($qsCustomer);
+        if($res){
+
+        }
+        else{
+            echo 'error fgnofdkgnonfoj';
+        }
+        $con->close();
+        header('location:loginCust.php');
+
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <title>Admin</title>
-    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <!--external css-->
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <!--    <script src="node_modules/@fortawesome/fontawesome-free/js/brands.js"></script>-->
-    <!--    <script src="node_modules/@fortawesome/fontawesome-free/js/solid.js"></script>-->
-    <!--    <script src="node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"></script>-->
-    <!--    <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">-->
-    <!--    <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />-->
-    <!-- Custom styles for this template -->
     <link rel="stylesheet" href="css/cartCss.css">
     <link rel="stylesheet" href="css/css1.css">
-
     <link rel="stylesheet" href="css/mainPage.css">
     <link rel="stylesheet" href="css/loginDiv.css">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet">
-    <!--    <script src="lib/chart-master/Chart.js"></script>-->
+
 </head>
 
 <body>
 <section id="container" style="background-color: #d6d5d5">
-    <!-- **********************************************************************************************************************************************************
-        TOP BAR CONTENT & NOTIFICATIONS
-        *********************************************************************************************************************************************************** -->
-    <!--header start-->
     <header class="header black-bg">
         <div class="sidebar-toggle-box">
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
-        <!--logo start-->
         <a href="index.html" class="logo" style="margin: 0px"><img src="images/logo.png" alt="" style="width: 60px;height: 60px">Alhijaz chocolate LTD
         </a>
-        <!--logo end-->
 
 
     </header>
@@ -132,16 +196,6 @@
                             </a>
 
                         </li>
-                        <li class="sub-menu">
-                            <a href="#contactUs" style="font-size: 17px;color: #aeb2b7">
-                                Connect Us
-                            </a>
-                        </li>
-                        <li class="sub-menu">
-                            <a href="find_us.html" style="font-size: 17px;color: #aeb2b7">
-                                Find Us
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -235,7 +289,7 @@
 
                 <div class="col d-flex justify-content-center " style="background-color: #2f323a;padding-top: 30px;padding-bottom: 20px">
                     <div id="div_login">
-                        <form action="">
+                        <form action="loginCust.php" method="post">
                     <span class="login_span p-b-49" style="font-style: italic;font-family: Bold">
 						Log in
 					</span>
@@ -251,8 +305,15 @@
                                 <input class="input100" type="password" name="login_pass" placeholder="Type your password">
                                 <span class="focus-input100" ></span>
                             </div>
+                            <?php
+
+                            if($is_men==0){
+                            echo '<p class="login_a" style="color: #ac2925">invalid userName or Password</p>';
+                            }
+                            ?>
 
                             <div class="text-right p-t-8 p-b-31">
+
                                 <a href="#" class="login_a" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
                                     Forgot password?
                                 </a>
@@ -260,7 +321,7 @@
 
                             <div class="container-login100-form-btn">
                                 <div class="wrap-login100-form-btn">
-                                    <input class="login100-form-btn c12 hoFont" type="submit" value="Log in">
+                                    <input class="login100-form-btn c12 hoFont" type="submit" name="login" value="Log in">
                                 </div>
 
                                 <div>
@@ -280,40 +341,44 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="" method="post">
-
-                                        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                                    <form action="loginCust.php" method="post">
+                                        <div class="wrap-input100 validate-input m-b-23">
+                                            <span class="label-input100"><img class="icon" src="images/id-card-solid-svg.png" alt="">  ID</span>
+                                            <input class="input100" type="text" name="reg_ID" placeholder="Type your ID" required>
+                                            <span class="focus-input100"></span>
+                                        </div>
+                                        <div class="wrap-input100 validate-input m-b-23">
                                             <span class="label-input100"><img class="icon" src="images/envelope-solid-svg.png" alt="">  Email</span>
-                                            <input class="input100" type="email" name="reg_Email" placeholder="Type Email">
+                                            <input class="input100" type="email" name="reg_Email" placeholder="Type Email" required>
                                             <span class="focus-input100"></span>
                                         </div>
 
-                                        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                                        <div class="wrap-input100 validate-input m-b-23" >
                                             <span class="label-input100"><img class="icon" src="images/keyboard-solid-svg.png" alt=""> Full name</span>
-                                            <input class="input100" type="text" name="reg_FullName" placeholder="Type Full name">
+                                            <input class="input100" type="text" name="reg_fullName" placeholder="Type Full name" required>
                                             <span class="focus-input100"></span>
                                         </div>
 
-                                        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                                        <div class="wrap-input100 validate-input m-b-23" >
                                             <span class="label-input100"><img class="icon" src="images/phone-solid-svg.png" alt=""> Phone number</span>
-                                            <input class="input100" type="tel" name="reg_phone" placeholder="Type Phone number">
+                                            <input class="input100" type="tel" name="reg_phone" placeholder="Type Phone number" required>
                                             <span class="focus-input100"></span>
                                         </div>
 
-                                        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                                        <div class="wrap-input100 validate-input m-b-23" >
                                             <span class="label-input100"><img class="icon" src="images/user-solid-svg.png" alt=""> User Name</span>
-                                            <input class="input100" type="text" name="reg_username" placeholder="chose username">
+                                            <input class="input100" type="text" name="reg_userName" placeholder="chose username" required>
                                             <span class="focus-input100"></span>
                                         </div>
 
-                                        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                                        <div class="wrap-input100 validate-input m-b-23">
                                             <span class="label-input100"><img class="icon" src="images/lock-solid-svg.png" alt=""> Password</span>
-                                            <input class="input100" type="password" name="reg_password" placeholder="Type Password">
+                                            <input class="input100" type="password" name="reg_password" placeholder="Type Password" required>
                                             <span class="focus-input100"></span>
                                         </div>
                                         <div class="wrap-login100-form-btn">
                                             <div class="login100-form-bgbtn"></div>
-                                            <input class="login100-form-btn c12" type="submit" value="sign up">
+                                            <input class="login100-form-btn c12" type="submit" value="sign up" name="reg" >
                                         </div>
 
                                     </form>
@@ -325,20 +390,20 @@
                     <!-- Modal -->
                     <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
                         <div class="modal-dialog" style="margin-top: 7rem;">
-                            <div class="modal-content" style="border-radius: 30px;">
-                                <div class="modal-header" style="    background-color:#fc8804 ;border-radius: 28px 28px 0px 0px;">
+                            <div class="modal-content" style="border-radius: 30px;background-color: #2f323a;">
+                                <div class="modal-header" style="    background-color:#fc8804 ;border-radius: 28px 28px 0px 0px;border-color: #2f323a;">
                                     <h5 class="modal-title" id="staticBackdropLabel1">Reset your password</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <p style="font-size: 18px;padding-left: 20px">Please enter your email to get the code to reset your password.</p>
-                                <div class="modal-body">
+                                <div class="modal-body" style="background-color: #2f323a;">
                                     <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-                                        <span class="label-input100"><i class="fa-solid fa-envelope"></i> Email</span>
+                                        <span class="label-input100"><img class="icon" src="images/envelope-solid-svg.png" alt=""> Email</span>
                                         <input class="input100" type="email" name="Res_Email" placeholder="Enter your Email">
                                         <span class="focus-input100"></span>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer" style="border-color:#2f323a;">
 
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
                                     <input type="submit" value="Send code" class="btn btn-primary" style="height:38px">

@@ -14,8 +14,6 @@ div.item_div{
 }
 div.item_div0{
     float: left;
-
-
 }
 div.item_div:hover{
     float: left;
@@ -39,7 +37,9 @@ img.item_img{
 div.item_div:hover img.item_img{
     transform: scale(1.12);
 }
-
+div.item_div1:hover img.item_img{
+    transform: scale(1.12);
+}
 p{
     float: bottom;
     text-align: center;

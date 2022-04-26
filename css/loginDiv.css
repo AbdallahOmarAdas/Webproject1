@@ -74,7 +74,7 @@ input {
     outline: none;
     border: none;
 }
-a.login_a{
+.login_a{
     font-family: Poppins-Regular;
     font-size: 14px;
     line-height: 1.7;
