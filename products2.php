@@ -1,6 +1,9 @@
-<?php
+<?php error_reporting(E_ERROR | E_PARSE);
 session_start();
+$_SESSION['test'];
 $chocoType='';
+$qrrr='';
+$qtest="";
 if(isset($_SESSION['type'])){
     if($_SESSION['type']!='C' && $_SESSION['type']!='E' && $_SESSION['type']!='M'){
         header('location:loginCust.php');
@@ -11,7 +14,7 @@ else{
     header('location:loginCust.php');
 }
 ?>
-<?php error_reporting(E_ERROR | E_PARSE);
+<?php
 if(isset($_POST['search'])){
     $f=0;
     $qsLogin='';
@@ -29,25 +32,15 @@ if(isset($_POST['search'])){
    }
 
 }
-
 if(isset($_POST['action2'])){
     $chocoType=$_POST['submit2'];
-    echo $chocoType;
+    $_SESSION['test']=$chocoType;
 }
-if(isset($_POST['action'])){
-    $val=$_POST['submit'];
 
-$f=0;
-$qsLogin='';
-$con='';
 
-@$con = new mysqli('localhost', 'root', '', 'web project');
-$qsLogin="DELETE FROM `chocolate` WHERE `SerealNumber`='".$val."'";
-$res=$con->query($qsLogin);
-$con->commit();
-$con->close();
-}
 if(isset($_POST['addProd'])) {
+
+    $conn = new mysqli('localhost', 'root', '', 'web project');
     if ($_FILES['imageadd']['error'] > 0) {
         echo 'Problem: ';
         switch ($_FILES['imageadd']['error']) {
@@ -75,7 +68,6 @@ if(isset($_POST['addProd'])) {
     if ($_FILES['imageadd']['type'] != 'image/png') {
 
         echo '<script>alert("only images with extension .png is allowed") </script>';
-//        header('location:products2.php');
         exit;
     }
     $upfile = 'C:\xampp\uploded_files/' . $_FILES['imageadd']['name'];
@@ -93,56 +85,93 @@ if(isset($_POST['addProd'])) {
     $urlimg = 'C:\xampp/uploded_files/' . $file1;
     $image = $_FILES['imageadd']['name'];
     $imgContent = addslashes(file_get_contents($urlimg));
+
     if (isset($_POST['addProductName']) && isset($_POST['addProductSereal'])) {
-        $qrstr2='';
+        $chocoType=$_SESSION['test'];
         try {
-            $conn = new mysqli('localhost', 'root', '', 'web project');
-            $qrstr = "INSERT INTO `chocolate` (`SerealNumber`, `nameP`, `typeT`, `img`) VALUES ('" . $_POST['addProductSereal'] . "', '" . $_POST['addProductName'] . "', '" . $_POST['typeT'] . "', '" .$imgContent . "');";
-
             if($chocoType=='Revera'){
-                $qrstr2="INSERT INTO `revera` (`rowN`, `price`, `SerealNumber`) VALUES (NULL, '40', '" . $_POST['addProductSereal']. "');";
-
+                $qrrr="INSERT INTO `revera` (`rowN`, `price`, `SerealNumber`) VALUES (NULL, '40', '" . $_POST['addProductSereal']. "');";
             }
             elseif ($chocoType=='Lorka'){
-                $qrstr2="INSERT INTO `lorka` (`rowN`, `price`, `SerealNumber`) VALUES (NULL, '55', '" . $_POST['addProductSereal']. "');";
-
+                $qrrr="INSERT INTO `lorka` (`rowN`, `price`, `SerealNumber`) VALUES (NULL, '55', '" . $_POST['addProductSereal']. "');";
             }
-            elseif ($chocoType=='bnuts'){
-                $qrstr2="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'65','n','" . $_POST['addProductSereal']. "')";
+            elseif ($chocoType=='bn'){
+                $qrrr="INSERT INTO `best` (`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'65','n','" . $_POST['addProductSereal']. "')";
             }
-            elseif ($chocoType=='bfill'){
-                $qrstr2="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'65','f','" . $_POST['addProductSereal']. "')";
+            elseif ($chocoType=='bf'){
+                $qrrr="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'65','f','" . $_POST['addProductSereal']. "')";
             }
             elseif ($chocoType=='bocc'){
-                $qrstr2="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'65','occ','" . $_POST['addProductSereal']. "')";
+                $qrrr="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','occ','" . $_POST['addProductSereal']. "')";
             }
             elseif ($chocoType=='gour'){
-                $qrstr2="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','gour','" . $_POST['addProductSereal']. "')";
+                $qrrr="INSERT INTO `gourmet`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','gour','" . $_POST['addProductSereal']. "')";
             }
             elseif ($chocoType=='dr'){
-                $qrstr2="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','dr','" . $_POST['addProductSereal']. "')";
+                $qrrr="INSERT INTO `gourmet`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','dr','" . $_POST['addProductSereal']. "')";
             }
             elseif ($chocoType=='gmd'){
-                $qrstr2="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','gmd','" . $_POST['addProductSereal']. "')";
+                $qrrr="INSERT INTO `gourmet`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','gmd','" . $_POST['addProductSereal']. "')";
             }
             else{
-                $qrstr2="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','gocc','" . $_POST['addProductSereal']. "')";
+                $qrrr="INSERT INTO `gourmet`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','gocc','" . $_POST['addProductSereal']. "')";
             }
 
+            $qrstr = "INSERT INTO `chocolate` (`SerealNumber`, `nameP`, `typeT`, `img`) VALUES ('" . $_POST['addProductSereal'] . "', '" . $_POST['addProductName'] . "', '" . $_POST['typeT'] . "', '" .$imgContent . "');";
+
             $res = $conn->query($qrstr);
-            $res2=$conn->query($qrstr2);
-            if ($res == 1) {
-                header('location:products2.php');
-            } else {
-                echo '<script>alert("some data entered is wrong") </script>';
-            }
-            $conn->commit();
+            $conn->query($qrrr);
             $conn->close();
         } catch (Exception $ex) {
 
         }
     }
 }
+if(isset($_POST['action'])){
+    $val=$_POST['submit'];
+
+$f=0;
+$qsLogin='';
+$con='';
+$qrdel='';
+@$con = new mysqli('localhost', 'root', '', 'web project');
+    $chocoType=$_SESSION['test'];
+    if($chocoType=='Revera'){
+        $qrdel="DELETE FROM `revera` WHERE `SerealNumber`='".$val."';";
+    }
+    elseif ($chocoType=='Lorka'){
+        $qrdel="DELETE FROM `lorka` WHERE `SerealNumber`='".$val."';";
+    }
+    elseif ($chocoType=='bn'){
+        $qrdel="DELETE FROM `best` WHERE `SerealNumber`='".$val."';";
+    }
+    elseif ($chocoType=='bf'){
+        $qrdel="DELETE FROM `best` WHERE `SerealNumber`='".$val."';";
+    }
+    elseif ($chocoType=='bocc'){
+        $qrdel="DELETE FROM `best` WHERE `SerealNumber`='".$val."';";
+    }
+    elseif ($chocoType=='gour'){
+        $qrdel="DELETE FROM `gourmet` WHERE `SerealNumber`='".$val."';";
+    }
+    elseif ($chocoType=='dr'){
+        $qrdel="DELETE FROM `gourmet` WHERE `SerealNumber`='".$val."';";
+    }
+    elseif ($chocoType=='gmd'){
+        $qrdel="DELETE FROM `gourmet` WHERE `SerealNumber`='".$val."';";
+    }
+    else{
+        $qrdel="DELETE FROM `gourmet` WHERE `SerealNumber`='".$val."';";
+    }
+
+$qsLogin="DELETE FROM `chocolate` WHERE `SerealNumber`='".$val."'";
+ $con->query($qrdel);
+    $con->commit();
+$res=$con->query($qsLogin);
+$con->commit();
+$con->close();
+}
+
 ?>
 
 
@@ -173,7 +202,7 @@ if(isset($_POST['addProd'])) {
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
         <!--logo start-->
-        <a href="index.html" class="logo" style="margin: 0px"><img src="images/logo.png" alt="" style="width: 60px;height: 60px">Alhijaz chocolate LTD
+        <a href="manePageCustomer.php" class="logo" style="margin: 0px"><img src="images/logo.png" alt="" style="width: 60px;height: 60px">Alhijaz chocolate LTD
         </a>
         <!--logo end-->
 
@@ -294,92 +323,6 @@ if(isset($_POST['addProd'])) {
                     </li>
 
                 </form>
-<!--                <form action="products2.php" method="post">-->
-<!--                <li class="sub-menu">-->
-<!--                    <a href="javascript:;">-->
-<!---->
-<!--                        <span class="main_menu">Gourmet</span>-->
-<!--                    </a>-->
-<!--                    <ul class="sub">-->
-<!--                        <li>-->
-<!--                            <a href="javascript:;">-->
-<!---->
-<!--                                    <input class="kind4" type="submit" value="Gourmet" name="gmedit" id="gmedit">-->
-<!---->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="javascript:;">-->
-<!---->
-<!--                                    <input class="kind4" type="submit" value="Dragee" name="gde" id="gde">-->
-<!---->
-<!--                            </a>-->
-<!--                        </li>-->
-<!---->
-<!--                        <li>-->
-<!--                            <a href="javascript:;">-->
-<!---->
-<!--                                    <input class="kind4" type="submit" value="chocoMedjool"name="gchme" id="gchme">-->
-<!---->
-<!--                            </a>-->
-<!--                        </li>-->
-<!---->
-<!--                        <li>-->
-<!--                            <a href="javascript:;">-->
-<!---->
-<!--                                    <input class="kind4" type="submit" value="Occasions" name="gocce" id="gocce">-->
-<!---->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </li>-->
-<!--                <li class="sub-menu">-->
-<!--                    <a href="javascript:;">-->
-<!---->
-<!--                        <span class="main_menu">Best</span>-->
-<!--                    </a>-->
-<!--                    <ul class="sub">-->
-<!--                        <li>-->
-<!--                            <a href="javascript:;">-->
-<!---->
-<!--                                    <input class="kind4" type="submit" value="Best Nuts" name="bne" id="bne">-->
-<!---->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="javascript:;">-->
-<!---->
-<!--                                    <input class="kind4" type="submit" value="Best Fill" name="bfe" id="bfe">-->
-<!---->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="javascript:;">-->
-<!---->
-<!--                                    <input class="kind4" type="submit" value="Occasions" name="bocce" id="bocce">-->
-<!---->
-<!--                            </a>-->
-<!---->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </li>-->
-<!--                <li class="sub-menu">-->
-<!---->
-<!--                    <a href="javascript:;">-->
-<!---->
-<!--                            <input class="kind4" type="submit" value="Lorka" name="lorkae" id="lorkae">-->
-<!---->
-<!--                    </a>-->
-<!---->
-<!--                </li>-->
-<!--                <li class="sub-menu">-->
-<!--                    <a href="javascript:;">-->
-<!---->
-<!--                            <input class="kind4" type="submit" value="Revera" name="reverae" id="reverae">-->
-<!---->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                </form>-->
             </ul>
             <!-- sidebar menu end-->
         </div>
@@ -397,8 +340,42 @@ if(isset($_POST['addProd'])) {
                                     <table>
                                         <tr>
                                             <td colspan="2">
+                                                <h4 >
+                                                    <?php
+                                                    if($chocoType=='Revera'){
+                                                        echo 'Revera';
+                                                    }
+                                                    elseif ($chocoType=='Lorka'){
+                                                        echo 'Lorka';
+                                                    }
+                                                    elseif ($chocoType=='bn'){
+                                                        echo 'Best Nuts';
+                                                    }
+                                                    elseif ($chocoType=='bf'){
+                                                        echo 'Best Fill';
+                                                    }
+                                                    elseif ($chocoType=='bocc'){
+                                                        echo 'Best Occasions';
+                                                    }
+                                                    elseif ($chocoType=='gour'){
+                                                        echo 'Gourmet';
+                                                    }
+                                                    elseif ($chocoType=='dr'){
+                                                        echo 'Gourmet Dragee';
+                                                    }
+                                                    elseif ($chocoType=='gmd'){
+                                                        echo 'Gourmet ChocoMedjool';
+                                                    }
+                                                    else{
+                                                        echo 'Gourmet Occasions';
 
+                                                    }
+                                                    ?>
+                                                </h4><?php
+                                                if($_SESSION['type']=='E'){?>
                                                 <input type="button" class="productBuy" name="uploadImg" value="Add item" data-bs-toggle="modal" data-bs-target="#staticBackdrop123">
+                                                    <?php
+                                                }?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -479,10 +456,10 @@ if(isset($_POST['addProd'])) {
                                 $qsLogin="SELECT * FROM `chocolate`,`lorka` WHERE chocolate.SerealNumber=lorka.SerealNumber;";
 //
                             }
-                            elseif ($chocoType=='bnuts'){
+                            elseif ($chocoType=='bn'){
                                 $qsLogin="SELECT * FROM `chocolate`,`best` WHERE (chocolate.SerealNumber=best.SerealNumber)&& type='n';";
                             }
-                            elseif ($chocoType=='bfill'){
+                            elseif ($chocoType=='bf'){
                                 $qsLogin="SELECT * FROM `chocolate`,`best` WHERE (chocolate.SerealNumber=best.SerealNumber)&& type='f';";
                             }
                             elseif ($chocoType=='bocc'){
@@ -514,7 +491,24 @@ if(isset($_POST['addProd'])) {
                         </div>
 
                         <div>
-                   <button class="del" name="submit" type="submit" value="<?php echo $row[0];?>" id="<?php echo $row[0];?>" onmouseenter="document.getElementById('<?php echo $row[0];?>').innerText='Delete Product'" onmouseout="document.getElementById('<?php echo $row[0];?>').innerText='<?php echo $row[1];?>' "><?php echo $row[1];?></button>
+                            <?php
+                            if($_SESSION['type']=='C'){?>
+
+                <button class="del2" name="buyBut" type="submit" value="<?php echo $row[0];?>" id="<?php echo $row[0];?>" onmouseenter="document.getElementById('<?php echo $row[0];?>').innerText='Add to order'" onmouseout="document.getElementById('<?php echo $row[0];?>').innerText='<?php echo $row[1];?>' "><?php echo $row[1];?></button>
+                    <?php
+
+                            }
+                            else{
+                                ?>
+                                <button class="del" name="submit" type="submit" value="<?php echo $row[0];?>" id="<?php echo $row[0];?>" onmouseenter="document.getElementById('<?php echo $row[0];?>').innerText='Delete Product'" onmouseout="document.getElementById('<?php echo $row[0];?>').innerText='<?php echo $row[1];?>' "><?php echo $row[1];?></button>
+                            <?php
+
+                            }
+                            ?>
+
+
+</form>
+
                     </div>
 
                     </div>
@@ -528,7 +522,7 @@ if(isset($_POST['addProd'])) {
 
                     </div>
                 </div>
-
+                <form action="products2.php" method="post" enctype="multipart/form-data">
                 <div class="modal fade" id="staticBackdrop123" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel12" aria-hidden="true">
                     <div class="modal-dialog" style="margin-top: 4rem;">
                         <div class="modal-content" style="border-radius: 30px;background-color: #2f323a;">
@@ -538,28 +532,28 @@ if(isset($_POST['addProd'])) {
                             </div>
                             <p style="font-size: 18px;padding-left: 20px;background-color: #2f323a;">choose image (file extension allowed: .png) </p>
                             <div class="modal-body" style="background-color: #2f323a;">
-                                <input type="file" accept="image/png" class="productBuy" name="imageadd" id="imageadd"  style="width: 100%;border-top-left-radius: 6px;border-bottom-left-radius: 6px;font-size: 20px">
+                                <input type="file" accept="image/png" required class="productBuy" name="imageadd" id="imageadd"  style="width: 100%;border-top-left-radius: 6px;border-bottom-left-radius: 6px;font-size: 20px">
                                 <br>
                                 <br>
                                 <div class="wrap-input100 validate-input m-b-23" >
                                     <span class="label-input100"><img class="icon" src="images/circle-plus-solid-svg.png" alt="">  Serial Number</span>
-                                    <input class="input100" type="text" name="addProductSereal" placeholder="Enter Product Serial Number" style="color: #aeb2b7">
+                                    <input class="input100" required type="text" name="addProductSereal" placeholder="Enter Product Serial Number" style="color: #aeb2b7">
                                     <span class="focus-input100"></span>
                                 </div>
                                 <div class="wrap-input100 validate-input m-b-23" >
                                     <span class="label-input100"><img class="icon" src="images/circle-plus-solid-svg.png" alt=""> Item name </span>
-                                    <input class="input100" type="text" name="addProductName" placeholder="Enter Product Name" maxlength="18" style="color: #aeb2b7">
+                                    <input class="input100" required type="text" name="addProductName" placeholder="Enter Product Name" maxlength="18" style="color: #aeb2b7">
                                     <span class="focus-input100"></span>
                                 </div>
                                 <table class="d-flex justify-content-center">
                                     <tr >
                                         <td>
-                                            <input type="radio" id="Dark" value="Dark" name="typeT" checked>
+                                            <input type="radio" id="Dark" value="Dark" name="typeT" >
                                             <label for="Dark" class="label2">Dark</label>
                                         </td>
 
                                         <td>
-                                            <input type="radio" id="Milk" value="Milk" name="typeT">
+                                            <input type="radio" id="Milk" value="Milk" name="typeT" checked>
                                             <label for="Milk" class="label2">Milk</label>
                                         </td>
 
@@ -579,6 +573,7 @@ if(isset($_POST['addProd'])) {
                         </div>
                     </div>
                 </div>
+                </form>
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable" style="max-width: 650px;">
                         <div class="modal-content">
@@ -673,7 +668,7 @@ if(isset($_POST['addProd'])) {
             </section>
         </section>
 
-    </form>
+    //</form>
 
     <!--main content end-->
     <!--footer start-->

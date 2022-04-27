@@ -528,6 +528,23 @@ div.item_div1:hover img.item_img{
 .del:hover{
     background-color: #f30000;
 }
+.del2{
+    color: #ffffff;
+    border-width: 0px;
+    background-color: #fc8804;
+    position: relative;
+    padding: 0px;
+    margin: 2px;
+    width: 200px;
+    font-size: 20px;
+    height: 30px;
+
+    outline: none;
+    border: none;
+}
+.del2:active{
+    background-color: #f8a84f;
+}
 .del:active{
     background-color: #f8a84f;
 }
