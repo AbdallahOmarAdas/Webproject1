@@ -19,8 +19,9 @@ if(isset($_POST['edit'])){
             $emile='';
             $phonee=0;
             @$con = new mysqli('localhost', 'root', '', 'web project');
-            $emile=$_POST['em1'];
-            $phonee=$_POST['tl1'];
+            $emile=$_POST[$value.'m'];
+
+            $phonee=$_POST[$value.'t'];
             echo $emile;
             $sqql="UPDATE `employee` SET `email`='".$emile. "',`phoneNumber`='".$phonee. "' WHERE `id`='".$value."';";
             $con->query($sqql);
@@ -309,7 +310,7 @@ if(isset($_POST['save'])) {
                         $res=$con->query($qsLogin);
                         if($res-> num_rows > 0){
                             while($row=$res -> fetch_assoc()){
-                                echo "<tr><td>".$row["id"]."</td><td>".$row["FullName"]."</td><td>"."<input type='email' name='em1' id='em1' value='".$row["email"]."'</td><td>".$row["gender"]."</td><td>"."<input type='tel' name='tl1' id='tl1' value='".$row["phoneNumber"]."'</td><td>"."<input type='checkbox' name='submitedit[]' value='".$row["id"]."'</td></tr>";
+                                echo "<tr><td>".$row["id"]."</td><td>".$row["FullName"]."</td><td>"."<input type='email' name='".$row['id']."m' id='".$row['id']."m' value='".$row["email"]."'</td><td>".$row["gender"]."</td><td>"."<input type='tel' name='".$row['id']."t' id='".$row['id']."t' value='".$row["phoneNumber"]."'</td><td>"."<input type='checkbox' name='submitedit[]' value='".$row["id"]."'</td></tr>";
 
                             }
                             echo "</tbody>";
@@ -362,7 +363,23 @@ if(isset($_POST['save'])) {
                                         <input class="input100" type="text" name="reg_FullName" placeholder="Type Full name">
                                         <span class="focus-input100"></span>
                                     </div>
+                                    <div class="" style="padding-bottom: 15px">
+                                        <span class="label-input100"><img class="icon" src="images/genderIcon.png" alt=""> Gender</span>
+                                        <table style="margin-left: 23px;margin-top: 5px">
+                                            <tr>
+                                                <td>
+                                                    <input class="" type="radio" value="Male" name="gender" id="m">
+                                                    <label class="label-input100" for="m">Male</label>
 
+                                                </td>
+                                                <td style="padding-left: 50px;">
+                                                    <input class="" type="radio" value="Female" name="gender" id="f">
+                                                    <label class="label-input100" for="f">Male</label>
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                     <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
                                         <span class="label-input100"><img class="icon" src="images/phone-solid-svg.png" alt=""> Phone number</span>
                                         <input class="input100" type="tel" name="reg_phone" placeholder="Type Phone number">

@@ -1,83 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="date22_4.0">
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B14.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B15.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B17.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B18.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B19.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B20.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B21.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B22.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B23.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B24.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/best/Best/B9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L14.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L15.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L17.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/L9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/LD1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/LD2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/LD3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/LD4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lorka/Lorka/LD5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R14.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R15.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R17.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R18.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R19.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R20.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R21.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R22.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R23.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R24.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/revera/Revera/R9.png" afterDir="false" />
+    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="date28_12.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/productBorder.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/productBorder.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manePageCustomer.php" beforeDir="false" afterPath="$PROJECT_DIR$/manePageCustomer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/addEmp.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/addEmp.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mangerAddEmployee.php" beforeDir="false" afterPath="$PROJECT_DIR$/mangerAddEmployee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mangerView.php" beforeDir="false" afterPath="$PROJECT_DIR$/mangerView.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products2.php" beforeDir="false" afterPath="$PROJECT_DIR$/products2.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +115,8 @@
       <workItem from="1650959676893" duration="162000" />
       <workItem from="1650976492158" duration="8635000" />
       <workItem from="1651036028506" duration="13410000" />
-      <workItem from="1651092399741" duration="1776000" />
+      <workItem from="1651092399741" duration="2777000" />
+      <workItem from="1651138807374" duration="4621000" />
     </task>
     <task id="LOCAL-00001" summary="para">
       <created>1649688430023</created>
@@ -281,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650634085218</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="date28_12.0">
+      <created>1651094520726</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1651094520726</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -371,6 +306,7 @@
     <MESSAGE value="date19_5.0" />
     <MESSAGE value="date21_5.0" />
     <MESSAGE value="date22_4.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="date22_4.0" />
+    <MESSAGE value="date28_12.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="date28_12.0" />
   </component>
 </project>
