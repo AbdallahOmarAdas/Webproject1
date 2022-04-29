@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="date28_12.0">
+    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="date28_2.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/addEmp.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/addEmp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mangerAddEmployee.php" beforeDir="false" afterPath="$PROJECT_DIR$/mangerAddEmployee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bordert.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/items.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/loginCust.php" beforeDir="false" afterPath="$PROJECT_DIR$/loginCust.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainPage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manger3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products2.php" beforeDir="false" afterPath="$PROJECT_DIR$/products2.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +59,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../testt1" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
@@ -116,7 +123,8 @@
       <workItem from="1650976492158" duration="8635000" />
       <workItem from="1651036028506" duration="13410000" />
       <workItem from="1651092399741" duration="2777000" />
-      <workItem from="1651138807374" duration="4621000" />
+      <workItem from="1651138807374" duration="11350000" />
+      <workItem from="1651220864264" duration="18121000" />
     </task>
     <task id="LOCAL-00001" summary="para">
       <created>1649688430023</created>
@@ -216,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651094520726</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="date28_2.0">
+      <created>1651143501318</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1651143501318</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,6 +322,7 @@
     <MESSAGE value="date21_5.0" />
     <MESSAGE value="date22_4.0" />
     <MESSAGE value="date28_12.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="date28_12.0" />
+    <MESSAGE value="date28_2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="date28_2.0" />
   </component>
 </project>

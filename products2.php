@@ -1,9 +1,16 @@
 <?php error_reporting(E_ERROR | E_PARSE);
 session_start();
 $_SESSION['test'];
+$_SESSION['orderId'];
+$_SESSION['orderDate'];
+$_SESSION['radio']=$_POST['typeChoco'];
 $chocoType='';
 $qrrr='';
+
 $qtest="";
+$orderNumber='';
+$orderD='';
+$flagSearch=0;
 if(isset($_SESSION['type'])){
     if($_SESSION['type']!='C' && $_SESSION['type']!='E' && $_SESSION['type']!='M'){
         header('location:loginCust.php');
@@ -15,23 +22,59 @@ else{
 }
 ?>
 <?php
-if(isset($_POST['search'])){
-    $f=0;
-    $qsLogin='';
-    $con='';
-
-    @$con = new mysqli('localhost', 'root', '', 'web project');
-    $qsLogin="SELECT * FROM `chocolate`";
-    $res=$con->query($qsLogin);
-   for($i=0;$i<$res->num_rows;$i++) {
-       $row = $res->fetch_row();
-?>
-
-              <img src="data:image/png;charset=utf8;base64,<?php echo base64_encode($row[3]) ; ?>" />
+//if(isset($_POST['search'])){
+//    $f=0;
+//    $qsLogin='';
+//    $con='';
+//
+//    @$con = new mysqli('localhost', 'root', '', 'web project');
+//    $qsLogin="SELECT * FROM `chocolate`";
+//    $res=$con->query($qsLogin);
+//   for($i=0;$i<$res->num_rows;$i++) {
+//       $row = $res->fetch_row();
+//?>
+<!---->
+<!--              <img src="data:image/png;charset=utf8;base64,--><?php //echo base64_encode($row[3]) ; ?><!--" />-->
 <?php
-   }
+//   }
+//
+//}
+//if(isset($_POST['search'])){
+//    $qserch='';
+//    $chocoType=$_SESSION['test'];
+//    if($chocoType=='Revera'){
+//        $qserch="SELECT * FROM `chocolate`,`revera` WHERE chocolate.nameP=''". $_POST['prodName']. "&& revera.SerealNumber=chocolate.SerealNumber";
+//    }
+//    elseif ($chocoType=='Lorka'){
+//        $qserch="SELECT * FROM `chocolate`,`lorka` WHERE chocolate.nameP=''". $_POST['prodName']. "&& lorka.SerealNumber=chocolate.SerealNumber";
+//    }
+//    elseif ($chocoType=='bn'){
+//        $qserch="SELECT * FROM `chocolate`,`best` WHERE chocolate.nameP=''". $_POST['prodName']. "&& best.SerealNumber=chocolate.SerealNumber && best.type='n'";
+//    }
+//    elseif ($chocoType=='bf'){
+//        $qserch="SELECT * FROM `chocolate`,`best` WHERE chocolate.nameP=''". $_POST['prodName']. "&& best.SerealNumber=chocolate.SerealNumber && best.type='f'";
+//    }
+//    elseif ($chocoType=='bocc'){
+//        $qserch="SELECT * FROM `chocolate`,`best` WHERE chocolate.nameP=''". $_POST['prodName']. "&& best.SerealNumber=chocolate.SerealNumber && best.type='occ'";
+//    }
+//    elseif ($chocoType=='gour'){
+//        $qserch="SELECT * FROM `chocolate`,`gourmet` WHERE chocolate.nameP=''". $_POST['prodName']. "&& gourmet.SerealNumber=chocolate.SerealNumber && gourmet.type='gour'";
+//
+//    }
+//    elseif ($chocoType=='dr'){
+//        $qserch="SELECT * FROM `chocolate`,`gourmet` WHERE chocolate.nameP=''". $_POST['prodName']. "&& gourmet.SerealNumber=chocolate.SerealNumber && gourmet.type='dr'";
+//    }
+//    elseif ($chocoType=='gmd'){
+//        $qserch="SELECT * FROM `chocolate`,`gourmet` WHERE chocolate.nameP=''". $_POST['prodName']. "&& gourmet.SerealNumber=chocolate.SerealNumber && gourmet.type='gmd'";
+//    }
+//    else{
+//        $qserch="SELECT * FROM `chocolate`,`gourmet` WHERE chocolate.nameP=''". $_POST['prodName']. "&& gourmet.SerealNumber=chocolate.SerealNumber && gourmet.type='gocc'";
+//    }
+//
+//    $flagSearch=1;
+//
+//}
 
-}
 if(isset($_POST['action2'])){
     $chocoType=$_POST['submit2'];
     $_SESSION['test']=$chocoType;
@@ -127,6 +170,33 @@ if(isset($_POST['addProd'])) {
         }
     }
 }
+
+
+if(isset($_POST['cart'])){
+    $val=$_POST['buyItem'];
+    $_SESSION['orderId'];
+    $f=0;
+    $qsLogin='';
+    $con='';
+    $feq=0;
+    @$con = new mysqli('localhost', 'root', '', 'web project');
+    $chocoType=$_SESSION['test'];
+      $qrcheck="SELECT * FROM `bag` WHERE orderN='".$_SESSION['orderId']."'  && serialNumber='".$val."';";
+    $res = $con->query($qrcheck);
+    for($i=0;$i<$res->num_rows;$i++) {
+        $feq=1;
+    }
+    if ($feq==0){
+        $qrAddtoOrder="INSERT INTO `bag` (`itemN`, `orderN`, `serialNumber`, `amount`) VALUES (NULL, '".$_SESSION['orderId']."', '".$val."', '1');";
+        $res=$con->query($qrAddtoOrder);
+        $con->commit();}
+
+
+
+    $con->close();
+}
+
+
 if(isset($_POST['action'])){
     $val=$_POST['submit'];
 
@@ -172,6 +242,33 @@ $con->commit();
 $con->close();
 }
 
+if(isset($_POST['newOrder'])) {
+    $orderD = date('Y-m-d');
+    $con = '';
+    $qrNewOrd = '';
+    $user=$_SESSION['userName'];
+    @$con = new mysqli('localhost', 'root', '', 'web project');
+    $qrNewOrd = "INSERT INTO `cusorder` (`orderN`, `createDate`,`customer`, `orderprice`, `emp`, `deleverDate`, `coverIMG`) VALUES (NULL, '" . $orderD . "','".$user."', '0', NULL, NULL, NULL);";
+    $con->query($qrNewOrd);
+    $query23 = "SHOW TABLE STATUS LIKE 'cusorder';";
+    $res = $con->query($query23);
+for($i=0;$i<$res->num_rows;$i++) {
+    $row = $res->fetch_row();
+    $orderNumber = $row[10]-1;
+    $_SESSION['orderId']=$orderNumber;
+    $_SESSION['orderDate']=$orderD;
+}
+
+}
+
+if(isset($_POST['delFromCart'])){
+    $val=$_POST['delFromCart'];
+    @$con = new mysqli('localhost', 'root', '', 'web project');
+    $qsdelItem="DELETE FROM `bag` WHERE serialNumber ='".$val."'";
+    $res=$con->query($qsdelItem);
+    $con->commit();
+    $con->close();
+}
 ?>
 
 
@@ -372,32 +469,66 @@ $con->close();
                                                     }
                                                     ?>
                                                 </h4><?php
-                                                if($_SESSION['type']=='E'){?>
+                                                if($_SESSION['type']=='E' || $_SESSION['type']=='M'){?>
                                                 <input type="button" class="productBuy" name="uploadImg" value="Add item" data-bs-toggle="modal" data-bs-target="#staticBackdrop123">
                                                     <?php
-                                                }?>
+                                                }
+                                                else{?>
+                                                    <form action="products2.php" method="post">
+                                                <button type="submit" class="del2" name="newOrder" id="newOrder">Create new Order </button></form>
+                                                    <p style="text-align: left">Order Number:<?php echo  $_SESSION['orderId']?> <br>Create Date: <?php echo $_SESSION['orderDate']?> </p>
+                                                <?php
+                                                }
+                                                ?>
                                             </td>
                                         </tr>
+                                        <form action="products2.php"method="post">
                                         <tr>
                                             <td colspan="2">
                                                 <p class="please_type">Select the type of the chocolate:</p>
                                             </td>
                                         </tr>
-
+                                        </form>
                                         <tr>
                                             <td>
-                                                <input  type="radio" id="all" value="All" name="typeChoco" style="">
 
+                                                <form action="products2.php"method="post">
+                                                    <?php
+                                                    if($_SESSION['radio']==''){
+                                                        ?>
+                                                        <input type="radio" id="all" value="" name="typeChoco" onchange="this.form.submit();" checked  >
+                                                    <?php
+                                                    }
+                                                    else{
+
+                                                        ?>
+                                                        <input type="radio" id="all" value="" name="typeChoco" onchange="this.form.submit();"  >
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </form>
                                             </td>
                                             <td class="TR_typeLabel">
                                                 <label class="label_css1" for="all">All Types</label>
                                             </td>
                                         </tr>
-
-                                        <tr>
                                             <td>
-                                                <input type="radio" id="dark" value="Dark" name="typeChoco">
+                                                <form action="products2.php"method="post">
+                                                    <?php
+                                                    if($_SESSION['radio']==" && chocolate.typeT='D'"){
+                                                        ?>
+                                                        <input type="radio" id="dark" value=" && chocolate.typeT='D'" name="typeChoco"  onchange="this.form.submit();"  checked >
+                                                        <?php
+                                                    }
+                                                    else{
 
+                                                        ?>
+                                                        <input type="radio" id="dark" value=" && chocolate.typeT='D'" name="typeChoco"  onchange="this.form.submit();"  >
+                                                        <?php
+                                                    }
+                                                    ?>
+
+                                                </form>
                                             </td>
                                             <td class="TR_typeLabel">
                                                 <label  class="label_css1"for="dark">Dark</label>
@@ -406,8 +537,22 @@ $con->close();
 
                                         <tr>
                                             <td>
-                                                <input type="radio" id="milk" value="Milk" name="typeChoco">
+                                                <form action="products2.php"method="post">
+                                                    <?php
+                                                    if($_SESSION['radio']==" && chocolate.typeT='M'"){
+                                                        ?>
+                                                        <input type="radio" id="milk" value=" && chocolate.typeT='M'" name="typeChoco" onchange="this.form.submit(); " checked >
+                                                        <?php
+                                                    }
+                                                    else{
 
+                                                        ?>
+                                                        <input type="radio" id="milk" value=" && chocolate.typeT='M'" name="typeChoco" onchange="this.form.submit(); " >
+                                                        <?php
+                                                    }
+                                                    ?>
+
+                                                </form>
                                             </td>
                                             <td class="TR_typeLabel">
                                                 <label class="label_css1" for="milk">Milk</label>
@@ -416,8 +561,22 @@ $con->close();
 
                                         <tr>
                                             <td>
-                                                <input type="radio" id="white" value="White" name="typeChoco">
+                                                <form action="products2.php"method="post">
+                                                    <?php
+                                                    if($_SESSION['radio']==" && chocolate.typeT='W'"){
+                                                        ?>
+                                                        <input type="radio" id="white" value=" && chocolate.typeT='W'" name="typeChoco"  onchange="this.form.submit();" checked >
+                                                        <?php
+                                                    }
+                                                    else{
 
+                                                        ?>
+                                                        <input type="radio" id="white" value=" && chocolate.typeT='W'" name="typeChoco"  onchange="this.form.submit();"  >
+                                                        <?php
+                                                    }
+                                                    ?>
+
+                                                </form>
                                             </td>
                                             <td class="TR_typeLabel">
                                                 <label class="label_css1" for="white">White</label>
@@ -427,7 +586,6 @@ $con->close();
                                             <td colspan="2">
 
                                                 <div class="wrap-input100 validate-input"  style="border-color: #2f323a;margin-bottom: 0px;">
-<!--                                                    <p class="please_type label-input100 "><i class="fa-solid fa-magnifying-glass-arrow-right fs-5"></i> Search by name:</p>-->
                                                     <input class="input100" type="text" name="prodName" placeholder="Type product name" style="color: #2f323a">
                                                     <span class="focus-input100" ></span>
 
@@ -440,42 +598,150 @@ $con->close();
 
                             </div>
                         </div>
+                        <?php
+                        if(isset($_POST['search'])){
 
-                        <div class="col-9">
+
+                        ?>
+                        <div class="col-9" style="padding-left: 0px;padding-right: 0px">
 
                             <?php
                             $qsLogin='';
+                            $typeRadio='';
+                            $typeRadio=$_POST['typeChoco'];
                             $con='';
-
+                            $sqlSearch='';
+                            $textProd='';
+                            $chocoType=$_SESSION['test'];
                             @$con = new mysqli('localhost', 'root', '', 'web project');
+                            $qserch='';
                             if($chocoType=='Revera'){
-                                $qsLogin="SELECT * FROM `chocolate`,`revera` WHERE chocolate.SerealNumber=revera.SerealNumber;";
-//
+                                $qserch="SELECT * FROM `chocolate`,`revera` WHERE chocolate.nameP='". $_POST['prodName']. "'&& revera.SerealNumber=chocolate.SerealNumber";
                             }
                             elseif ($chocoType=='Lorka'){
-                                $qsLogin="SELECT * FROM `chocolate`,`lorka` WHERE chocolate.SerealNumber=lorka.SerealNumber;";
-//
+                                $qserch="SELECT * FROM `chocolate`,`lorka` WHERE chocolate.nameP='". $_POST['prodName']. "'&& lorka.SerealNumber=chocolate.SerealNumber";
                             }
                             elseif ($chocoType=='bn'){
-                                $qsLogin="SELECT * FROM `chocolate`,`best` WHERE (chocolate.SerealNumber=best.SerealNumber)&& type='n';";
+                                $qserch="SELECT * FROM `chocolate`,`best` WHERE chocolate.nameP='". $_POST['prodName']. "'&& best.SerealNumber=chocolate.SerealNumber && best.type='n'";
                             }
                             elseif ($chocoType=='bf'){
-                                $qsLogin="SELECT * FROM `chocolate`,`best` WHERE (chocolate.SerealNumber=best.SerealNumber)&& type='f';";
+                                $qserch="SELECT * FROM `chocolate`,`best` WHERE chocolate.nameP='". $_POST['prodName']. "'&& best.SerealNumber=chocolate.SerealNumber && best.type='f'";
                             }
                             elseif ($chocoType=='bocc'){
-                                $qsLogin="SELECT * FROM `chocolate`,`best` WHERE (chocolate.SerealNumber=best.SerealNumber)&& type='occ';";
+                                $qserch="SELECT * FROM `chocolate`,`best` WHERE chocolate.nameP='". $_POST['prodName']. "'&& best.SerealNumber=chocolate.SerealNumber && best.type='occ'";
                             }
                             elseif ($chocoType=='gour'){
-                                $qsLogin="SELECT * FROM `chocolate`,`gourmet` WHERE (chocolate.SerealNumber=gourmet.SerealNumber)&& type='gour';";
+                                $qserch="SELECT * FROM `chocolate`,`gourmet` WHERE chocolate.nameP='". $_POST['prodName']. "'&& gourmet.SerealNumber=chocolate.SerealNumber && gourmet.type='gour'";
+
                             }
                             elseif ($chocoType=='dr'){
-                                $qsLogin="SELECT * FROM `chocolate`,`gourmet` WHERE (chocolate.SerealNumber=gourmet.SerealNumber)&& type='dr';";
+                                $qserch="SELECT * FROM `chocolate`,`gourmet` WHERE chocolate.nameP='". $_POST['prodName']. "'&& gourmet.SerealNumber=chocolate.SerealNumber && gourmet.type='dr'";
                             }
                             elseif ($chocoType=='gmd'){
-                                $qsLogin="SELECT * FROM `chocolate`,`gourmet` WHERE (chocolate.SerealNumber=gourmet.SerealNumber)&& type='gmd';";
+                                $qserch="SELECT * FROM `chocolate`,`gourmet` WHERE chocolate.nameP='". $_POST['prodName']. "'&& gourmet.SerealNumber=chocolate.SerealNumber && gourmet.type='gmd'";
                             }
                             else{
-                                $qsLogin="SELECT * FROM `chocolate`,`gourmet` WHERE (chocolate.SerealNumber=gourmet.SerealNumber)&& type='gocc';";
+                                $qserch="SELECT * FROM `chocolate`,`gourmet` WHERE chocolate.nameP='". $_POST['prodName']. "'&& gourmet.SerealNumber=chocolate.SerealNumber && gourmet.type='gocc'";
+                            }
+                            $res=$con->query($qserch);
+                            for($i=0;$i<$res->num_rows;$i++) {
+                            $row = $res->fetch_row();?>
+                            <div class="frame">
+                                <div class="lines"></div>
+                                <div class="angles"></div>
+                                <div class="item_div01">
+                                    <div class="item_div1">
+
+
+                                        <img class="item_img" src="data:image/png;charset=utf8;base64,<?php echo base64_encode($row[3]) ; ?>" />
+                                    </div>
+
+                                    <div>
+                                        <?php
+                                        if($_SESSION['type']=='C'){?>
+                                            <form action="products2.php" method="post">
+                                                <input type="hidden" name="cart" value="buyItem">
+
+                                                <button class="del2" name="buyItem" type="submit" value="<?php echo $row[0];?>" id="<?php echo $row[0];?>" onmouseenter="document.getElementById('<?php echo $row[0];?>').innerText='Add to order'" onmouseout="document.getElementById('<?php echo $row[0];?>').innerText='<?php echo $row[1];?>' "><?php echo $row[1];?></button>
+                                            </form>
+                                            <?php
+
+                                        }
+                                        else{
+                                            ?>
+                                            <button class="del" name="submit" type="submit" value="<?php echo $row[0];?>" id="<?php echo $row[0];?>" onmouseenter="document.getElementById('<?php echo $row[0];?>').innerText='Delete Product'" onmouseout="document.getElementById('<?php echo $row[0];?>').innerText='<?php echo $row[1];?>' "><?php echo $row[1];?></button>
+                                            <?php
+
+                                        }
+                                        ?>
+
+
+    </form>
+
+    </div>
+
+    </div>
+    </div>
+    <?php
+
+    }
+
+    ?>
+
+    </div>
+
+    <?php
+    }
+                        else{
+
+
+    ?>
+
+
+
+
+                        <div class="col-9" style="padding-left: 0px;padding-right: 0px">
+
+                            <?php
+                            $qsLogin='';
+                            $typeRadio='';
+                            $typeRadio=$_POST['typeChoco'];
+                            $con='';
+                            $sqlSearch='';
+                            $textProd='';
+//                                if(isset($_POST['search'])){
+//                                    $textProd= $_POST['prodName'];
+//                                    $sqlSearch="&& chocolate.nameP='".$textProd."' && ";
+//                                }
+
+                            $chocoType=$_SESSION['test'];
+                            @$con = new mysqli('localhost', 'root', '', 'web project');
+                            if($chocoType=='Revera'){
+                                $qsLogin="SELECT * FROM `chocolate`,`revera` WHERE chocolate.SerealNumber=revera.SerealNumber".$typeRadio.";";
+                            }
+                            elseif ($chocoType=='Lorka'){
+                                $qsLogin="SELECT * FROM `chocolate`,`lorka` WHERE chocolate.SerealNumber=lorka.SerealNumber".$typeRadio.";";
+                            }
+                            elseif ($chocoType=='bn'){
+                                $qsLogin="SELECT * FROM `chocolate`,`best` WHERE (chocolate.SerealNumber=best.SerealNumber) && type='n' ".$typeRadio.";";
+                            }
+                            elseif ($chocoType=='bf'){
+                                $qsLogin="SELECT * FROM `chocolate`,`best` WHERE (chocolate.SerealNumber=best.SerealNumber) && type='f'  ".$typeRadio.";";
+                            }
+                            elseif ($chocoType=='bocc'){
+                                $qsLogin="SELECT * FROM `chocolate`,`best` WHERE (chocolate.SerealNumber=best.SerealNumber) && type='occ'  ".$typeRadio.";";
+                            }
+                            elseif ($chocoType=='gour'){
+                                $qsLogin="SELECT * FROM `chocolate`,`gourmet` WHERE (chocolate.SerealNumber=gourmet.SerealNumber) && type='gour'  ".$typeRadio.";";
+                            }
+                            elseif ($chocoType=='dr'){
+                                $qsLogin="SELECT * FROM `chocolate`,`gourmet` WHERE (chocolate.SerealNumber=gourmet.SerealNumber) && type='dr' ".$typeRadio.";";
+                            }
+                            elseif ($chocoType=='gmd'){
+                                $qsLogin="SELECT * FROM `chocolate`,`gourmet` WHERE (chocolate.SerealNumber=gourmet.SerealNumber) && type='gmd' ".$typeRadio.";";
+                            }
+                            else{
+                                $qsLogin="SELECT * FROM `chocolate`,`gourmet` WHERE (chocolate.SerealNumber=gourmet.SerealNumber) && type='gocc'  ".$typeRadio.";";
                             }
                             $res=$con->query($qsLogin);
                             for($i=0;$i<$res->num_rows;$i++) {
@@ -493,8 +759,11 @@ $con->close();
                         <div>
                             <?php
                             if($_SESSION['type']=='C'){?>
+                                <form action="products2.php" method="post">
+                                    <input type="hidden" name="cart" value="buyItem">
 
-                <button class="del2" name="buyBut" type="submit" value="<?php echo $row[0];?>" id="<?php echo $row[0];?>" onmouseenter="document.getElementById('<?php echo $row[0];?>').innerText='Add to order'" onmouseout="document.getElementById('<?php echo $row[0];?>').innerText='<?php echo $row[1];?>' "><?php echo $row[1];?></button>
+                <button class="del2" name="buyItem" type="submit" value="<?php echo $row[0];?>" id="<?php echo $row[0];?>" onmouseenter="document.getElementById('<?php echo $row[0];?>').innerText='Add to order'" onmouseout="document.getElementById('<?php echo $row[0];?>').innerText='<?php echo $row[1];?>' "><?php echo $row[1];?></button>
+                                </form>
                     <?php
 
                             }
@@ -516,9 +785,13 @@ $con->close();
                                 <?php
 
                             }
+
                             ?>
 
                         </div>
+    <?php
+                        }
+    ?>
 
                     </div>
                 </div>
@@ -574,8 +847,9 @@ $con->close();
                     </div>
                 </div>
                 </form>
+    <form action="products2.php" method="post">
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable" style="max-width: 650px;">
+                    <div class="modal-dialog modal-dialog-scrollable" style="max-width: 650px;margin-left: 0px;">
                         <div class="modal-content">
                             <div class="modal-header cart_hed" style="background-color: #fc8804;">
                                 <h5 class="modal-title" id="staticBackdropLabel">Shopping cart</h5>
@@ -585,87 +859,79 @@ $con->close();
                                 <div class="container">
                                     <div class="d-flex justify-content-center row">
                                         <div class="col">
+                                            <?php
+                                            @$con = new mysqli('localhost', 'root', '', 'web project');
+                                            $chocoType=$_SESSION['test'];
+                                            if($chocoType=='Revera'){
+                                                $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`revera` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && revera.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                            }
+                                            elseif ($chocoType=='Lorka'){
+                                                $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`lorka` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && lorka.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                            }
+                                            elseif ($chocoType=='bn'){
+                                                $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`best` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && best.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                            }
+                                            elseif ($chocoType=='bf'){
+                                                $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`best` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && best.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                            }
+                                            elseif ($chocoType=='bocc'){
+                                                $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`best` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && best.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                            }
+                                            elseif ($chocoType=='gour'){
+                                                $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`gourmet` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && gourmet.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                            }
+                                            elseif ($chocoType=='dr'){
+                                                $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`gourmet` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && gourmet.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                            }
+                                            elseif ($chocoType=='gmd'){
+                                                $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`gourmet` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && gourmet.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                            }
+                                            else{
+                                                $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`gourmet` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && gourmet.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                            }
+
+                                            $res1=$con->query($recartshow);
+                                            for($i=0;$i<$res1->num_rows;$i++) {
+                                            $row = $res1->fetch_row();?>
+
+
                                             <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
-                                                <div class="mr-1"><img class="rounded" src="https://i.imgur.com/XiFJkhI.jpg" width="70"></div>
-                                                <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">Basic T-shirt</span>
-                                                    <div class="d-flex flex-row product-desc">
-                                                        <div class="size mr-1"><span class="text-grey">Size:</span><span class="font-weight-bold">&nbsp;M</span></div>
-                                                        <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div>
-                                                    </div>
+                                                <div class="mr-1"><img class="rounded" src="data:image/png;charset=utf8;base64,<?php echo base64_encode($row[14]) ; ?>" width="70"/></div>
+                                                <div class="d-flex flex-column align-items-center " style="width: 110px">
+
+                                                        <div class="size mr-1"><span class="text-grey"><?php echo $row[12];?></span></div>
+
+                                                        <div class="color"><span class="text-grey"><?php echo $row[2];?></span></div>
+
                                                 </div>
                                                 <div class="d-flex flex-row align-items-center qty">
-                                                    <h5 class="text-grey mt-1 mr-1 ml-1"><input class="in_num" type="number" min="0"></h5>
+                                                    <h5 class="text-grey mt-1 mr-1 ml-1"><input style="background-color: #f0f0f0;width: 70px" value="<?php echo $row[3];?>" type="number" min="0"></h5>
                                                 </div>
                                                 <div>
                                                     <h5 class="text-grey">$20.00</h5>
                                                 </div>
                                                 <div class="d-flex align-items-center">
+                                                   <h5> <button  name="delFromCart" value="<?php echo $row[2];?>" style="background: transparent;border: 0px;font-size: 15px"> <i class="fa fa-trash mb-1 text-danger"></i>  Delete</button></h5>
+                                                </div>
+                                            </div>
 
-                                                    <label for="del1"><i class="fa fa-trash mb-1 text-danger"><input type="checkbox" id="del1"> Delete </i> </label>
-
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
-                                                <div class="mr-1"><img class="rounded" src="https://i.imgur.com/XiFJkhI.jpg" width="70"></div>
-                                                <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">Basic T-shirt</span>
-                                                    <div class="d-flex flex-row product-desc">
-                                                        <div class="size mr-1"><span class="text-grey">Size:</span><span class="font-weight-bold">&nbsp;M</span></div>
-                                                        <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center qty"><i class="fa fa-minus text-danger"></i>
-                                                    <h5 class="text-grey mt-1 mr-1 ml-1">2</h5><i class="fa fa-plus text-success"></i>
-                                                </div>
-                                                <div>
-                                                    <h5 class="text-grey">$20.00</h5>
-                                                </div>
-                                                <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
-                                                <div class="mr-1"><img class="rounded" src="https://i.imgur.com/XiFJkhI.jpg" width="70"></div>
-                                                <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">Basic T-shirt</span>
-                                                    <div class="d-flex flex-row product-desc">
-                                                        <div class="size mr-1"><span class="text-grey">Size:</span><span class="font-weight-bold">&nbsp;M</span></div>
-                                                        <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center qty"><i class="fa fa-minus text-danger"></i>
-                                                    <h5 class="text-grey mt-1 mr-1 ml-1">2</h5><i class="fa fa-plus text-success"></i>
-                                                </div>
-                                                <div>
-                                                    <h5 class="text-grey">$20.00</h5>
-                                                </div>
-                                                <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
-                                                <div class="mr-1"><img class="rounded" src="https://i.imgur.com/XiFJkhI.jpg" width="70"></div>
-                                                <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">Basic T-shirt</span>
-                                                    <div class="d-flex flex-row product-desc">
-                                                        <div class="size mr-1"><span class="text-grey">Size:</span><span class="font-weight-bold">&nbsp;M</span></div>
-                                                        <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center qty"><i class="fa fa-minus text-danger"></i>
-                                                    <h5 class="text-grey mt-1 mr-1 ml-1">2</h5><i class="fa fa-plus text-success"></i>
-                                                </div>
-                                                <div>
-                                                    <h5 class="text-grey">$20.00</h5>
-                                                </div>
-                                                <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div>
-                                            </div>
-                                            <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><h2>Total Price: </h2></div>
+                                            <?php
+                                            }
+                                            ?>
+                                            <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><h2>Total Price: <?php echo $row[7];?></h2></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <input type="submit" class="btn saveCart" value="Save Changes">
+                                <input type="submit" class="btn btn-success" value="Save Changes">
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+    </form>
+</section>
         </section>
 
     //</form>

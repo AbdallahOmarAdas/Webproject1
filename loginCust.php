@@ -2,6 +2,7 @@
 $is_men=1;
 session_start();
 $_SESSION['type']='u';
+$_SESSION['userName']='';
 if (isset($_POST['login'])) {
     $userName=$_POST['login_username'];
     $password=$_POST['login_pass'];
@@ -21,16 +22,19 @@ if(isset($_POST['login_username']) && isset($_POST['login_pass'])) {
             if($userName==$row[0] and sha1($password)==$row[1] && 'C'==$row[2]){
                 $is_men=1;
                 $_SESSION['type']='C';
+                $_SESSION['userName']=$row[0];
                 header('location:manePageCustomer.php');
             }
             elseif($userName==$row[0] and sha1($password)==$row[1] && 'M'==$row[2]){
                 $is_men=1;
                 $_SESSION['type']='M';
+                $_SESSION['userName']=$row[0];
                 header('location:manePageCustomer.php');
             }
             elseif($userName==$row[0] and sha1($password)==$row[1] && 'E'==$row[2]){
                 $is_men=1;
                 $_SESSION['type']='E';
+                $_SESSION['userName']=$row[0];
                 header('location:manePageCustomer.php');
             }
         }
