@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="date28_2.0">
+      <change afterPath="$PROJECT_DIR$/cusOrder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/empOrder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/check-solid-svg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/x-solid-svg.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bordert.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/items.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/loginCust.php" beforeDir="false" afterPath="$PROJECT_DIR$/loginCust.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainPage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manger3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/products.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manePageCustomer.php" beforeDir="false" afterPath="$PROJECT_DIR$/manePageCustomer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mangerAddEmployee.php" beforeDir="false" afterPath="$PROJECT_DIR$/mangerAddEmployee.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/products2.php" beforeDir="false" afterPath="$PROJECT_DIR$/products2.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +124,13 @@
       <workItem from="1651036028506" duration="13410000" />
       <workItem from="1651092399741" duration="2777000" />
       <workItem from="1651138807374" duration="11350000" />
-      <workItem from="1651220864264" duration="18121000" />
+      <workItem from="1651220864264" duration="18337000" />
+      <workItem from="1651259980135" duration="313000" />
+      <workItem from="1651273159714" duration="7071000" />
+      <workItem from="1651320707884" duration="7088000" />
+      <workItem from="1651328254154" duration="7290000" />
+      <workItem from="1651394295712" duration="16375000" />
+      <workItem from="1651573789125" duration="32160000" />
     </task>
     <task id="LOCAL-00001" summary="para">
       <created>1649688430023</created>
@@ -231,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651143501318</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="date28_2.0">
+      <created>1651243654993</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1651243654993</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -324,5 +337,16 @@
     <MESSAGE value="date28_12.0" />
     <MESSAGE value="date28_2.0" />
     <option name="LAST_COMMIT_MESSAGE" value="date28_2.0" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/cusOrder.php</url>
+          <line>277</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

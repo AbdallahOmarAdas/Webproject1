@@ -33,7 +33,7 @@ else{
         <div class="sidebar-toggle-box">
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
-        <a href="manePageCustomer.php" class="logo" style="margin: 0px"><img src="images/logo.png" alt="" style="width: 60px;height: 60px">Alhijaz chocolate LTD
+        <a href="manePageCustomer.php" class="logo" style="margin: 0px;"><img src="images/logo.png" alt="" style="width: 60px;height: 60px">Alhijaz chocolate LTD
         </a>
         <div class="top-menu " style="padding-top:19px ">
             <ul class="nav top-menu justify-content-end">
@@ -45,7 +45,6 @@ else{
 
                 }
                 ?>
-<!--                <li><img src="images/Untitled.png"style="margin-right: 30px;margin-top: -8px;" alt=""></li>-->
                 <li><a class="logout" href="loginCust.php">Logout</a></li>
             </ul>
         </div>
@@ -69,7 +68,7 @@ else{
                   <li class="sub-menu">
                         <li>
                             <a href="javascript:;class="aSi"">
-                                <form action="manger3.html">
+                                <form action="cusOrder.php">
                                     <input class="kind4" type="submit" value="My orders" name="cus_Order" id="cus_Order">
                                 </form>
                             </a>

@@ -324,18 +324,6 @@ if(isset($_POST['save'])) {
                         ?>    </tbody>
                     </table>
                     </div>
-                    <!-- Modal -->
-                    <!--                <script>-->
-                    <!--                    var table = decument.getElementById('table'),rIndex;-->
-                    <!--                    for(var i=0; i<table.rows.length;i++){-->
-                    <!--                        table.rows[i].onclick=function(){-->
-                    <!--                            rIndex=this.rowIndex;-->
-                    <!--                            var value=this.cells[0].innerHTML;-->
-                    <!---->
-                    <!--                        };-->
-                    <!--                    }-->
-                    <!--                </script>-->
-
                 </form>
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
                     <div class="modal-dialog modal-dialog-scrollable" id="div_reg2">

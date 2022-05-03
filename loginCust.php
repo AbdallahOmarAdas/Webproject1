@@ -1,8 +1,20 @@
-<?php error_reporting(E_ERROR | E_PARSE);
+<?php //error_reporting(E_ERROR | E_PARSE);
+$flagSent=0;
+$flagError=0;
+$flagNotEq=0;
+
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 $is_men=1;
 session_start();
 $_SESSION['type']='u';
 $_SESSION['userName']='';
+$_SESSION['email'];
 if (isset($_POST['login'])) {
     $userName=$_POST['login_username'];
     $password=$_POST['login_pass'];
@@ -75,8 +87,85 @@ elseif(isset($_POST['reg'])) {
 
     }
 }
+if(isset($_POST['emailConf']) && isset($_POST['Res_Email'])){
+    $emailId = $_POST['Res_Email'];
+    $_SESSION['email']=$emailId;
+    @$con= new mysqli('localhost','root','','web project');
+    $result="SELECT `email`,`username`,`FullName` FROM `customer` WHERE `email`='".$emailId."' UNION ALL SELECT `email`,`username`,`FullName` FROM `employee` WHERE `email`='".$emailId."' ORDER BY `email` DESC;";
+$res= $con->query($result);
+if($res->num_rows==0){
+    $flagSent=1;
+}
+else {
+    for ($i = 0; $i < $res->num_rows; $i++) {
+        $row = $res->fetch_object();
+        $token = rand(10, 9999);
 
+        $expFormat = mktime(
+            date("H"), date("i"), date("s"), date("m"), date("d") + 1, date("Y")
+        );
 
+        $expDate = date("Y-m-d H:i:s", $expFormat);
+        $qrtoken = "UPDATE `login` SET `token`='" . $token . "' WHERE `username`='" . $row->username . "';";
+        $con->query($qrtoken);
+        $con->commit();
+        $link = "<a href='http://localhost:63342/Webproject1/loginCust.php?key=" . $emailId . "&token=" . $token . "'>Click To Reset password</a>";
+
+        $mail = new PHPMailer();
+
+        $mail->CharSet = "utf-8";
+        $mail->IsSMTP();
+        // enable SMTP authentication
+        $mail->SMTPAuth = true;
+        // GMAIL username
+        $mail->Username = "alhijazChocolate1@gmail.com";
+        // GMAIL password
+        $mail->Password = "webemail.com";
+        $mail->SMTPSecure = "ssl";
+        // sets GMAIL as the SMTP server
+        $mail->Host = "smtp.gmail.com";
+        // set the SMTP port for the GMAIL server
+        $mail->Port = "465";
+        $mail->FromName = 'Al-Hijaz Chocolate';
+        $mail->AddAddress($emailId);
+        $mail->Subject = 'Reset Password';
+        $mail->IsHTML(true);
+        $mail->Body = 'Hi ,'.$row->FullName.'<br>
+We have received a request to reset your account password.<br>
+Enter the following password reset code:'. $token.'<br>Did you ask for this change?<br> If you have not requested a new password, ignore this message.';
+        if ($mail->Send()) {
+
+            echo "<script>alert('Check Your Email and then enter the code that sent to your email on the correct place')</script>";
+        } else {
+            echo "Mail Error - >" . $mail->ErrorInfo;
+        }
+    }
+}
+}
+if(isset($_POST['savePass'])){
+    $em=$_SESSION['email'];
+    $tok=$_POST['resCode'];
+    $p1=$_POST['pass1'];
+    $p2=$_POST['pass2'];
+    if($p1==$p2){
+        @$con= new mysqli('localhost','root','','web project');
+        $result="SELECT `email`,`username` FROM `customer` WHERE `email`='".$em."' UNION ALL SELECT `email`,`username` FROM `employee` WHERE `email`='".$em."' ORDER BY `email` DESC;";
+        $res= $con->query($result);
+        if($res->num_rows==0){
+            echo "<script>alert('please reSend code')</script>";
+        }
+        for ($i = 0; $i < $res->num_rows; $i++) {
+            $row = $res->fetch_object();
+            $qrtoken = "UPDATE `login` SET `password`=SHA1('" . $p1 . "') WHERE `username`='" . $row->username . "';";
+            $con->query($qrtoken);
+            $con->commit();
+        }
+        $flagNotEq=0;
+    }
+    else{
+        $flagNotEq=1;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -107,18 +196,12 @@ elseif(isset($_POST['reg'])) {
 
 
     </header>
-    <!--header end-->
-    <!-- **********************************************************************************************************************************************************
-        MAIN SIDEBAR MENU
-        *********************************************************************************************************************************************************** -->
-    <!--sidebar start-->
     <aside>
         <div id="sidebar" class="nav-collapse ">
-            <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
                 <li class="mt">
                     <a class="" href="javascript:;">
-                        <form action="manger3.html">
+                        <form action="manePageCustomer.php">
                             <input class="kind4" type="submit" value="Home" name="home" id="home">
                         </form>
                     </a>
@@ -126,8 +209,8 @@ elseif(isset($_POST['reg'])) {
                 <li class="sub-menu">
                 <li>
                     <a href="javascript:;">
-                        <form action="manger3.html">
-                            <input class="kind4" type="submit" value="My orders" name="cus_Order" id="cus_Order">
+                        <form action="">
+                            <input class="kind4" type="submit" value="My Orders" name="cus_Order" id="cus_Order">
                         </form>
                     </a>
                 </li>
@@ -140,14 +223,14 @@ elseif(isset($_POST['reg'])) {
                     <ul class="sub">
                         <li>
                             <a href="javascript:;">
-                                <form action="manger3.html">
+                                <form action="">
                                     <input class="kind4" type="submit" value="Gourmet" name="gmedit" id="gmedit">
                                 </form>
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;">
-                                <form action="manger3.html">
+                                <form action="">
                                     <input class="kind4" type="submit" value="Dragee" name="gde" id="gde">
                                 </form>
                             </a>
@@ -155,7 +238,7 @@ elseif(isset($_POST['reg'])) {
 
                         <li>
                             <a href="javascript:;">
-                                <form action="manger3.html">
+                                <form action="">
                                     <input class="kind4" type="submit" value="chocoMedjool"name="gchme" id="gchme">
                                 </form>
                             </a>
@@ -163,7 +246,7 @@ elseif(isset($_POST['reg'])) {
 
                         <li>
                             <a href="javascript:;">
-                                <form action="manger3.html">
+                                <form action="">
                                     <input class="kind4" type="submit" value="Occasions" name="gocce" id="gocce">
                                 </form>
                             </a>
@@ -178,21 +261,21 @@ elseif(isset($_POST['reg'])) {
                     <ul class="sub">
                         <li>
                             <a href="javascript:;">
-                                <form action="manger3.html">
+                                <form action="">
                                     <input class="kind4" type="submit" value="Best Nuts" name="bne" id="bne">
                                 </form>
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;">
-                                <form action="manger3.html">
+                                <form action="">
                                     <input class="kind4" type="submit" value="Best Fill" name="bfe" id="bfe">
                                 </form>
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;">
-                                <form action="manger3.html">
+                                <form action="">
                                     <input class="kind4" type="submit" value="Occasions" name="bocce" id="bocce">
                                 </form>
                             </a>
@@ -203,7 +286,7 @@ elseif(isset($_POST['reg'])) {
                 <li class="sub-menu">
 
                     <a href="javascript:;">
-                        <form action="manger3.html">
+                        <form action="">
                             <input class="kind4" type="submit" value="Lorka" name="lorkae" id="lorkae">
                         </form>
                     </a>
@@ -211,7 +294,7 @@ elseif(isset($_POST['reg'])) {
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <form action="manger3.html">
+                        <form action="">
                             <input class="kind4" type="submit" value="Revera" name="reverae" id="reverae">
                         </form>
                     </a>
@@ -230,11 +313,6 @@ elseif(isset($_POST['reg'])) {
             <!-- sidebar menu end-->
         </div>
     </aside>
-    <!--sidebar end-->
-    <!-- **********************************************************************************************************************************************************
-        MAIN CONTENT
-        *********************************************************************************************************************************************************** -->
-    <!--main content start-->
     <section id="main-content">
         <section class=""style=" background: url('images/light-wood-texture-wood-background-natural-materials-wood-texture.jpg')no-repeat  fixed">
             <div class="row" style="padding-top: 60px;margin: 0px">
@@ -316,9 +394,11 @@ elseif(isset($_POST['reg'])) {
 
                             <div class="text-right p-t-8 p-b-31">
 
-                                <a href="#" class="login_a" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
-                                    Forgot password?
-                                </a>
+<!--                                <a href="#" class="login_a" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">-->
+<!--                                    Forgot password?-->
+<!--                                </a>-->
+
+                                <a class="login_a" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Forgot password?</a>
                             </div>
 
                             <div class="container-login100-form-btn">
@@ -388,7 +468,7 @@ elseif(isset($_POST['reg'])) {
                             </div>
                         </div>
                     </div>
-
+                    <form action="loginCust.php" method="post">
                     <!-- Modal -->
                     <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
                         <div class="modal-dialog" style="margin-top: 7rem;">
@@ -408,11 +488,87 @@ elseif(isset($_POST['reg'])) {
                                 <div class="modal-footer" style="border-color:#2f323a;">
 
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
-                                    <input type="submit" value="Send code" class="btn btn-primary" style="height:38px">
+                                    <input type="submit" name="emailConf" value="Send code" class="btn btn-primary" style="height:38px">
                                 </div>
                             </div>
                         </div>
+
                     </div>
+                </form>
+                    <form action="loginCust.php" method="post">
+                    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                        <div class="modal-dialog" style="margin-top: 7rem;">
+                            <div class="modal-content" style="border-radius: 30px;background-color: #2f323a;">
+                                <div class="modal-header" style="    background-color:#fc8804 ;border-radius: 28px 28px 0px 0px;border-color: #2f323a;">
+                                    <h5 class="modal-title" id="exampleModalToggleLabel">Reset your password</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <p style="font-size: 18px;padding-left: 20px">Please enter your email to get the code to reset your password.</p>
+                                <div class="modal-body"style="background-color: #2f323a;">
+                                    <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                                        <span class="label-input100"><img class="icon" src="images/envelope-solid-svg.png" alt=""> Email</span>
+                                        <input class="input100" type="email" name="Res_Email" required placeholder="Enter your Email">
+                                        <span class="focus-input100"></span>
+                                    </div>
+                                    <?php
+                                    if($flagSent==1){?>
+                                    <span style="color: #ac2925">This email does not exist</span>
+                                    <?php
+                                    }
+                                    else{
+
+                                    }
+                                    ?>
+                                </div>
+                                <div class="modal-footer" style="border-color:#2f323a;">
+                                    <form action="loginCust.php" method="post">
+                                    <input type="submit" name="emailConf" value="Send code" class="btn " style="background-color: #fc8804" style="height:38px">
+                                    <button type="button" class="btn " style="background-color: #fc8804" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Enter the code</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </form>
+                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <form action="loginCust.php" method="post">
+                    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                        <div class="modal-dialog" style="margin-top: 7rem;">
+                            <div class="modal-content" style="border-radius: 30px;background-color: #2f323a;">
+                                <div class="modal-header" style="    background-color:#fc8804 ;border-radius: 28px 28px 0px 0px;border-color: #2f323a;">
+                                    <h5 class="modal-title" id="exampleModalToggleLabel">Reset your password</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="wrap-input100 validate-input m-b-23">
+                                        <span class="label-input100"><img class="icon" src="images/keyboard-solid-svg.png" alt=""> Reset password Code</span>
+                                        <input class="input100" type="text" name="resCode" placeholder="Enter the reset password Code">
+                                        <span class="focus-input100"></span>
+                                    </div>
+
+                                    <div class="wrap-input100 validate-input m-b-23" >
+                                        <span class="label-input100"><img class="icon" src="images/lock-solid-svg.png" alt=""> New Password</span>
+                                        <input class="input100" type="password" name="pass1" id="p1" placeholder="Enter new Password" required>
+                                        <span class="focus-input100"></span>
+                                    </div>
+
+                                    <div class="wrap-input100 validate-input m-b-23">
+                                        <span class="label-input100"><img class="icon" src="images/lock-solid-svg.png" alt=""> Confirm the new password</span>
+                                        <input class="input100" type="password" name="pass2" id="p2" placeholder="ReType the new password" required oninput="if(this.value!=document.getElementById('p1').value){document.getElementById('tt').innerText='Password does not match';}else{document.getElementById('tt').innerText='';}">
+                                        <span class="focus-input100"></span>
+                                    </div>
+                                    <span id="tt" style="color: #ac2925"></span>
+                                </div>
+                                <div class="modal-footer" style="border-color:#2f323a;">
+                                    <form action="loginCust.php"method="post">
+                                    <button type="submit" name="savePass" class="btn " style="background-color: #fc8804" >Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                    </form>
+                    </div>
+
                 </div>
             </div>
         </section>

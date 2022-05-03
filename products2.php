@@ -3,10 +3,12 @@ session_start();
 $_SESSION['test'];
 $_SESSION['orderId'];
 $_SESSION['orderDate'];
+$_SESSION['flag1'];
+$_SESSION['sum'];
 $_SESSION['radio']=$_POST['typeChoco'];
 $chocoType='';
 $qrrr='';
-
+$fup=5;
 $qtest="";
 $orderNumber='';
 $orderD='';
@@ -187,7 +189,7 @@ if(isset($_POST['cart'])){
         $feq=1;
     }
     if ($feq==0){
-        $qrAddtoOrder="INSERT INTO `bag` (`itemN`, `orderN`, `serialNumber`, `amount`) VALUES (NULL, '".$_SESSION['orderId']."', '".$val."', '1');";
+        $qrAddtoOrder="INSERT INTO `bag` (`itemN`, `orderN`, `serialNumber`, `amount`) VALUES (NULL, '".$_SESSION['orderId']."', '".$val."', '0');";
         $res=$con->query($qrAddtoOrder);
         $con->commit();}
 
@@ -248,7 +250,7 @@ if(isset($_POST['newOrder'])) {
     $qrNewOrd = '';
     $user=$_SESSION['userName'];
     @$con = new mysqli('localhost', 'root', '', 'web project');
-    $qrNewOrd = "INSERT INTO `cusorder` (`orderN`, `createDate`,`customer`, `orderprice`, `emp`, `deleverDate`, `coverIMG`) VALUES (NULL, '" . $orderD . "','".$user."', '0', NULL, NULL, NULL);";
+    $qrNewOrd = "INSERT INTO `cusorder` (`orderN`, `createDate`,`customer`, `orderprice`, `emp`, `deleverDate`, `coverIMG`) VALUES (NULL, '" . $orderD . "','".$user."', '0', NULL, '0', NULL);";
     $con->query($qrNewOrd);
     $query23 = "SHOW TABLE STATUS LIKE 'cusorder';";
     $res = $con->query($query23);
@@ -257,6 +259,7 @@ for($i=0;$i<$res->num_rows;$i++) {
     $orderNumber = $row[10]-1;
     $_SESSION['orderId']=$orderNumber;
     $_SESSION['orderDate']=$orderD;
+    $con->commit();
 }
 
 }
@@ -269,6 +272,77 @@ if(isset($_POST['delFromCart'])){
     $con->commit();
     $con->close();
 }
+
+if(isset($_POST['orderList'])) {
+    if (!empty($_POST['select'])) {
+        foreach ($_POST['select'] as $selected) {
+            $_SESSION['orderId']=$selected;
+            @$con = new mysqli('localhost', 'root', '', 'web project');
+            $qsdate="SELECT * FROM `cusorder` WHERE customer='".$_SESSION['userName']."'&& orderN='".$selected."';";
+            $res=$con->query($qsdate);
+            for($i=0;$i<$res->num_rows;$i++) {
+                $row = $res->fetch_row();
+                $_SESSION['orderDate']=$row[1];
+            }
+
+        }
+    }
+}
+$fft=0;
+if(isset($_POST['editOrder'])){
+    $pr=0;
+    $pl=0;
+    $pb=0;
+    $pg=0;
+    @$con = new mysqli('localhost', 'root', '', 'web project');
+    $qsdate="SELECT * FROM `bag`,`cusorder` WHERE cusorder.orderN=bag.orderN && customer='".$_SESSION['userName']."' && bag.orderN='".$_SESSION['orderId']."';";
+    $res=$con->query($qsdate);
+    $fft=1;
+    for($i=0;$i<$res->num_rows;$i++) {
+
+        $row = $res->fetch_row();
+        if(isset($_POST[$row[2]])){
+            $qrUpDate="UPDATE `bag`,`cusorder` SET `amount`='".$_POST[$row[2]]."' WHERE serialNumber='".$row[2]."' && cusorder.orderN=bag.orderN && customer='".$_SESSION['userName']."' && bag.orderN='".$_SESSION['orderId']."';";
+            $con->query($qrUpDate);
+            $con->commit();
+        }
+
+
+    }
+
+   $qrR="SELECT sum(price*amount) total FROM `bag`,`cusorder`,`chocolate`,`revera` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && revera.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+    $res=$con->query($qrR);
+for($i=0;$i<$res->num_rows;$i++) {
+    $row = $res->fetch_row();
+    $pr= $row['0'];
+}
+    $qrL="SELECT sum(price*amount) total FROM `bag`,`cusorder`,`chocolate`,`lorka` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && lorka.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+    $res=$con->query($qrL);
+    for($i=0;$i<$res->num_rows;$i++) {
+        $row = $res->fetch_row();
+        $pl= $row['0'];
+    }
+    $qrG="SELECT sum(price*amount) total FROM `bag`,`cusorder`,`chocolate`,`gourmet` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && gourmet.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+    $res=$con->query($qrG);
+    for($i=0;$i<$res->num_rows;$i++) {
+        $row = $res->fetch_row();
+        $pG= $row['0'];
+    }
+    $qrB="SELECT sum(price*amount) total FROM `bag`,`cusorder`,`chocolate`,`best` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && best.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+    $res=$con->query($qrB);
+    for($i=0;$i<$res->num_rows;$i++) {
+        $row = $res->fetch_row();
+        $pb= $row['0'];
+    }
+    $con->commit();
+
+    $pupPrice="UPDATE `cusorder`SET `orderprice`='".$pb+$pg+$pl+$pr."' WHERE orderN='".$_SESSION['orderId']."';";
+    $con->query($pupPrice);
+    $con->commit();
+   $con->close();
+
+}
+
 ?>
 
 
@@ -330,7 +404,8 @@ if(isset($_POST['delFromCart'])){
                         </form>
                     </a>
                 </li>
-
+                <?php
+                if($_SESSION['type']=='E'||$_SESSION['type']=='M'){?>
                 <li class="sub-menu">
                     <a href="javascript:;"> <span class="main_menu">Orders</span></a>
 
@@ -351,6 +426,20 @@ if(isset($_POST['delFromCart'])){
                         </li>
                     </ul>
                 </li>
+                <?php
+                }
+                else{
+                    ?>
+                    <li class="sub-menu" >
+                        <a href="javascript:;" class="aSi " >
+                            <form action="cusOrder.php" method="post">
+                            <button class="kind4" name="myorder" type="submit" value="My Orders" id="myorder">My Orders</button>
+                            </form>
+                        </a>
+                    </li>
+                <?php
+                }
+                ?>
                 <form action="products2.php" method="post">
                     <input type="hidden" name="action2" value="submit2" id="submit2" />
                     <li class="sub-menu">
@@ -435,6 +524,7 @@ if(isset($_POST['delFromCart'])){
                             <div style="">
 
                                     <table>
+
                                         <tr>
                                             <td colspan="2">
                                                 <h4 >
@@ -468,6 +558,46 @@ if(isset($_POST['delFromCart'])){
 
                                                     }
                                                     ?>
+                                                </td>
+                                        </tr>
+                                        <?php
+                                        if($_SESSION['type']=='C'){?>
+                                        <tr>
+                                            <td colspan="2">
+                                                <h5 style="">Select Order#</h5>
+
+                                            <form action="products2.php" method="post">
+
+                                                    <select name="select[]" id="select[]" style="background-color: #fc8804;border: 1px;padding: 4px">
+                                                        <?php
+                                                        @$con = new mysqli('localhost', 'root', '', 'web project');
+                                                        $qrSelectOrder = "SELECT * FROM `cusorder` WHERE customer='".$_SESSION['userName']."'&& emp is null;;";
+                                                        $res = $con->query($qrSelectOrder);
+                                                        for($i=0;$i<$res->num_rows;$i++) {
+                                                            $row = $res->fetch_row();
+                                                            ?>
+                                                            <option value="<?php echo $row[0]?>">no.<?php echo $row[0]?>  -Date:<?php echo $row[1]?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <button  class="del2" name="orderList" id="orderList">Edit this Order</button>
+                                                <p style="text-align: center">Or</p>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                        <tr>
+
+                                            <td colspan="2">
+
+
                                                 </h4><?php
                                                 if($_SESSION['type']=='E' || $_SESSION['type']=='M'){?>
                                                 <input type="button" class="productBuy" name="uploadImg" value="Add item" data-bs-toggle="modal" data-bs-target="#staticBackdrop123">
@@ -482,6 +612,9 @@ if(isset($_POST['delFromCart'])){
                                                 ?>
                                             </td>
                                         </tr>
+
+
+                                       </form>
                                         <form action="products2.php"method="post">
                                         <tr>
                                             <td colspan="2">
@@ -709,11 +842,6 @@ if(isset($_POST['delFromCart'])){
                             $con='';
                             $sqlSearch='';
                             $textProd='';
-//                                if(isset($_POST['search'])){
-//                                    $textProd= $_POST['prodName'];
-//                                    $sqlSearch="&& chocolate.nameP='".$textProd."' && ";
-//                                }
-
                             $chocoType=$_SESSION['test'];
                             @$con = new mysqli('localhost', 'root', '', 'web project');
                             if($chocoType=='Revera'){
@@ -860,34 +988,101 @@ if(isset($_POST['delFromCart'])){
                                     <div class="d-flex justify-content-center row">
                                         <div class="col">
                                             <?php
+                                            $nameBr='';
+                                            $pr1=0;
                                             @$con = new mysqli('localhost', 'root', '', 'web project');
                                             $chocoType=$_SESSION['test'];
                                             if($chocoType=='Revera'){
                                                 $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`revera` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && revera.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $qrR="SELECT sum(price*amount) total FROM `bag`,`cusorder`,`chocolate`,`revera` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && revera.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $res=$con->query($qrR);
+                                                for($i=0;$i<$res->num_rows;$i++) {
+                                                    $row = $res->fetch_row();
+                                                    $pr1= $row['0'];
+                                                }
+                                                $nameBr='Revera';
                                             }
                                             elseif ($chocoType=='Lorka'){
                                                 $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`lorka` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && lorka.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $qrL="SELECT sum(price*amount) total FROM `bag`,`cusorder`,`chocolate`,`lorka` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && lorka.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $res=$con->query($qrL);
+                                                for($i=0;$i<$res->num_rows;$i++) {
+                                                    $row = $res->fetch_row();
+                                                    $pr1= $row['0'];
+                                                }
+                                                $nameBr='Lorka';
                                             }
                                             elseif ($chocoType=='bn'){
                                                 $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`best` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && best.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $qrB="SELECT sum(price*amount) total FROM `bag`,`cusorder`,`chocolate`,`best` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && best.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $res=$con->query($qrB);
+                                                for($i=0;$i<$res->num_rows;$i++) {
+                                                    $row = $res->fetch_row();
+                                                    $pr1= $row['0'];
+                                                }
+                                                $nameBr='Best';
                                             }
                                             elseif ($chocoType=='bf'){
                                                 $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`best` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && best.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $qrB="SELECT sum(price*amount) total FROM `bag`,`cusorder`,`chocolate`,`best` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && best.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $res=$con->query($qrB);
+                                                for($i=0;$i<$res->num_rows;$i++) {
+                                                    $row = $res->fetch_row();
+                                                    $pr1= $row['0'];
+                                                }
+                                                $nameBr='Best';
                                             }
                                             elseif ($chocoType=='bocc'){
                                                 $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`best` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && best.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $qrB="SELECT sum(price*amount) total FROM `bag`,`cusorder`,`chocolate`,`best` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && best.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $res=$con->query($qrB);
+                                                for($i=0;$i<$res->num_rows;$i++) {
+                                                    $row = $res->fetch_row();
+
+                                                    $pr1= $row['0'];
+
+                                                }
+                                                $nameBr='Best';
                                             }
                                             elseif ($chocoType=='gour'){
                                                 $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`gourmet` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && gourmet.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $qrG2="SELECT sum(price*amount) total FROM `bag`,`cusorder`,`chocolate`,`gourmet` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && gourmet.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $res1=$con->query($qrG2);
+                                                for($i=0;$i<$res1->num_rows;$i++) {
+                                                    $row = $res1->fetch_row();
+                                                    $pr1= $row['0'];
+                                                }
+                                                $nameBr='Gourmet';
                                             }
                                             elseif ($chocoType=='dr'){
                                                 $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`gourmet` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && gourmet.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $qrG2="SELECT sum(price*amount) total FROM `bag`,`cusorder`,`chocolate`,`gourmet` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && gourmet.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $res1=$con->query($qrG2);
+                                                for($i=0;$i<$res1->num_rows;$i++) {
+                                                    $row = $res1->fetch_row();
+                                                    $pr1= $row['0'];
+                                                }
+                                                $nameBr='Gourmet';
                                             }
                                             elseif ($chocoType=='gmd'){
                                                 $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`gourmet` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && gourmet.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $qrG2="SELECT sum(price*amount) total FROM `bag`,`cusorder`,`chocolate`,`gourmet` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && gourmet.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $res1=$con->query($qrG2);
+                                                for($i=0;$i<$res1->num_rows;$i++) {
+                                                    $row = $res1->fetch_row();
+                                                    $pr1= $row['0'];
+                                                }
+                                                $nameBr='Gourmet';
                                             }
                                             else{
                                                 $recartshow="SELECT * FROM `bag`,`cusorder`,`chocolate`,`gourmet` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && gourmet.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $qrG2="SELECT sum(price*amount) total FROM `bag`,`cusorder`,`chocolate`,`gourmet` WHERE cusorder.orderN=bag.orderN && chocolate.SerealNumber=bag.serialNumber && cusorder.customer='".$_SESSION['userName']."' && gourmet.SerealNumber=chocolate.SerealNumber && bag.orderN='".$_SESSION['orderId']."';";
+                                                $res1=$con->query($qrG2);
+                                                for($i=0;$i<$res1->num_rows;$i++) {
+                                                    $row = $res1->fetch_row();
+                                                    $pr1= $row['0'];
+                                                }
+                                                $nameBr='Gourmet';
                                             }
 
                                             $res1=$con->query($recartshow);
@@ -897,18 +1092,26 @@ if(isset($_POST['delFromCart'])){
 
                                             <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
                                                 <div class="mr-1"><img class="rounded" src="data:image/png;charset=utf8;base64,<?php echo base64_encode($row[14]) ; ?>" width="70"/></div>
-                                                <div class="d-flex flex-column align-items-center " style="width: 110px">
+                                                <div class="d-flex flex-column align-items-center " style="width: 170px">
 
-                                                        <div class="size mr-1"><span class="text-grey"><?php echo $row[12];?></span></div>
+                                                        <div class="size mr-1"><span class="text-grey"style="font-size:20px ;"><?php echo $row[12];?></span></div>
 
-                                                        <div class="color"><span class="text-grey"><?php echo $row[2];?></span></div>
+                                                        <div class="color"><span class="text-grey" style="font-size:20px ;"><?php echo $row[2];?></span></div>
 
                                                 </div>
                                                 <div class="d-flex flex-row align-items-center qty">
-                                                    <h5 class="text-grey mt-1 mr-1 ml-1"><input style="background-color: #f0f0f0;width: 70px" value="<?php echo $row[3];?>" type="number" min="0"></h5>
+                                                    <h5 class="text-grey mt-1 mr-1 ml-1">
+                                                        <input name="<?php echo $row[2];?>" id="<?php echo $row[2];?>" style="background-color: #f0f0f0;width: 70px" value="<?php echo $row[3];?>" type="number" min="0"
+                                                               onchange="document.getElementById('price<?php echo $row[2];?>').innerText=(this.value*<?php echo $row[16];?>)+'₪';"
+                                                        ></h5>
                                                 </div>
                                                 <div>
-                                                    <h5 class="text-grey">$20.00</h5>
+                                                    <h5  id="price<?php echo $row[2];?>" class="text-grey"><?php
+                                                        $pr=$row[16];
+                                                        $sum=$pr * $row[3];
+                                                        $_SESSION['sum']=$sum;
+                                                        echo $sum;
+                                                        ?>₪</h5>
                                                 </div>
                                                 <div class="d-flex align-items-center">
                                                    <h5> <button  name="delFromCart" value="<?php echo $row[2];?>" style="background: transparent;border: 0px;font-size: 15px"> <i class="fa fa-trash mb-1 text-danger"></i>  Delete</button></h5>
@@ -918,14 +1121,15 @@ if(isset($_POST['delFromCart'])){
                                             <?php
                                             }
                                             ?>
-                                            <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><h2>Total Price: <?php echo $row[7];?></h2></div>
-                                        </div>
+                                            <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><h2><?php echo $nameBr;?> total Price: <?php echo $pr1;?>₪</h2></div>
+                                            <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><h3>Total Order Price: <?php echo $row[7];?>₪</h3></div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <input type="submit" class="btn btn-success" value="Save Changes">
+                                <input name="editOrder" type="submit" class="btn btn-success" value="Save Changes">
                             </div>
                         </div>
                     </div>
@@ -934,7 +1138,7 @@ if(isset($_POST['delFromCart'])){
 </section>
         </section>
 
-    //</form>
+    </form>
 
     <!--main content end-->
     <!--footer start-->
