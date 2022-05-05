@@ -9,6 +9,37 @@ if(isset($_SESSION['type'])){
 else{
     header('location:loginCust.php');
 }
+if(isset($_POST['info12'])){
+    @$con = new mysqli('localhost', 'root', '', 'web project');
+    $q1="SELECT * FROM `info`;";
+    $res=$con->query($q1);
+    for($j=0;$j<4;$j++){
+        $row=$res->fetch_row();
+        $n=$_POST[$row[0]];
+        $qsLogin="UPDATE `info` SET `value`='".$n."' WHERE `name`='".$row[0]."';";
+        $con->query($qsLogin);
+        $con->commit();
+    }
+$con->close();
+}
+
+if(isset($_POST['info2'])){
+    @$con1 = new mysqli('localhost', 'root', '', 'web project');
+    $q1="SELECT * FROM `info`;";
+    $res=$con1->query($q1);
+    $row=$res->fetch_row();
+    $row=$res->fetch_row();
+    $row=$res->fetch_row();
+    $row=$res->fetch_row();
+    for($j=0;$j<7;$j++){
+        $row=$res->fetch_row();
+        $n=$_POST[$row[0]];
+        $qsLogin="UPDATE `info` SET `value`='".$n."' WHERE `name`='".$row[0]."';";
+        $con1->query($qsLogin);
+        $con1->commit();
+    }
+    $con1->close();
+}
 ?>
 
 
@@ -17,7 +48,7 @@ else{
 
 <head>
     <meta charset="utf-8">
-    <title>Employees</title>
+    <title>Page Info. Edit</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/cartCss.css">
@@ -118,7 +149,7 @@ else{
 
                             <li>
                                 <a href="javascript:;">
-                                    <button class="kind4" name="submit2" type="submit" value="gocc" id="gocc">Occasions</button>
+                                    <button class="kind4" name="submit2" type="" value="gocc" id="gocc">Occasions</button>
                                 </a>
                             </li>
                         </ul>
@@ -162,45 +193,141 @@ else{
             </ul>
         </div>
     </aside>
-    <form action="mangerAddEmployee.php" method="post">
+
         <section id="main-content"style="background-color: #2c3034;">
             <section class="wrapper">
                 <div class="container-xxl">
-                    <table class="table table-striped table-dark" style="color: #fc8804;font-size: 15px">
-                        <thead>
-                        <tr>
-                            <th class="text-center" scope="col">ID</th>
-                            <th class="text-center" scope="col">Full Name</th>
-                            <th class="text-center" scope="col">User Name</th>
-                            <th class="text-center" scope="col">Email</th>
-                            <th class="text-center" scope="col">Gender</th>
-                            <th class="text-center" scope="col">Phone Number</th>
+                    <div class="row">
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        @$con = new mysqli('localhost', 'root', '', 'web project');
-                        $qsLogin="SELECT * FROM `employee`";
-                        $res=$con->query($qsLogin);
-                        if($res-> num_rows > 0){
-                            while($row=$res -> fetch_assoc()){
-                                echo "<tr><td>".$row["id"]."</td><td>".$row["FullName"]."</td><td>".$row["username"]."</td><td>".$row["email"]."</td><td>".$row["gender"]."</td><td>".$row["phoneNumber"]."</td></tr>";
+                        <div class="col border-end">
+                            <form action="pageInfo.php" method="post">
+                            <h2 style="text-align: center;color: #fc8804">Brand price change</h2>
+                            <table class="table table-striped table-dark" style="color: #fc8804;font-size: 15px">
+                                <thead>
+                                <tr>
+                                    <th class="text-center" scope="col">Brand Name</th>
+                                    <th class="text-center" scope="col">Brand Price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                @$con = new mysqli('localhost', 'root', '', 'web project');
+                                $qsLogin="SELECT * FROM `info`;";
+                                $res=$con->query($qsLogin);
+                                for($j=0;$j<4;$j++) {
+                                $row = $res->fetch_row();?>
+                                <tr>
+                                    <td>
+                                        <?php echo $row[0]?>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="<?php echo $row[0]?>" id="<?php echo $row[0]?>" value="<?php echo $row[1]?>" required style="width: 60px"> ₪
+                                    </td>
+                                </tr>
+                                <?php
+                                }
+                                ?>
+                                </tbody>
+                            </table>
+                            <div class="d-flex justify-content-center">
+                                <button class="kind2" type="submit" name="info12" style="background-color: #fc8804;border-radius: 7px">Save Changes</button>
+                            </div>
+                        </form>
+                        </div>
 
-                            }
-                            echo "</tbody>";
-                        }
-                        else{
-                            echo "0 result";
-                        }
-
-                        $con->close();
-
-                        ?>
 
 
+                        <div class="col">
+                            <form action="pageInfo.php" method="post">
+                            <h2 style="text-align: center;color: #fc8804">Change contact information</h2>
+                            <table class="table table-striped table-dark" style="color: #fc8804;font-size: 15px">
+                                <thead>
+                                <tr>
+                                    <th class="text-center" scope="col">Brand Name</th>
+                                    <th class="text-center" scope="col">Brand Price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                @$con = new mysqli('localhost', 'root', '', 'web project');
+                                $qsLogin1="SELECT * FROM `info`;";
+                                $res=$con->query($qsLogin1);
+                                $row = $res->fetch_row();
+                                $row = $res->fetch_row();
+                                $row = $res->fetch_row();
+                                $row = $res->fetch_row();
+                                ?>
+                                <tr>
+                                    <td>
+                                        Box
+                                    </td>
+                                    <td>
+                                        <input type="text" name="<?php $row = $res->fetch_row(); echo $row[0];?>" id="" value="<?php  echo $row[1];?>" required>
+                                    </td>
+                                </tr>
 
-                    </table>
+                                <tr>
+                                    <td>
+                                        Tel
+                                    </td>
+                                    <td>
+                                        <input type="text" name="<?php $row = $res->fetch_row(); echo $row[0];?>" id="" value="<?php  echo $row[1];?>" required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Fax
+                                    </td>
+                                    <td>
+                                        <input type="text" name="<?php $row = $res->fetch_row(); echo $row[0];?>" id="" value="<?php  echo $row[1];?>" required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        E-mail
+                                    </td>
+                                    <td>
+                                        <input type="text" name="<?php $row = $res->fetch_row(); echo $row[0];?>" id="" value="<?php  echo $row[1];?>" required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Facebook Page
+                                    </td>
+                                    <td>
+                                        <input type="text" name="<?php $row = $res->fetch_row(); echo $row[0];?>" id="" value="<?php  echo $row[1];?>" required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Instagram Page
+                                    </td>
+                                    <td>
+                                        <input type="text" name="<?php $row = $res->fetch_row(); echo $row[0];?>" id="" value="<?php  echo $row[1];?>" required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Youtube chanel
+                                    </td>
+                                    <td>
+                                        <input type="text"  name="<?php $row = $res->fetch_row(); echo $row[0];?>" id="" value="<?php  echo $row[1];?>" required>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" name="info2" class="kind2" style="background-color: #fc8804;border-radius: 7px">Save Changes</button>
+                            </div>
+                        </form>
+                        </div>
+
+                    </div>
                 </div>
 
 
@@ -210,7 +337,7 @@ else{
 
 
 
-    </form>
+
     <footer class="site-footer" id="contactUs">
         <div class="text-center">
             <p class="copy">

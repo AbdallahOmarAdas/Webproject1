@@ -62,12 +62,17 @@ if(isset($_POST['delete'])){
                 $row=$res->fetch_row();
 
                 $userName=$row[0];
+                $qrmanger="SELECT * FROM `login` WHERE `username` = '".$userName."';";
+                $res2=$con->query($qrmanger);
+                $row2=$res2->fetch_row();
+                if($row2[2]=='M'){
 
-
-                $todel="DELETE FROM `login` WHERE `username` = '".$userName."';";
-                $con->query($todel);
-                $con->query($qsLogin);
-
+                }
+                else{
+                    $todel="DELETE FROM `login` WHERE `username` = '".$userName."';";
+                    $con->query($todel);
+                    $con->query($qsLogin);
+                }
             }
 
             $con->commit();
@@ -129,7 +134,7 @@ if(isset($_POST['save'])) {
 
 <head>
     <meta charset="utf-8">
-    <title>Admin</title>
+    <title>Employee Management</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/cartCss.css">
@@ -169,24 +174,13 @@ if(isset($_POST['save'])) {
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="javascript:;"> <span class="main_menu">Orders</span></a>
-
-                    <ul class="sub">
-                        <li>
-                            <a href="javascript:;">
-                                <form action="manger3.html">
-                                    <input class="kind4" type="submit" value="All Customers orders" name="allO" id="allO">
-                                </form>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <form action="manger3.html">
-                                    <input class="kind4" type="submit" value="My Customers orders" name="empO" id="empO">
-                                </form>
-                            </a>
-                        </li>
-                    </ul>
+                <li>
+                    <a href="javascript:;class="aSi"">
+                    <form action="empOrder.php">
+                        <input class="kind4" type="submit" value="Customer's orders" >
+                    </form>
+                    </a>
+                </li>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;"> <span class="main_menu">Employees</span></a>
@@ -207,6 +201,13 @@ if(isset($_POST['save'])) {
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <form action="pageInfo.php" method="post">
+                            <input class="kind4" type="submit" value="Edit Page info." name="" id="">
+                        </form>
+                    </a>
                 </li>
                 <form action="products2.php" method="post">
                     <input type="hidden" name="action2" value="submit2" id="submit2" />
@@ -296,6 +297,7 @@ if(isset($_POST['save'])) {
                         <tr>
                             <th class="text-center" scope="col">ID</th>
                             <th class="text-center" scope="col">Full Name</th>
+                            <th class="text-center" scope="col">User Name</th>
                             <th class="text-center" scope="col">Email</th>
                             <th class="text-center" scope="col">Gender</th>
                             <th class="text-center" scope="col">Phone Number</th>
@@ -310,7 +312,7 @@ if(isset($_POST['save'])) {
                         $res=$con->query($qsLogin);
                         if($res-> num_rows > 0){
                             while($row=$res -> fetch_assoc()){
-                                echo "<tr><td>".$row["id"]."</td><td>".$row["FullName"]."</td><td>"."<input type='email' name='".$row['id']."m' id='".$row['id']."m' value='".$row["email"]."'</td><td>".$row["gender"]."</td><td>"."<input type='tel' name='".$row['id']."t' id='".$row['id']."t' value='".$row["phoneNumber"]."'</td><td>"."<input type='checkbox' name='submitedit[]' value='".$row["id"]."'</td></tr>";
+                                echo "<tr><td>".$row["id"]."</td><td>".$row["FullName"]."</td> <td>".$row["username"]."</td> <td>"."<input type='email' name='".$row['id']."m' id='".$row['id']."m' value='".$row["email"]."'</td><td>".$row["gender"]."</td><td>"."<input type='tel' name='".$row['id']."t' id='".$row['id']."t' value='".$row["phoneNumber"]."'</td><td>"."<input type='checkbox' name='submitedit[]' value='".$row["id"]."'</td></tr>";
 
                             }
                             echo "</tbody>";
@@ -403,12 +405,41 @@ if(isset($_POST['save'])) {
 
 
 
-    <footer class="site-footer">
+    <footer class="site-footer" id="contactUs">
         <div class="text-center">
             <p class="copy">
-                &copy; Copyrights <strong>Alhijaz chocolate LTD</strong>. All Rights Reserved
+                All Rights Reserved  &copy; Copyrights <strong>Alhijaz chocolate LTD</strong>.
             </p>
+            <div class="container" >
+                <p style="background-color: #22242A; text-align: left;padding-left: 400px">
+                    <?php
+                    @$con = new mysqli('localhost', 'root', '', 'web project');
+                    $qsLogin1="SELECT * FROM `info`;";
+                    $res=$con->query($qsLogin1);
+                    $row=$res->fetch_row();
+                    $row=$res->fetch_row();
+                    $row=$res->fetch_row();
+                    $row=$res->fetch_row();
+                    for($j=0;$j<4;$j++){
+                    $row=$res->fetch_row();?>
+                <h5><?php echo $row[1];?></h5>
+
+                <?php
+                }?>
+                <a href="mailto:<?php  echo $row[1];?>"><img src="images/envelope-solid%20(1)-svg.png" alt=""></a>
+                <a  href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/facebook-brands-svg.png" alt=""></a>
+                <a  href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/instagram-brands-svg.png" alt=""></a>
+                <a href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/youtube-brands-svg.png" alt=""></a>
+
+                <?php
+
+
+                ?>
+                </p>
+
+            </div>
         </div>
+
     </footer>
 
 </section>
@@ -420,11 +451,9 @@ if(isset($_POST['save'])) {
 <script src="lib/jquery.scrollTo.min.js"></script>
 <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
 <script src="lib/jquery.sparkline.js"></script>
-<!--common script for all pages-->
 <script src="lib/common-scripts.js"></script>
 <script type="text/javascript" src="lib/gritter/js/jquery.gritter.js"></script>
 <script type="text/javascript" src="lib/gritter-conf.js"></script>
-<!--<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>-->
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

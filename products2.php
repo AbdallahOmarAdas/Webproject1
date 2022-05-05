@@ -354,7 +354,7 @@ for($i=0;$i<$res->num_rows;$i++) {
 
 <head>
     <meta charset="utf-8">
-    <title>Admin</title>
+    <title>Products</title>
 
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -372,10 +372,8 @@ for($i=0;$i<$res->num_rows;$i++) {
         <div class="sidebar-toggle-box">
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
-        <!--logo start-->
         <a href="manePageCustomer.php" class="logo" style="margin: 0px"><img src="images/logo.png" alt="" style="width: 60px;height: 60px">Alhijaz chocolate LTD
         </a>
-        <!--logo end-->
 
         <div class="top-menu " style="padding-top:19px ">
             <ul class="nav top-menu justify-content-end">
@@ -405,39 +403,65 @@ for($i=0;$i<$res->num_rows;$i++) {
                     </a>
                 </li>
                 <?php
-                if($_SESSION['type']=='E'||$_SESSION['type']=='M'){?>
-                <li class="sub-menu">
-                    <a href="javascript:;"> <span class="main_menu">Orders</span></a>
+                if($_SESSION['type']=='C'){
+                    echo '
+                  <li class="sub-menu">
+                        <li>
+                            <a href="javascript:;class="aSi"">
+                                <form action="cusOrder.php">
+                                    <input class="kind4" type="submit" value="My orders" name="cus_Order" id="cus_Order">
+                                </form>
+                            </a>
+                        </li>
+                </li>
+
+                    ';
+                }
+                else{?>
+                    <li class="sub-menu">
+                    <li>
+                        <a href="javascript:;class="aSi"">
+                        <form action="empOrder.php">
+                            <input class="kind4" type="submit" value="Customer's orders" >
+                        </form>
+                        </a>
+                    </li>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if($_SESSION['type']=='M'){
+                    echo '
+                   <li class="sub-menu">
+                    <a href="javascript:;" class="aSi"> <span class="main_menu">Employees</span></a>
 
                     <ul class="sub">
                         <li>
                             <a href="javascript:;">
-                                <form action="manger3.html">
-                                    <input class="kind4" type="submit" value="All Customers orders" name="allO" id="allO">
+                                <form action="mangerView.php" method="post">
+                                    <input class="kind4" type="submit" value="View Information" name="manView" id="manView">
                                 </form>
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;">
-                                <form action="manger3.html">
-                                    <input class="kind4" type="submit" value="My Customers orders" name="empO" id="empO">
+                                <form action="mangerAddEmployee.php" method="post">
+                                    <input class="kind4" type="submit" value="Management" name="manEdit" id="empO">
                                 </form>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <?php
-                }
-                else{
-                    ?>
-                    <li class="sub-menu" >
-                        <a href="javascript:;" class="aSi " >
-                            <form action="cusOrder.php" method="post">
-                            <button class="kind4" name="myorder" type="submit" value="My Orders" id="myorder">My Orders</button>
-                            </form>
-                        </a>
-                    </li>
-                <?php
+                <li>
+                            <a href="javascript:;">
+                                <form action="pageInfo.php" method="post">
+                                    <input class="kind4" type="submit" value="Edit Page info." name="" id="">
+                                </form>
+                            </a>
+                        </li>
+                    ';
+
                 }
                 ?>
                 <form action="products2.php" method="post">
@@ -509,6 +533,23 @@ for($i=0;$i<$res->num_rows;$i++) {
                     </li>
 
                 </form>
+                <?php
+                if($_SESSION['type']=='C'){
+                    echo '
+                    <li class="sub-menu">
+                    <a href="#contactUs" style="font-size: 17px;color: #aeb2b7">
+                            Connect Us
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="findUs.php" style="font-size: 17px;color: #aeb2b7">
+                        Find Us
+                    </a>
+                </li>
+                    ';
+
+                }
+                ?>
             </ul>
             <!-- sidebar menu end-->
         </div>
@@ -1139,35 +1180,43 @@ for($i=0;$i<$res->num_rows;$i++) {
         </section>
 
     </form>
+<footer class="site-footer" id="contactUs">
+    <div class="text-center">
+        <p class="copy">
+            All Rights Reserved  &copy; Copyrights <strong>Alhijaz chocolate LTD</strong>.
+        </p>
+        <div class="container" >
+            <p style="background-color: #22242A; text-align: left;padding-left: 400px">
+                <?php
+                @$con = new mysqli('localhost', 'root', '', 'web project');
+                $qsLogin1="SELECT * FROM `info`;";
+                $res=$con->query($qsLogin1);
+                $row=$res->fetch_row();
+                $row=$res->fetch_row();
+                $row=$res->fetch_row();
+                $row=$res->fetch_row();
+                for($j=0;$j<4;$j++){
+                $row=$res->fetch_row();?>
+            <h5><?php echo $row[1];?></h5>
 
-    <!--main content end-->
-    <!--footer start-->
-    <footer class="site-footer" id="contactUs">
-        <div class="text-center">
-            <p class="copy">
-                &copy; Copyrights <strong>Alhijaz chocolate LTD</strong>. All Rights Reserved
+            <?php
+            }?>
+            <a href="mailto:<?php  echo $row[1];?>"><img src="images/envelope-solid%20(1)-svg.png" alt=""></a>
+            <a  href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/facebook-brands-svg.png" alt=""></a>
+            <a  href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/instagram-brands-svg.png" alt=""></a>
+            <a href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/youtube-brands-svg.png" alt=""></a>
+
+            <?php
+
+
+            ?>
             </p>
-            <div class="container" >
-                <p style="background-color: #22242A; text-align: left;padding-left: 400px">
-                    Alhijaz Chocolate LTD <br>
-                    Anabta P.O. Box 78 <br>
-                    Tel: 972 (0) 9 2673077 <br>
-                    Fax: 972 (0) 9 2680303 <br>
-                    E-mail: info@alhijaz.ps <br>
-                    Palestine <br>
 
-
-                    <a  href="https://www.facebook.com/alhijazchocolate"><img src="images/facebook-brands-svg.png" alt=""></a>
-                    <a  href="https://www.instagram.com/alhijaz_chocolate/"><img src="images/instagram-brands-svg.png" alt=""></a>
-                    <a href="https://www.youtube.com/channel/UC01d6ix0kxbZcMv2jT4mzrQ"><img src="images/youtube-brands-svg.png" alt=""></a>
-                    <a href="mailto:info@alhijaz.ps"><img src="images/envelope-solid%20(1)-svg.png" alt=""></a>
-                </p>
-
-            </div>
         </div>
+    </div>
 
-    </footer>
-    <!--footer end-->
+</footer>
+
 </section>
 
 <script src="lib/jquery/jquery.min.js"></script>
@@ -1177,7 +1226,6 @@ for($i=0;$i<$res->num_rows;$i++) {
 <script src="lib/jquery.scrollTo.min.js"></script>
 <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
 <script src="lib/jquery.sparkline.js"></script>
-<!--common script for all pages-->
 <script src="lib/common-scripts.js"></script>
 <script type="text/javascript" src="lib/gritter/js/jquery.gritter.js"></script>
 <script type="text/javascript" src="lib/gritter-conf.js"></script>

@@ -1,8 +1,9 @@
 <?php
 session_start();
 if(isset($_SESSION['type'])){
-    if($_SESSION['type']!='M'){
+    if($_SESSION['type']!='C' && $_SESSION['type']!='E' && $_SESSION['type']!='M'){
         header('location:loginCust.php');
+
     }
 
 }
@@ -10,33 +11,29 @@ else{
     header('location:loginCust.php');
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Employees</title>
+    <title>Admin</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/cartCss.css">
     <link rel="stylesheet" href="css/css1.css">
     <link rel="stylesheet" href="css/css_item.css">
     <link rel="stylesheet" href="css/mainPage.css">
-    <link rel="stylesheet" href="css/addEmp.css">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/cartCss.css">
 </head>
 
-<body style="background-color: #2c3034">
+<body>
 <section id="container" style="background-color: #d6d5d5">
     <header class="header black-bg">
         <div class="sidebar-toggle-box">
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
-        <a href="manePageCustomer.php" class="logo" style="margin: 0px;text-transform: none"><img src="images/logo.png" alt="" style="width: 60px;height: 60px">Alhijaz chocolate LTD
+        <a href="manePageCustomer.php" class="logo" style="margin: 0px;"><img src="images/logo.png" alt="" style="width: 60px;height: 60px">Alhijaz chocolate LTD
         </a>
         <div class="top-menu " style="padding-top:19px ">
             <ul class="nav top-menu justify-content-end">
@@ -49,23 +46,61 @@ else{
         <div id="sidebar" class="nav-collapse ">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li class="mt">
-                    <a class="" href="javascript:;">
+                    <a class="" href="javascript:;"class="aSi">
                         <form action="manePageCustomer.php">
                             <input class="kind4" type="submit" value="Home" name="home" id="home">
                         </form>
                     </a>
                 </li>
-                <li class="sub-menu">
-                <li>
-                    <a href="javascript:;class="aSi"">
-                    <form action="empOrder.php">
-                        <input class="kind4" type="submit" value="Customer's orders" >
-                    </form>
-                    </a>
+
+                <?php
+                if($_SESSION['type']=='C'){
+                    echo '
+                  <li class="sub-menu">
+                        <li>
+                            <a href="javascript:;class="aSi"">
+                                <form action="cusOrder.php">
+                                    <input class="kind4" type="submit" value="My orders" name="cus_Order" id="cus_Order">
+                                </form>
+                            </a>
+                        </li>
                 </li>
+
+                    ';
+                }
+                ?>
+                <?php
+                if($_SESSION['type']=='E'||$_SESSION['type']=='M'){
+                    echo '
+                        <li class="sub-menu">
+                    <a href="javascript:;"> <span class="main_menu">Orders</span></a>
+
+                    <ul class="sub">
+                        <li>
+                            <a href="javascript:;"class="aSi">
+                                <form action="manger3.html">
+                                    <input class="kind4" type="submit" value="All Customers orders" name="allO" id="allO">
+                                </form>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                <form action="manger3.html">
+                                    <input class="kind4" type="submit" value="My Customers orders" name="empO" id="empO">
+                                </form>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="sub-menu">
-                    <a href="javascript:;"> <span class="main_menu">Employees</span></a>
+                    ';
+                }
+                ?>
+
+                <?php
+                if($_SESSION['type']=='M'){
+                    echo '
+                   <li class="sub-menu">
+                    <a href="javascript:;" class="aSi"> <span class="main_menu">Employees</span></a>
 
                     <ul class="sub">
                         <li>
@@ -91,6 +126,12 @@ else{
                         </form>
                     </a>
                 </li>
+                    ';
+
+                }
+                ?>
+
+
                 <form action="products2.php" method="post">
                     <input type="hidden" name="action2" value="submit2" id="submit2" />
                     <li class="sub-menu">
@@ -158,59 +199,50 @@ else{
                             <button class="kind4" name="submit2" type="submit" value="Revera" id="Revera">Revera</button>
                         </a>
                     </li>
+
                 </form>
+                <?php
+                if($_SESSION['type']=='C'){
+                    echo '
+                    <li class="sub-menu">
+                    <a href="#contactUs" style="font-size: 17px;color: #aeb2b7">
+                            Connect Us
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="findUs.php" style="font-size: 17px;color: #aeb2b7">
+                        Find Us
+                    </a>
+                </li>
+                    ';
+
+                }
+                ?>
+
+
             </ul>
         </div>
     </aside>
-    <form action="mangerAddEmployee.php" method="post">
-        <section id="main-content"style="background-color: #2c3034;">
-            <section class="wrapper">
-                <div class="container-xxl">
-                    <table class="table table-striped table-dark" style="color: #fc8804;font-size: 15px">
-                        <thead>
-                        <tr>
-                            <th class="text-center" scope="col">ID</th>
-                            <th class="text-center" scope="col">Full Name</th>
-                            <th class="text-center" scope="col">User Name</th>
-                            <th class="text-center" scope="col">Email</th>
-                            <th class="text-center" scope="col">Gender</th>
-                            <th class="text-center" scope="col">Phone Number</th>
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        @$con = new mysqli('localhost', 'root', '', 'web project');
-                        $qsLogin="SELECT * FROM `employee`";
-                        $res=$con->query($qsLogin);
-                        if($res-> num_rows > 0){
-                            while($row=$res -> fetch_assoc()){
-                                echo "<tr><td>".$row["id"]."</td><td>".$row["FullName"]."</td><td>".$row["username"]."</td><td>".$row["email"]."</td><td>".$row["gender"]."</td><td>".$row["phoneNumber"]."</td></tr>";
+    <section id="main-content">
+        <section class="wrapper"style="">
+            <div class="container-xxl">
+            <div class="row" >
+               <div class="col d-flex justify-content-center">
+                   <img src="images/map_finfus.png" alt="">
+               </div>
+            </div>
 
-                            }
-                            echo "</tbody>";
-                        }
-                        else{
-                            echo "0 result";
-                        }
-
-                        $con->close();
-
-                        ?>
-
-
-
-                    </table>
+                <div class="row" >
+                    <div class="col ">
+                        <p style="text-align:center; padding:10px 0">
+                            <iframe style="width: 100%;height: 600px"  frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?t=h&amp;msa=0&amp;msid=205488116237136669827.0005029e67e189ff03c92&amp;source=embed&amp;ie=UTF8&amp;ll=32.305996,35.128999&amp;spn=0.017411,0.027466&amp;z=15&amp;iwloc=0005029e6b50295be609b&amp;output=embed"></iframe><br><small>View <a href="https://maps.google.com/maps/ms?t=h&amp;msa=0&amp;msid=205488116237136669827.0005029e67e189ff03c92&amp;source=embed&amp;ie=UTF8&amp;ll=32.305996,35.128999&amp;spn=0.017411,0.027466&amp;z=15&amp;iwloc=0005029e6b50295be609b" style="color:#0000FF;text-align:left">Al Hijaz Chocolate</a> in a larger map</small>
+                        </p>
+                    </div>
                 </div>
-
-
-            </section>
+            </div>
         </section>
-
-
-
-
-    </form>
+    </section>
     <footer class="site-footer" id="contactUs">
         <div class="text-center">
             <p class="copy">

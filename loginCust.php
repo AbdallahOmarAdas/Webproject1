@@ -1,4 +1,4 @@
-<?php //error_reporting(E_ERROR | E_PARSE);
+<?php error_reporting(E_ERROR | E_PARSE);
 $flagSent=0;
 $flagError=0;
 $flagNotEq=0;
@@ -115,16 +115,11 @@ else {
 
         $mail->CharSet = "utf-8";
         $mail->IsSMTP();
-        // enable SMTP authentication
         $mail->SMTPAuth = true;
-        // GMAIL username
         $mail->Username = "alhijazChocolate1@gmail.com";
-        // GMAIL password
         $mail->Password = "webemail.com";
         $mail->SMTPSecure = "ssl";
-        // sets GMAIL as the SMTP server
         $mail->Host = "smtp.gmail.com";
-        // set the SMTP port for the GMAIL server
         $mail->Port = "465";
         $mail->FromName = 'Al-Hijaz Chocolate';
         $mail->AddAddress($emailId);
@@ -173,7 +168,7 @@ if(isset($_POST['savePass'])){
 
 <head>
     <meta charset="utf-8">
-    <title>Admin</title>
+    <title>Log In</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/cartCss.css">
@@ -310,7 +305,6 @@ if(isset($_POST['savePass'])){
                     </a>
                 </li>
             </ul>
-            <!-- sidebar menu end-->
         </div>
     </aside>
     <section id="main-content">
@@ -393,11 +387,6 @@ if(isset($_POST['savePass'])){
                             ?>
 
                             <div class="text-right p-t-8 p-b-31">
-
-<!--                                <a href="#" class="login_a" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">-->
-<!--                                    Forgot password?-->
-<!--                                </a>-->
-
                                 <a class="login_a" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Forgot password?</a>
                             </div>
 
@@ -573,34 +562,42 @@ if(isset($_POST['savePass'])){
             </div>
         </section>
     </section>
-    <!--main content end-->
-    <!--footer start-->
-    <footer class="site-footer" id="contact_us">
+    <footer class="site-footer" id="contactUs">
         <div class="text-center">
             <p class="copy">
-                &copy; Copyrights <strong>Alhijaz chocolate LTD</strong>. All Rights Reserved
+                All Rights Reserved  &copy; Copyrights <strong>Alhijaz chocolate LTD</strong>.
             </p>
             <div class="container" >
                 <p style="background-color: #22242A; text-align: left;padding-left: 400px">
-                    Alhijaz Chocolate LTD <br>
-                    Anabta P.O. Box 78 <br>
-                    Tel: 972 (0) 9 2673077 <br>
-                    Fax: 972 (0) 9 2680303 <br>
-                    E-mail: info@alhijaz.ps <br>
-                    Palestine <br>
+                    <?php
+                    @$con = new mysqli('localhost', 'root', '', 'web project');
+                    $qsLogin1="SELECT * FROM `info`;";
+                    $res=$con->query($qsLogin1);
+                    $row=$res->fetch_row();
+                    $row=$res->fetch_row();
+                    $row=$res->fetch_row();
+                    $row=$res->fetch_row();
+                    for($j=0;$j<4;$j++){
+                    $row=$res->fetch_row();?>
+                <h5><?php echo $row[1];?></h5>
+
+                <?php
+                }?>
+                <a href="mailto:<?php  echo $row[1];?>"><img src="images/envelope-solid%20(1)-svg.png" alt=""></a>
+                <a  href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/facebook-brands-svg.png" alt=""></a>
+                <a  href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/instagram-brands-svg.png" alt=""></a>
+                <a href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/youtube-brands-svg.png" alt=""></a>
+
+                <?php
 
 
-                    <a  href="https://www.facebook.com/alhijazchocolate"><img src="images/facebook-brands-svg.png" alt=""></a>
-                    <a  href="https://www.instagram.com/alhijaz_chocolate/"><img src="images/instagram-brands-svg.png" alt=""></a>
-                    <a href="https://www.youtube.com/channel/UC01d6ix0kxbZcMv2jT4mzrQ"><img src="images/youtube-brands-svg.png" alt=""></a>
-                    <a href="mailto:info@alhijaz.ps"><img src="images/envelope-solid%20(1)-svg.png" alt=""></a>
-
+                ?>
                 </p>
+
             </div>
         </div>
 
     </footer>
-    <!--footer end-->
 </section>
 
 <script src="lib/jquery/jquery.min.js"></script>
@@ -610,55 +607,10 @@ if(isset($_POST['savePass'])){
 <script src="lib/jquery.scrollTo.min.js"></script>
 <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
 <script src="lib/jquery.sparkline.js"></script>
-<!--common script for all pages-->
 <script src="lib/common-scripts.js"></script>
 <script type="text/javascript" src="lib/gritter/js/jquery.gritter.js"></script>
 <script type="text/javascript" src="lib/gritter-conf.js"></script>
-<!--<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>-->
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<!---->
-<!--<script type="application/javascript">-->
-<!--    $(document).ready(function() {-->
-<!--        $("#date-popover").popover({-->
-<!--            html: true,-->
-<!--            trigger: "manual"-->
-<!--        });-->
-<!--        $("#date-popover").hide();-->
-<!--        $("#date-popover").click(function(e) {-->
-<!--            $(this).hide();-->
-<!--        });-->
-<!---->
-<!--        $("#my-calendar").zabuto_calendar({-->
-<!--            action: function() {-->
-<!--                return myDateFunction(this.id, false);-->
-<!--            },-->
-<!--            action_nav: function() {-->
-<!--                return myNavFunction(this.id);-->
-<!--            },-->
-<!--            ajax: {-->
-<!--                url: "show_data.php?action=1",-->
-<!--                modal: true-->
-<!--            },-->
-<!--            legend: [{-->
-<!--                type: "text",-->
-<!--                label: "Special event",-->
-<!--                badge: "00"-->
-<!--            },-->
-<!--                {-->
-<!--                    type: "block",-->
-<!--                    label: "Regular event",-->
-<!--                }-->
-<!--            ]-->
-<!--        });-->
-<!--    });-->
-<!---->
-<!--    function myNavFunction(id) {-->
-<!--        $("#date-popover").hide();-->
-<!--        var nav = $("#" + id).data("navigation");-->
-<!--        var to = $("#" + id).data("to");-->
-<!--        console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);-->
-<!--    }-->
-<!--</script>-->
 </body>
 
 </html>

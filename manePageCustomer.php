@@ -16,7 +16,7 @@ else{
 
 <head>
     <meta charset="utf-8">
-    <title>Admin</title>
+    <title>Main Page</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/cartCss.css">
@@ -37,14 +37,6 @@ else{
         </a>
         <div class="top-menu " style="padding-top:19px ">
             <ul class="nav top-menu justify-content-end">
-                <?php
-                if($_SESSION['type']=='C'){
-                    echo '
-                <li><img src="images/Untitled.png"  class="" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 34px;height: 30px;margin-right: 30px;margin-top: -4px;" alt=""></a></li>
-                    ';
-
-                }
-                ?>
                 <li><a class="logout" href="loginCust.php">Logout</a></li>
             </ul>
         </div>
@@ -52,7 +44,6 @@ else{
     </header>
     <aside>
         <div id="sidebar" class="nav-collapse ">
-            <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
                 <li class="mt">
                     <a class="" href="javascript:;"class="aSi">
@@ -77,34 +68,19 @@ else{
 
                     ';
                 }
-                ?>
+                else{?>
+                    <li class="sub-menu">
+                    <li>
+                        <a href="javascript:;class="aSi"">
+                        <form action="empOrder.php">
+                            <input class="kind4" type="submit" value="Customer's orders" >
+                        </form>
+                        </a>
+                    </li>
+                    </li>
                 <?php
-                if($_SESSION['type']=='E'||$_SESSION['type']=='M'){
-                    echo '
-                        <li class="sub-menu">
-                    <a href="javascript:;"> <span class="main_menu">Orders</span></a>
-
-                    <ul class="sub">
-                        <li>
-                            <a href="javascript:;"class="aSi">
-                                <form action="manger3.html">
-                                    <input class="kind4" type="submit" value="All Customers orders" name="allO" id="allO">
-                                </form>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <form action="manger3.html">
-                                    <input class="kind4" type="submit" value="My Customers orders" name="empO" id="empO">
-                                </form>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                    ';
                 }
                 ?>
-
                 <?php
                 if($_SESSION['type']=='M'){
                     echo '
@@ -128,6 +104,13 @@ else{
                         </li>
                     </ul>
                 </li>
+                <li>
+                            <a href="javascript:;">
+                                <form action="pageInfo.php" method="post">
+                                    <input class="kind4" type="submit" value="Edit Page info." name="" id="">
+                                </form>
+                            </a>
+                        </li>
                     ';
 
                 }
@@ -202,7 +185,7 @@ else{
                     </a>
                 </li>
 
-                </form>
+
                 <?php
                 if($_SESSION['type']=='C'){
                     echo '
@@ -223,14 +206,10 @@ else{
 
 
             </ul>
-            <!-- sidebar menu end-->
+
         </div>
     </aside>
-    <!--sidebar end-->
-    <!-- **********************************************************************************************************************************************************
-        MAIN CONTENT
-        *********************************************************************************************************************************************************** -->
-    <!--main content start-->
+
     <section id="main-content">
         <section class="wrapper"style=" background: url('images/light-wood-texture-wood-background-natural-materials-wood-texture.jpg')no-repeat  fixed">
             <div class="" >
@@ -239,7 +218,7 @@ else{
                         <div class="col">
                             <br>
                             <span><img src="images/gor-removebg-preview.png" alt=""></span>
-                            <!--            <span style="color: #804919;font-size: 50px;font-family:'MV Boli'">Gourmet®</span>-->
+
                             <p class="descriptionPara">
 
                                 Gourmet chocolates are rich chocolates of the highest quality, made using best beans and using best methods to deliver rich aroma, smooth texture and an even, velvety taste. Gourmet chocolates have a higher percentage of cocoa, a shiny appearance and are more expensive than regular chocolates.
@@ -252,6 +231,8 @@ else{
 
                 </div>
                 <br>
+                <form action="" method="">
+                </form>
                 <div class="container-xxl">
                     <div class="container-xxl" style="padding-left: 0px">
                         <span class="nameBrand">Gourmet®</span>
@@ -264,10 +245,11 @@ else{
                                             <img id="G20" class="item_img" src="images/gourmet/G20-removebg-preview.png">
                                         </div>
                                     </div>
-                                    <!--            <a class="kind" href="#">Gourmet</a>-->
-                                    <form action="products.php" method="post">
+
+                                    <form action="products2.php" method="post">
+                                        <input type="hidden" name="action2" value="submit2" id="submit2" />
                                         <a class="kind" href="javascript:void(0);">
-                                            <input class="kind2" type="submit" value="Gourmet" id="gm" name="gm">
+                                            <button class="kind2" name="submit2" type="submit" value="gour" id="gour">Gourmet</button>
                                         </a>
                                     </form>
 
@@ -282,9 +264,10 @@ else{
                                             <img id="GA13" class="item_img" src="images/gourmet/gmDrag-removebg-preview.png">
                                         </div>
                                     </div>
-                                    <form action="products.php" method="post">
+                                    <form action="products2.php" method="post">
+                                        <input type="hidden" name="action2" value="submit2" id="submit2" />
                                         <a class="kind" href="javascript:void(0);">
-                                            <input class="kind2" type="submit" value="Dragée Gourmet" id="gd" name="gd">
+                                            <button class="kind2" name="submit2" type="submit" value="dr" id="dr">Dragee</button>
                                         </a>
                                     </form>
                                 </div>
@@ -299,9 +282,10 @@ else{
                                         </div>
                                     </div>
                                     <!--            <a class="kind" href="#">ChocoMedjool</a>-->
-                                    <form action="products.php" method="post">
+                                    <form action="products2.php" method="post">
+                                        <input type="hidden" name="action2" value="submit2" id="submit2" />
                                         <a class="kind" href="javascript:void(0);">
-                                            <input class="kind2" type="submit" value="ChocoMedjool" id="gme" name="gme">
+                                            <button class="kind2" name="submit2" type="submit" value="gmd" id="gmd">chocoMedjool</button>
                                         </a>
                                     </form>
                                 </div>
@@ -315,9 +299,10 @@ else{
                                         </div>
                                     </div>
                                     <!--            <a class="kind" href="#">Occasions</a>-->
-                                    <form action="products.php" method="post">
+                                    <form action="products2.php" method="post">
+                                        <input type="hidden" name="action2" value="submit2" id="submit2" />
                                         <a class="kind" href="javascript:void(0);">
-                                            <input class="kind2" type="submit" value="Occasions" id="gocc" name="gocc">
+                                            <button class="kind2" name="submit2" type="submit" value="gocc" id="gocc">Occasions</button>
                                         </a>
                                     </form>
                                 </div>
@@ -340,9 +325,10 @@ else{
                                     </div>
                                 </div>
                                 <!--        <a class="kind" href="#">Best nuts</a>-->
-                                <form action="products.php" method="post">
+                                <form action="products2.php" method="post">
+                                    <input type="hidden" name="action2" value="submit2" id="submit2" />
                                     <a class="kind" href="javascript:void(0);">
-                                        <input class="kind2" type="submit" value="Best nuts" id="bn" name="bn">
+                                        <button class="kind2" name="submit2" type="submit" value="bn" id="bn">Best Nuts</button>
                                     </a>
                                 </form>
                             </div>
@@ -356,9 +342,10 @@ else{
                                     </div>
                                 </div>
                                 <!--        <a class="kind" href="#">Best fills</a>-->
-                                <form action="products.php" method="post">
+                                <form action="products2.php" method="post">
+                                    <input type="hidden" name="action2" value="submit2" id="submit2" />
                                     <a class="kind" href="javascript:void(0);">
-                                        <input class="kind2" type="submit" value="Best fills" id="bf" name="bf">
+                                        <button class="kind2" name="submit2" type="submit" value="bf" id="bf">Best Fill</button>
                                     </a>
                                 </form>
                             </div>
@@ -371,9 +358,10 @@ else{
                                         <img id="ocBEST" class="item_img" src="images/best/34__4_-removebg-preview.png">
                                     </div>
                                 </div>
-                                <form action="products.php" method="post">
+                                <form action="products2.php" method="post">
+                                    <input type="hidden" name="action2" value="submit2" id="submit2" />
                                     <a class="kind" href="javascript:void(0);">
-                                        <input class="kind2" type="submit" value="Occasions" id="bocc" name="bocc">
+                                        <button class="kind2" name="submit2" type="submit" value="bocc" id="bocc">Occasions</button>
                                     </a>
                                 </form>
                             </div>
@@ -391,9 +379,10 @@ else{
                                             <img id="lorka" class="item_img" src="images/lorka/lorkaNoga-removebg-preview.png">
                                         </div>
                                     </div>
-                                    <form action="products.php" method="post">
+                                    <form action="products2.php" method="post">
+                                        <input type="hidden" name="action2" value="submit2" id="submit2" />
                                         <a class="kind" href="javascript:void(0);">
-                                            <input class="kind2" type="submit" value="Lorka" id="lo" name="lo">
+                                            <button class="kind2" name="submit2" type="submit" value="Lorka" id="Lorka">Lorka</button>
                                         </a>
                                     </form>
                                 </div>
@@ -410,9 +399,10 @@ else{
                                             <img id="rev" class="item_img" src="images/revera/reveraKaramelLoze-removebg-preview%20(1).png">
                                         </div>
                                     </div>
-                                    <form action="products.php" method="post">
+                                    <form action="products2.php" method="post">
+                                        <input type="hidden" name="action2" value="submit2" id="submit2" />
                                         <a class="kind" href="javascript:void(0);">
-                                            <input class="kind2" type="submit" value="Revera" id="re" name="re">
+                                            <button class="kind2" name="submit2" type="submit" value="Revera" id="Revera">Revera</button>
                                         </a>
                                     </form>
                                 </div>
@@ -422,127 +412,45 @@ else{
 
                 </div>
             </div>
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable" style="max-width: 650px;">
-                    <div class="modal-content">
-                        <div class="modal-header cart_hed" style="background-color: #fc8804;">
-                            <h5 class="modal-title" id="staticBackdropLabel">Shopping cart</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body" style="padding-right: 0px;padding-left: 0px;">
-                            <div class="container">
-                                <div class="d-flex justify-content-center row">
-                                    <div class="col">
-                                        <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
-                                            <div class="mr-1"><img class="rounded" src="https://i.imgur.com/XiFJkhI.jpg" width="70"></div>
-                                            <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">Basic T-shirt</span>
-                                                <div class="d-flex flex-row product-desc">
-                                                    <div class="size mr-1"><span class="text-grey">Size:</span><span class="font-weight-bold">&nbsp;M</span></div>
-                                                    <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-row align-items-center qty">
-                                                <h5 class="text-grey mt-1 mr-1 ml-1"><input class="in_num" type="number" min="0"></h5>
-                                            </div>
-                                            <div>
-                                                <h5 class="text-grey">$20.00</h5>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-
-                                                <label for="del1"><i class="fa fa-trash mb-1 text-danger"><input type="checkbox" id="del1"> Delete </i> </label>
-
-                                            </div>
-                                        </div>
-                                        <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
-                                            <div class="mr-1"><img class="rounded" src="https://i.imgur.com/XiFJkhI.jpg" width="70"></div>
-                                            <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">Basic T-shirt</span>
-                                                <div class="d-flex flex-row product-desc">
-                                                    <div class="size mr-1"><span class="text-grey">Size:</span><span class="font-weight-bold">&nbsp;M</span></div>
-                                                    <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-row align-items-center qty"><i class="fa fa-minus text-danger"></i>
-                                                <h5 class="text-grey mt-1 mr-1 ml-1">2</h5><i class="fa fa-plus text-success"></i>
-                                            </div>
-                                            <div>
-                                                <h5 class="text-grey">$20.00</h5>
-                                            </div>
-                                            <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div>
-                                        </div>
-                                        <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
-                                            <div class="mr-1"><img class="rounded" src="https://i.imgur.com/XiFJkhI.jpg" width="70"></div>
-                                            <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">Basic T-shirt</span>
-                                                <div class="d-flex flex-row product-desc">
-                                                    <div class="size mr-1"><span class="text-grey">Size:</span><span class="font-weight-bold">&nbsp;M</span></div>
-                                                    <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-row align-items-center qty"><i class="fa fa-minus text-danger"></i>
-                                                <h5 class="text-grey mt-1 mr-1 ml-1">2</h5><i class="fa fa-plus text-success"></i>
-                                            </div>
-                                            <div>
-                                                <h5 class="text-grey">$20.00</h5>
-                                            </div>
-                                            <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div>
-                                        </div>
-                                        <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
-                                            <div class="mr-1"><img class="rounded" src="https://i.imgur.com/XiFJkhI.jpg" width="70"></div>
-                                            <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">Basic T-shirt</span>
-                                                <div class="d-flex flex-row product-desc">
-                                                    <div class="size mr-1"><span class="text-grey">Size:</span><span class="font-weight-bold">&nbsp;M</span></div>
-                                                    <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-row align-items-center qty"><i class="fa fa-minus text-danger"></i>
-                                                <h5 class="text-grey mt-1 mr-1 ml-1">2</h5><i class="fa fa-plus text-success"></i>
-                                            </div>
-                                            <div>
-                                                <h5 class="text-grey">$20.00</h5>
-                                            </div>
-                                            <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div>
-                                        </div>
-                                        <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><h2>Total Price: </h2></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <input type="submit" class="btn saveCart" value="Save Changes">
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </form>
         </section>
     </section>
-    <!--main content end-->
-    <!--footer start-->
     <footer class="site-footer" id="contactUs">
         <div class="text-center">
             <p class="copy">
-                &copy; Copyrights <strong>Alhijaz chocolate LTD</strong>. All Rights Reserved
+                All Rights Reserved  &copy; Copyrights <strong>Alhijaz chocolate LTD</strong>.
             </p>
             <div class="container" >
-<p style="background-color: #22242A; text-align: left;padding-left: 400px">
-Alhijaz Chocolate LTD <br>
-Anabta P.O. Box 78 <br>
-Tel: 972 (0) 9 2673077 <br>
-Fax: 972 (0) 9 2680303 <br>
-E-mail: info@alhijaz.ps <br>
-Palestine <br>
+                <p style="background-color: #22242A; text-align: left;padding-left: 400px">
+                <?php
+                @$con = new mysqli('localhost', 'root', '', 'web project');
+                $qsLogin1="SELECT * FROM `info`;";
+                $res=$con->query($qsLogin1);
+                $row=$res->fetch_row();
+                $row=$res->fetch_row();
+                $row=$res->fetch_row();
+                $row=$res->fetch_row();
+                for($j=0;$j<4;$j++){
+                    $row=$res->fetch_row();?>
+                <h5><?php echo $row[1];?></h5>
+
+                <?php
+                }?>
+                <a href="mailto:<?php  echo $row[1];?>"><img src="images/envelope-solid%20(1)-svg.png" alt=""></a>
+                <a  href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/facebook-brands-svg.png" alt=""></a>
+                <a  href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/instagram-brands-svg.png" alt=""></a>
+                <a href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/youtube-brands-svg.png" alt=""></a>
+
+                <?php
 
 
-                    <a  href="https://www.facebook.com/alhijazchocolate"><img src="images/facebook-brands-svg.png" alt=""></a>
-                    <a  href="https://www.instagram.com/alhijaz_chocolate/"><img src="images/instagram-brands-svg.png" alt=""></a>
-                    <a href="https://www.youtube.com/channel/UC01d6ix0kxbZcMv2jT4mzrQ"><img src="images/youtube-brands-svg.png" alt=""></a>
-                    <a href="mailto:info@alhijaz.ps"><img src="images/envelope-solid%20(1)-svg.png" alt=""></a>
+                ?>
                 </p>
 
             </div>
         </div>
 
     </footer>
-    <!--footer end-->
 </section>
 
 <script src="lib/jquery/jquery.min.js"></script>
@@ -552,11 +460,9 @@ Palestine <br>
 <script src="lib/jquery.scrollTo.min.js"></script>
 <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
 <script src="lib/jquery.sparkline.js"></script>
-<!--common script for all pages-->
 <script src="lib/common-scripts.js"></script>
 <script type="text/javascript" src="lib/gritter/js/jquery.gritter.js"></script>
 <script type="text/javascript" src="lib/gritter-conf.js"></script>
-<!--<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>-->
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

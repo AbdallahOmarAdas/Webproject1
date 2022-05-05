@@ -55,7 +55,7 @@ if(isset($_POST['delFromOrders']))
 
 <head>
     <meta charset="utf-8">
-    <title>Admin</title>
+    <title>Customer's Orders</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/cartCss.css">
@@ -85,7 +85,6 @@ if(isset($_POST['delFromOrders']))
     </header>
     <aside>
         <div id="sidebar" class="nav-collapse ">
-            <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
                 <li class="mt">
                     <a class="" href="javascript:;">
@@ -101,6 +100,8 @@ if(isset($_POST['delFromOrders']))
                         </form>
                     </a>
                 </li>
+                <?php
+                if($_SESSION['type']=='M'){?>
                 <li class="sub-menu">
                     <a href="javascript:;"> <span class="main_menu">Employees</span></a>
 
@@ -121,6 +122,17 @@ if(isset($_POST['delFromOrders']))
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript:;">
+                        <form action="pageInfo.php" method="post">
+                            <input class="kind4" type="submit" value="Edit Page info." name="" id="">
+                        </form>
+                    </a>
+                </li>
+                <?php
+                }
+                ?>
+                ?>
                 <form action="products2.php" method="post">
                     <input type="hidden" name="action2" value="submit2" id="submit2" />
                     <li class="sub-menu">
@@ -349,7 +361,7 @@ if(isset($_POST['delFromOrders']))
                                    ?>
                                    <form action="empOrder.php" method="post">
                                        <?php
-                                       if($row[5]<date('Y-m-d')){
+                                       if($row[5]<date('Y-m-d')&&$_SESSION['userName']==$row[4]){
                                            ?>
                                            <td><button  name="delFromOrders" value="<?php echo $row[0];?>" style="background: transparent;border: 0px;font-size: 15px;color: #ac2925"> <i class="fa fa-trash mb-1 text-danger" ></i>  Delete</button></td>
                                            <?php
@@ -442,12 +454,41 @@ if(isset($_POST['delFromOrders']))
 
 
 
-    <footer class="site-footer">
+    <footer class="site-footer" id="contactUs">
         <div class="text-center">
             <p class="copy">
-                &copy; Copyrights <strong>Alhijaz chocolate LTD</strong>. All Rights Reserved
+                All Rights Reserved  &copy; Copyrights <strong>Alhijaz chocolate LTD</strong>.
             </p>
+            <div class="container" >
+                <p style="background-color: #22242A; text-align: left;padding-left: 400px">
+                    <?php
+                    @$con = new mysqli('localhost', 'root', '', 'web project');
+                    $qsLogin1="SELECT * FROM `info`;";
+                    $res=$con->query($qsLogin1);
+                    $row=$res->fetch_row();
+                    $row=$res->fetch_row();
+                    $row=$res->fetch_row();
+                    $row=$res->fetch_row();
+                    for($j=0;$j<4;$j++){
+                    $row=$res->fetch_row();?>
+                <h5><?php echo $row[1];?></h5>
+
+                <?php
+                }?>
+                <a href="mailto:<?php  echo $row[1];?>"><img src="images/envelope-solid%20(1)-svg.png" alt=""></a>
+                <a  href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/facebook-brands-svg.png" alt=""></a>
+                <a  href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/instagram-brands-svg.png" alt=""></a>
+                <a href="<?php $row=$res->fetch_row(); echo $row[1];?>"><img src="images/youtube-brands-svg.png" alt=""></a>
+
+                <?php
+
+
+                ?>
+                </p>
+
+            </div>
         </div>
+
     </footer>
 
 </section>
@@ -459,11 +500,9 @@ if(isset($_POST['delFromOrders']))
 <script src="lib/jquery.scrollTo.min.js"></script>
 <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
 <script src="lib/jquery.sparkline.js"></script>
-<!--common script for all pages-->
 <script src="lib/common-scripts.js"></script>
 <script type="text/javascript" src="lib/gritter/js/jquery.gritter.js"></script>
 <script type="text/javascript" src="lib/gritter-conf.js"></script>
-<!--<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>-->
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
