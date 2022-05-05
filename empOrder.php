@@ -132,7 +132,7 @@ if(isset($_POST['delFromOrders']))
                 <?php
                 }
                 ?>
-                ?>
+
                 <form action="products2.php" method="post">
                     <input type="hidden" name="action2" value="submit2" id="submit2" />
                     <li class="sub-menu">

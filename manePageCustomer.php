@@ -29,21 +29,21 @@ else{
 
 <body>
 <section id="container" style="background-color: #d6d5d5">
-    <header class="header black-bg">
+    <header class="header black-bg ">
         <div class="sidebar-toggle-box">
-            <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+            <div class="fa fa-bars tooltips " data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
         <a href="manePageCustomer.php" class="logo" style="margin: 0px;"><img src="images/logo.png" alt="" style="width: 60px;height: 60px">Alhijaz chocolate LTD
         </a>
         <div class="top-menu " style="padding-top:19px ">
-            <ul class="nav top-menu justify-content-end">
+            <ul class="nav top-menu justify-content-end ">
                 <li><a class="logout" href="loginCust.php">Logout</a></li>
             </ul>
         </div>
 
     </header>
     <aside>
-        <div id="sidebar" class="nav-collapse ">
+        <div id="sidebar" class="nav-collapse">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li class="mt">
                     <a class="" href="javascript:;"class="aSi">

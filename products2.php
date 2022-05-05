@@ -132,34 +132,42 @@ if(isset($_POST['addProd'])) {
     $imgContent = addslashes(file_get_contents($urlimg));
 
     if (isset($_POST['addProductName']) && isset($_POST['addProductSereal'])) {
+        @$con3 = new mysqli('localhost', 'root', '', 'web project');
+        $qsLogin="SELECT * FROM `info`;";
+        $res3=$con3->query($qsLogin);
+            $rowB = $res3->fetch_row();
+            $rowG = $res3->fetch_row();
+            $rowL = $res3->fetch_row();
+            $rowR = $res3->fetch_row();
+
         $chocoType=$_SESSION['test'];
         try {
             if($chocoType=='Revera'){
-                $qrrr="INSERT INTO `revera` (`rowN`, `price`, `SerealNumber`) VALUES (NULL, '40', '" . $_POST['addProductSereal']. "');";
+                $qrrr="INSERT INTO `revera` (`rowN`, `price`, `SerealNumber`) VALUES (NULL, '".$rowR[1]."', '" . $_POST['addProductSereal']. "');";
             }
             elseif ($chocoType=='Lorka'){
-                $qrrr="INSERT INTO `lorka` (`rowN`, `price`, `SerealNumber`) VALUES (NULL, '55', '" . $_POST['addProductSereal']. "');";
+                $qrrr="INSERT INTO `lorka` (`rowN`, `price`, `SerealNumber`) VALUES (NULL, '".$rowL[1]."', '" . $_POST['addProductSereal']. "');";
             }
             elseif ($chocoType=='bn'){
-                $qrrr="INSERT INTO `best` (`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'65','n','" . $_POST['addProductSereal']. "')";
+                $qrrr="INSERT INTO `best` (`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'".$rowB[1]."','n','" . $_POST['addProductSereal']. "')";
             }
             elseif ($chocoType=='bf'){
-                $qrrr="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'65','f','" . $_POST['addProductSereal']. "')";
+                $qrrr="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'".$rowB[1]."','f','" . $_POST['addProductSereal']. "')";
             }
             elseif ($chocoType=='bocc'){
-                $qrrr="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','occ','" . $_POST['addProductSereal']. "')";
+                $qrrr="INSERT INTO `best`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'".$rowB[1]."','occ','" . $_POST['addProductSereal']. "')";
             }
             elseif ($chocoType=='gour'){
-                $qrrr="INSERT INTO `gourmet`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','gour','" . $_POST['addProductSereal']. "')";
+                $qrrr="INSERT INTO `gourmet`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'".$rowG[1]."','gour','" . $_POST['addProductSereal']. "')";
             }
             elseif ($chocoType=='dr'){
-                $qrrr="INSERT INTO `gourmet`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','dr','" . $_POST['addProductSereal']. "')";
+                $qrrr="INSERT INTO `gourmet`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'".$rowG[1]."','dr','" . $_POST['addProductSereal']. "')";
             }
             elseif ($chocoType=='gmd'){
-                $qrrr="INSERT INTO `gourmet`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','gmd','" . $_POST['addProductSereal']. "')";
+                $qrrr="INSERT INTO `gourmet`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'".$rowG[1]."','gmd','" . $_POST['addProductSereal']. "')";
             }
             else{
-                $qrrr="INSERT INTO `gourmet`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'80','gocc','" . $_POST['addProductSereal']. "')";
+                $qrrr="INSERT INTO `gourmet`(`rowN`, `price`, `type`, `SerealNumber`) VALUES (NULL,'".$rowG[1]."','gocc','" . $_POST['addProductSereal']. "')";
             }
 
             $qrstr = "INSERT INTO `chocolate` (`SerealNumber`, `nameP`, `typeT`, `img`) VALUES ('" . $_POST['addProductSereal'] . "', '" . $_POST['addProductName'] . "', '" . $_POST['typeT'] . "', '" .$imgContent . "');";

@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="afterRamadan">
-      <change afterPath="$PROJECT_DIR$/findUs.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pageInfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Webproject1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Webproject1.iml" afterDir="false" />
+    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="afterRamadan2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cusOrder.php" beforeDir="false" afterPath="$PROJECT_DIR$/cusOrder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/empOrder.php" beforeDir="false" afterPath="$PROJECT_DIR$/empOrder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/employeeOrder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/find_us.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loginBS.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loginCust.php" beforeDir="false" afterPath="$PROJECT_DIR$/loginCust.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/manePageCustomer.php" beforeDir="false" afterPath="$PROJECT_DIR$/manePageCustomer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manger.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mangerAddEmployee.php" beforeDir="false" afterPath="$PROJECT_DIR$/mangerAddEmployee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mangerView.php" beforeDir="false" afterPath="$PROJECT_DIR$/mangerView.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myOrder.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/products2.php" beforeDir="false" afterPath="$PROJECT_DIR$/products2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +128,7 @@
       <workItem from="1651573789125" duration="32537000" />
       <workItem from="1651691623702" duration="4046000" />
       <workItem from="1651731128486" duration="6114000" />
-      <workItem from="1651755482995" duration="5000000" />
+      <workItem from="1651755482995" duration="8475000" />
     </task>
     <task id="LOCAL-00001" summary="para">
       <created>1649688430023</created>
@@ -263,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651621532223</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="afterRamadan2">
+      <created>1651777089918</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1651777089918</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,6 +349,7 @@
     <MESSAGE value="date28_12.0" />
     <MESSAGE value="date28_2.0" />
     <MESSAGE value="afterRamadan" />
-    <option name="LAST_COMMIT_MESSAGE" value="afterRamadan" />
+    <MESSAGE value="afterRamadan2" />
+    <option name="LAST_COMMIT_MESSAGE" value="afterRamadan2" />
   </component>
 </project>
