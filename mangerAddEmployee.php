@@ -78,24 +78,8 @@ if(isset($_POST['delete'])){
             $con->commit();
             $con->close();
         }
-
-
-
-
-
-
-
-
-
     }}
 ?>
-
-
-
-
-
-
-
 
 <?php
 if(isset($_POST['save'])) {
@@ -114,14 +98,23 @@ if(isset($_POST['save'])) {
         $phone=$_POST['reg_phone'];
         $userName=$_POST['reg_username'];
         $password=$_POST['reg_password'];
+        $gen=$_POST['gender'];
         @$con= new mysqli('localhost','root','','web project');
+        $qrtest="SELECT * FROM `login` WHERE username='".$userName."';";
+        $re=$con->query($qrtest);
+        if($re->num_rows!=0){
+            echo '<script>alert("Please choose another username"); </script>';
+        }
+        else{
+
+
         $qsLogin="INSERT INTO `login` (`username`, `password`, `type`) VALUES ('".$userName."', SHA1('".$password."'),'E');";
         // $qsCustomer="INSERT INTO `employee` (`id`, `FullName`, `email`, `gender`, `phoneNumber`, `username`) ('".$id."','".$fullName."','".$emil."','Male','".$phone."','".$userName."');";
-        $qse="INSERT INTO `employee` (`id`, `FullName`, `email`, `gender`, `phoneNumber`, `username`) VALUES ('".$id."', '".$fullName."','".$emil."', 'Male','".$phone."','".$userName."');";
+        $qse="INSERT INTO `employee` (`id`, `FullName`, `email`, `gender`, `phoneNumber`, `username`) VALUES ('".$id."', '".$fullName."','".$emil."', '".$gen."','".$phone."','".$userName."');";
         $con->query($qsLogin);
         $con->query($qse);
         $con->commit();
-        $con->close();
+        $con->close();}
 
     }
 }
@@ -358,13 +351,13 @@ if(isset($_POST['save'])) {
                                         <table style="margin-left: 23px;margin-top: 5px">
                                             <tr>
                                                 <td>
-                                                    <input class="" type="radio" value="Male" name="gender" id="m">
+                                                    <input class="" type="radio" value="Male" name="gender" id="m" checked>
                                                     <label class="label-input100" for="m">Male</label>
 
                                                 </td>
                                                 <td style="padding-left: 50px;">
                                                     <input class="" type="radio" value="Female" name="gender" id="f">
-                                                    <label class="label-input100" for="f">Male</label>
+                                                    <label class="label-input100" for="f">Female</label>
 
                                                 </td>
                                             </tr>
