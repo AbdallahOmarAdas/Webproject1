@@ -344,7 +344,7 @@ for($i=0;$i<$res->num_rows;$i++) {
     }
     $con->commit();
 
-    $pupPrice="UPDATE `cusorder`SET `orderprice`='".$pb+$pg+$pl+$pr."' WHERE orderN='".$_SESSION['orderId']."';";
+    $pupPrice="UPDATE `cusorder`SET `orderprice`='".$pb+$pG+$pl+$pr."' WHERE orderN='".$_SESSION['orderId']."';";
     $con->query($pupPrice);
     $con->commit();
    $con->close();

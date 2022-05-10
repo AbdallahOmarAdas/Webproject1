@@ -2,6 +2,7 @@
 $flagSent=0;
 $flagError=0;
 $flagNotEq=0;
+$fsentmail=0;
 
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -99,7 +100,7 @@ if($res->num_rows==0){
 else {
     for ($i = 0; $i < $res->num_rows; $i++) {
         $row = $res->fetch_object();
-        $token = rand(10, 9999);
+        $token = rand(100000, 999999);
 
         $expFormat = mktime(
             date("H"), date("i"), date("s"), date("m"), date("d") + 1, date("Y")
@@ -112,7 +113,6 @@ else {
         $link = "<a href='http://localhost:63342/Webproject1/loginCust.php?key=" . $emailId . "&token=" . $token . "'>Click To Reset password</a>";
 
         $mail = new PHPMailer();
-
         $mail->CharSet = "utf-8";
         $mail->IsSMTP();
         $mail->SMTPAuth = true;
@@ -129,13 +129,16 @@ else {
 We have received a request to reset your account password.<br>
 Enter the following password reset code:'. $token.'<br>Did you ask for this change?<br> If you have not requested a new password, ignore this message.';
         if ($mail->Send()) {
+            $fsentmail=1;
 
-            echo "<script>alert('Check Your Email and then enter the code that sent to your email on the correct place')</script>";
+         //   echo "<script>alert('Check Your Email and then enter the code that sent to your email on the correct place')</script>";
         } else {
-            echo "Mail Error - >" . $mail->ErrorInfo;
+            $fsentmail=2;
+            //echo "Mail Error - >" . $mail->ErrorInfo;
         }
     }
 }
+
 }
 if(isset($_POST['savePass'])){
     $em=$_SESSION['email'];
@@ -295,12 +298,12 @@ if(isset($_POST['savePass'])){
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="#contact_us" style="font-size: 17px;color: #aeb2b7">
+                    <a href="#contactUs" style="font-size: 17px;color: #aeb2b7">
                         Connect Us
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="find_us.html" style="font-size: 17px;color: #aeb2b7">
+                    <a href="findUs.php" style="font-size: 17px;color: #aeb2b7">
                         Find Us
                     </a>
                 </li>
@@ -308,7 +311,7 @@ if(isset($_POST['savePass'])){
         </div>
     </aside>
     <section id="main-content">
-        <section class=""style=" background: url('images/light-wood-texture-wood-background-natural-materials-wood-texture.jpg')no-repeat  fixed">
+        <section class="">
             <div class="row" style="padding-top: 60px;margin: 0px">
 
                 <div class="col" style=" padding: 0px;">
@@ -385,6 +388,18 @@ if(isset($_POST['savePass'])){
                             echo '<p class="login_a" style="color: #ac2925">invalid userName or Password</p>';
                             }
                             ?>
+                            <?php
+                            if($fsentmail==1){
+                                echo '<p class="login_a" style="color: #c76600">Check Your Email and then enter the code that sent <br>to your email on the correct place</p>';
+                            }
+                            elseif($fsentmail==2){
+                                echo '<p class="login_a" style="color: #ac2925">an error occur on sending the email </p>';
+                            }
+                            else{
+
+                            }
+                            ?>
+
 
                             <div class="text-right p-t-8 p-b-31">
                                 <a class="login_a" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Forgot password?</a>

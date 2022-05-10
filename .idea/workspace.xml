@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="afterRamadan2">
+    <list default="true" id="6a35b283-873b-4c35-b846-47e6de82efdc" name="Changes" comment="afterRamadan4">
+      <change afterPath="$PROJECT_DIR$/images/gourmet/i123.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/gourmet/i1234.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loginCust.php" beforeDir="false" afterPath="$PROJECT_DIR$/loginCust.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manePageCustomer.php" beforeDir="false" afterPath="$PROJECT_DIR$/manePageCustomer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mangerAddEmployee.php" beforeDir="false" afterPath="$PROJECT_DIR$/mangerAddEmployee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products2.php" beforeDir="false" afterPath="$PROJECT_DIR$/products2.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +132,10 @@
       <workItem from="1651691623702" duration="4046000" />
       <workItem from="1651731128486" duration="6114000" />
       <workItem from="1651755482995" duration="8584000" />
-      <workItem from="1651909373347" duration="5258000" />
+      <workItem from="1651909373347" duration="12034000" />
+      <workItem from="1652033591648" duration="6312000" />
+      <workItem from="1652072909920" duration="1514000" />
+      <workItem from="1652158736022" duration="2338000" />
     </task>
     <task id="LOCAL-00001" summary="para">
       <created>1649688430023</created>
@@ -262,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651780353299</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="afterRamadan3">
+      <created>1651946987869</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1651946987870</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,6 +371,8 @@
     <MESSAGE value="date28_2.0" />
     <MESSAGE value="afterRamadan" />
     <MESSAGE value="afterRamadan2" />
-    <option name="LAST_COMMIT_MESSAGE" value="afterRamadan2" />
+    <MESSAGE value="afterRamadan3" />
+    <MESSAGE value="afterRamadan4" />
+    <option name="LAST_COMMIT_MESSAGE" value="afterRamadan4" />
   </component>
 </project>

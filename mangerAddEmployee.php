@@ -22,7 +22,6 @@ if(isset($_POST['edit'])){
             $emile=$_POST[$value.'m'];
 
             $phonee=$_POST[$value.'t'];
-            echo $emile;
             $sqql="UPDATE `employee` SET `email`='".$emile. "',`phoneNumber`='".$phonee. "' WHERE `id`='".$value."';";
             $con->query($sqql);
 

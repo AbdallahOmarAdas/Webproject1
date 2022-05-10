@@ -195,7 +195,7 @@ else{
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="find_us.html" style="font-size: 17px;color: #aeb2b7">
+                    <a href="findUs.php" style="font-size: 17px;color: #aeb2b7">
                         Find Us
                     </a>
                 </li>
